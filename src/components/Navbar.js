@@ -11,9 +11,12 @@ class Navbar extends Component {
         {isLoggedin ? (
           <div>
           <h1>Catch Me There</h1>
-         <NavLink to='/concerts'>Concerts</NavLink>
-         <NavLink to='/events'>Events</NavLink>
-            <p>username: {user.username}</p>
+          <ul>
+        <li><NavLink to='/concerts'>Concerts</NavLink></li>
+        <li><NavLink to='/events'>Events</NavLink></li>
+        <li><NavLink to='/addEvents'>Create Event</NavLink></li>
+        </ul>
+            <p>What's up {user.username}?</p>
             <button onClick={logout}>Logout</button>
           </div>
         ) : (

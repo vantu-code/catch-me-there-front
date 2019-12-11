@@ -1,9 +1,10 @@
 import axios from 'axios'
 import React, { Component } from 'react';
+import Event from '../lib/Event-service'
 
 class Events extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { 
       events: []
      };
@@ -19,7 +20,8 @@ class Events extends Component {
     });
   }
   componentDidMount() {
-  this.getAllEvents();
+    this.getAllEvents();
+ 
   }
   render() {
     const {events} = this.state;

@@ -22,6 +22,7 @@ class Auth {
       .then(({ data }) => data);
   }
 
+
   logout() {
     return this.auth.post('/auth/logout', {}).then(response => response.data);
   }
