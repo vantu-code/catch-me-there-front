@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { NavLink, Switch, Route } from 'react-router-dom';
 
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Private from './pages/Private';
+import Events from './pages/Events';
+import Concerts from './pages/Concerts'
 import Navbar from './components/Navbar';
 
 import AnonRoute from './components/AnonRoute';
@@ -14,12 +15,12 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar />
-        <h1>Basic React Authentication</h1>
 
         <Switch>
           <AnonRoute exact path="/signup" component={Signup} />
           <AnonRoute exact path="/login" component={Login} />
-          <PrivateRoute exact path="/private" component={Private} />
+          <PrivateRoute exact path="/events" component={Events} />
+          <PrivateRoute exact path="/concerts" component={Concerts} />
         </Switch>
       </div>
     );
