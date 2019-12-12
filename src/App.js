@@ -9,6 +9,7 @@ import Concerts from './pages/Concerts'
 import Navbar from './components/Navbar';
 import ConcertDetail from  './components/ConcertDetail'
 import AddEvent from './components/AddEvent'
+import EventDetail from './components/EventDetail'
 
 import AnonRoute from './components/AnonRoute';
 import PrivateRoute from './components/PrivateRoute';
@@ -22,6 +23,7 @@ class App extends Component {
           <AnonRoute exact path="/signup" component={Signup} />
           <AnonRoute exact path="/login" component={Login} />
           <PrivateRoute exact path="/events" component={Events} />
+          <PrivateRoute exact path="/eventDetail/:eventId" component={EventDetail} />
           <PrivateRoute exact path="/concerts" component={Concerts} />
           <PrivateRoute exact path="/addEvents" component={AddEvent} />
           <PrivateRoute exact path="/addEvents/:concertId" component={AddEvent} />

@@ -18,7 +18,7 @@ export default class AddEvent extends Component {
     photo: "", 
     themeSong: "", 
     concertId: "",
-    relatedConcert: "",
+    relatedConcert: {},
     city: "",
     country: ""
     }
@@ -29,6 +29,8 @@ export default class AddEvent extends Component {
         .get(`https://app.ticketmaster.com/discovery/v2/events.json?id=${concertId}&apikey=Y4MH0iVp8WoFqZ4aSc3RFUk6DjJl4K1y`)
         .then((result) => {
             this.setState({relatedConcert: result.data._embedded.events[0]})
+            console.log("related", this.state.relatedConcert)
+            console.log("state", this.state)
         }).catch((err) => {
         });
     }
@@ -45,7 +47,13 @@ export default class AddEvent extends Component {
       };
 
     createEvent=()=>{
+        console.log("statetocreate", this.state)
         Event.create(this.state)
+        .then(() => {
+        this.props.history.push('/events');
+        }).catch((err) => {
+            
+        });
     }
     componentDidMount(){
         const { concertId } = this.props.match.params
@@ -94,6 +102,13 @@ export default class AddEvent extends Component {
      type="text" 
      name="vibe" 
      value={this.state.vibe} />
+
+<label>Coming</label>
+     <input 
+     onChange={this.handleInput} 
+     type="number" 
+     name="coming" 
+     value={this.state.coming} />
 
      <label>Max People</label>
      <input 

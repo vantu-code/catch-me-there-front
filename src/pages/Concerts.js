@@ -29,7 +29,7 @@ class Concerts extends Component {
     const fromDBCopy = [...fromDB]
     fromDBCopy.forEach((oneObj, index)=>{
     for (let i = 0; i < oneObj.name.length; i++ ){
-        if (oneObj.name[i] === "-" || oneObj.name[i] === "|"){
+        if (oneObj.name[i] === "-" || oneObj.name[i] === "|" || oneObj.name[i] === ":"){
             if (oneObj.name[i-1] === " ") {
                 if (oneObj.name[i-2] === " ") oneObj.name = oneObj.name.substring(0, i-2)
                 else oneObj.name = oneObj.name.substring(0, i-1)
@@ -52,7 +52,7 @@ class Concerts extends Component {
         }
     }
     this.setState({concerts: unique})
-    console.log("uuun", unique);
+    // console.log("uuun", unique);
   }
 
   

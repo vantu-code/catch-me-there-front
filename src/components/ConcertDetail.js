@@ -2,19 +2,47 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { directive } from '@babel/types';
 import {Link} from 'react-router-dom'
+import Spotify from '../lib/spotify-service'
+
 
 export default class ConcertDetail extends Component {
     state={
     concert: null,
     }
 
-    
+
+    goodNameFunc=name=>{
+        for (let i = 0; i < name.length; i++ ){
+            if (name[i] === "-" || name[i] === "|" || name[i] === ":"){
+                if (name[i-1] === " ") {
+                    if (name[i-2] === " ") name = name.substring(0, i-2)
+                    else name = name.substring(0, i-1)
+                }
+                else name = name.substring(0, i)
+            return name
+            }
+          }
+          return name
+        }
+
+
+        getTopSongs=(artistName)=>{
+            console.log("artist to send,")
+            Spotify.getTop(artistName)
+            .then((result) => {
+                console.log("in concert detail", result)
+            this.props.history.push('/events');
+            }).catch((err) => {
+            });
+        }
     getOneConcert(){
         console.log("props", this.props.match.params.concertId)
         axios
         .get(`https://app.ticketmaster.com/discovery/v2/events.json?id=${this.props.match.params.concertId}&apikey=Y4MH0iVp8WoFqZ4aSc3RFUk6DjJl4K1y`)
         .then((result) => {
             //console.log("result", result.data._embedded.events[0], 'hbjhgh')
+            const goodNameConcert = result.data._embedded.events[0]
+            goodNameConcert.name= this.goodNameFunc(goodNameConcert.name)
             this.setState({concert: result.data._embedded.events[0]})
             console.log(this.state.concert._embedded.venues[0].address.line1);
         }).catch((err) => {
@@ -22,6 +50,7 @@ export default class ConcertDetail extends Component {
     }
     componentDidMount(){
     this.getOneConcert()
+
     }
 
     render() {

@@ -9,10 +9,15 @@ class Event {
   }
 
   create(fullObject){
-    console.log("in event", fullObject);
     return this.auth
     .post('/events', fullObject)
     .then(({data})=>console.log(data))
+  }
+
+  getOne(eventId){
+    return this.auth
+    .get(`/events/${eventId}`)
+    .then((data)=> data)
   }
 
 }
