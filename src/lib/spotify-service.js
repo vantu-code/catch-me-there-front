@@ -11,7 +11,7 @@ class Spotify {
 
   getTop(artistName){
     return this.auth
-    .get(`/events/${artistName}`)
+    .get(`/spotify/${artistName}`)
     .then((data)=> data)
   }
 

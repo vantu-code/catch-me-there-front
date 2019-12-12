@@ -8,6 +8,7 @@ import Spotify from '../lib/spotify-service'
 export default class ConcertDetail extends Component {
     state={
     concert: null,
+    spotifyLink: '',
     }
 
 
@@ -27,11 +28,13 @@ export default class ConcertDetail extends Component {
 
 
         getTopSongs=(artistName)=>{
-            console.log("artist to send,")
+            console.log("artist to send,",artistName)
             Spotify.getTop(artistName)
             .then((result) => {
-                console.log("in concert detail", result)
-            this.props.history.push('/events');
+                // console.log("in concert detail", result.data.body.tracks[0].artists[0].external_urls.spotify)
+                this.setState({spotifyLink: result.data.body.tracks[0].artists[0].external_urls.spotify})
+                console.log(this.state.spotifyLink)
+            // this.props.history.push('/events');
             }).catch((err) => {
             });
         }
@@ -44,7 +47,7 @@ export default class ConcertDetail extends Component {
             const goodNameConcert = result.data._embedded.events[0]
             goodNameConcert.name= this.goodNameFunc(goodNameConcert.name)
             this.setState({concert: result.data._embedded.events[0]})
-            console.log(this.state.concert._embedded.venues[0].address.line1);
+            this.getTopSongs(goodNameConcert.name)
         }).catch((err) => {
         });
     }
@@ -71,6 +74,7 @@ export default class ConcertDetail extends Component {
                 <h2>{concert._embedded.venues[0].country.name}</h2>
                 <h2>{concert._embedded.venues[0].location.latitude} latitude</h2>
                 <h2>{concert._embedded.venues[0].location.longitude} longitude</h2>
+                <a href={this.state.spotifyLink}><button>Spotify</button></a>
                 <a href={concert.url}> <button >Buy tickets</button> </a>
                 <Link to={`/addEvents/${this.props.match.params.concertId}`} ><button >Create Group</button></Link>
                 {/* latitude: "41.39772"
