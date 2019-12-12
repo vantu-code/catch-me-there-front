@@ -1,15 +1,35 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../lib/AuthProvider';
+import paintingService from '../lib/paintingService'
 
 class Signup extends Component {
-  state = { username: '', password: '' };
+  state = { 
+    username: '', 
+    password: '',
+    photo: '',
+
+  };
+
+
+
+  fileChange = (event) => {
+    const file = event.target.files[0];
+    const uploadData = new FormData()
+    uploadData.append('photo', file)
+    paintingService.imageUpload(uploadData)
+    .then((image) => {
+      console.log("image", image)
+        this.setState({ photo: image })
+    })
+    .catch((error) => console.log(error))
+  }
 
   handleFormSubmit = event => {
     event.preventDefault();
-    const { username, password } = this.state;
+    const { username, password, photo } = this.state;
     //  console.log('Signup -> form submit', { username, password });
-    this.props.signup({ username, password }); // props.signup is Provided by withAuth() and Context API
+    this.props.signup({ username, password, photo}); // props.signup is Provided by withAuth() and Context API
   };
 
   handleChange = event => {
@@ -18,7 +38,7 @@ class Signup extends Component {
   };
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, photo} = this.state;
     return (
       <div>
         <h1>Sign Up</h1>
@@ -37,6 +57,13 @@ class Signup extends Component {
             name="password"
             value={password}
             onChange={this.handleChange}
+          />
+
+          <input
+          className="add-input"
+          type="file"
+          name="image"
+          onChange={e => this.fileChange(e)}
           />
 
           <input type="submit" value="Signup" />

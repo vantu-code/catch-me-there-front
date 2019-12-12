@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Event from '../lib/Event-service'
 import { log } from 'util';
+import paintingService from '../lib/paintingService'
 
 export default class AddEvent extends Component {
     state={
@@ -34,6 +35,19 @@ export default class AddEvent extends Component {
         }).catch((err) => {
         });
     }
+
+
+
+    fileChange = (event) => {
+        const file = event.target.files[0];
+        const uploadData = new FormData()
+        uploadData.append('photo', file)
+        paintingService.imageUpload(uploadData)
+        .then((image) => {
+            this.setState({ photo: image })
+        })
+        .catch((error) => console.log(error))
+      }
 
     handleSubmit = e => {
         e.preventDefault();
@@ -173,7 +187,12 @@ export default class AddEvent extends Component {
      name="country" 
      value={this.state.country} />
 
-
+    <input
+          className="add-input"
+          type="file"
+          name="image"
+          onChange={e => this.fileChange(e)}
+        />
      <button>Submit</button>
      </form>
         </div>

@@ -48,6 +48,7 @@ export default class ConcertDetail extends Component {
             goodNameConcert.name= this.goodNameFunc(goodNameConcert.name)
             this.setState({concert: result.data._embedded.events[0]})
             this.getTopSongs(goodNameConcert.name)
+            console.log("state", this.state.spotifyLink)
         }).catch((err) => {
         });
     }
@@ -58,7 +59,6 @@ export default class ConcertDetail extends Component {
 
     render() {
         const {concert} = this.state;
-        console.log("state", this.state.concert)
         // console.log('concert.length',concert.length);
         return (
             <div>
@@ -74,8 +74,8 @@ export default class ConcertDetail extends Component {
                 <h2>{concert._embedded.venues[0].country.name}</h2>
                 <h2>{concert._embedded.venues[0].location.latitude} latitude</h2>
                 <h2>{concert._embedded.venues[0].location.longitude} longitude</h2>
-                <a href={this.state.spotifyLink}><button>Spotify</button></a>
-                <a href={concert.url}> <button >Buy tickets</button> </a>
+                <a href={this.state.spotifyLink}><img src="https://i1.wp.com/davan.ac/wp-content/uploads/2006/07/listen-on-spotify-logo.png?ssl=1" width="80"/> </a>
+                <a href={concert.url}><img src="https://www.trzcacak.rs/myfile/full/345-3451475_buy-at-ticketmaster-logos-ticketmaster.png" width="80"/> </a>
                 <Link to={`/addEvents/${this.props.match.params.concertId}`} ><button >Create Group</button></Link>
                 {/* latitude: "41.39772"
 longitude: "2.19111" */}
