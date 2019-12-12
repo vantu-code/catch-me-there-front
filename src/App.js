@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import ConcertDetail from  './components/ConcertDetail'
 import AddEvent from './components/AddEvent'
 import EventDetail from './components/EventDetail'
+import Profile from './components/Profile'
 
 import AnonRoute from './components/AnonRoute';
 import PrivateRoute from './components/PrivateRoute';
@@ -22,6 +23,8 @@ class App extends Component {
         <Switch>
           <AnonRoute exact path="/signup" component={Signup} />
           <AnonRoute exact path="/login" component={Login} />
+          <PrivateRoute exact path="/profile/:userId" component={Profile} />
+          <PrivateRoute exact path="/profile/" component={Profile} />
           <PrivateRoute exact path="/events" component={Events} />
           <PrivateRoute exact path="/eventDetail/:eventId" component={EventDetail} />
           <PrivateRoute exact path="/concerts" component={Concerts} />

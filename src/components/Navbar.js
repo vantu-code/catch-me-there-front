@@ -11,6 +11,7 @@ class Navbar extends Component {
         {isLoggedin ? (
           <div>
           <h1>Catch Me There</h1>
+          <button className="profile-link"><NavLink to='/profile'>Profile</NavLink></button>
           <ul>
         <li><NavLink to='/concerts'>Concerts</NavLink></li>
         <li><NavLink to='/events'>Events</NavLink></li>

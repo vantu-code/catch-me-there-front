@@ -20,6 +20,22 @@ class Event {
     .then((data)=> data)
   }
 
+  delete(eventId){
+    return this.auth
+    .get(`/events/delete/${eventId}`)
+    .then((data)=> data)
+  }
+
+  join(eventId){
+    return this.auth
+    .put(`/events/${eventId}`)
+    .then((data)=> data)
+  }
+  leave(eventId){
+  return this.auth
+  .put(`/events/leave/${eventId}`)
+  .then((data)=> data)
+  }
 }
 const eventService = new Event();
 
