@@ -84,13 +84,23 @@ findOrganizer=()=>{
             
         });
         }
+        deleteEvent=()=>{
+            // console.log("delete-mode",this.state.event._id)
+            Event.delete(this.state.event._id)
+            .then((result) => {
+            this.setState({isMyEvent: false})
+            this.props.history.push('/events');
+            }).catch((err) => {
+                
+            });
+        }
 
     componentDidMount(){
         this.getOneEvent(this.props.match.params.eventId)
 
     }
     render() {
-        const {event, coming, organizer} = this.state;
+        const {event, coming, organizer, isMyEvent} = this.state;
         return (
             <div>
             {
@@ -141,6 +151,11 @@ findOrganizer=()=>{
                     )
                     :
                     null
+                }
+                {
+                    isMyEvent?
+                    <button onClick={this.deleteEvent}>delete</button>
+                    :null
                 }
                 {
                         <button onClick={ () => this.props.history.goBack()}>back</button>

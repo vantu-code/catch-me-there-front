@@ -21,8 +21,9 @@ class Event {
   }
 
   delete(eventId){
+    console.log("in delete")
     return this.auth
-    .get(`/events/delete/${eventId}`)
+    .delete(`/events/delete/${eventId}`)
     .then((data)=> data)
   }
 
