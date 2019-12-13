@@ -10,6 +10,7 @@ export default class ConcertDetail extends Component {
     concert: null,
     spotifyLink: '',
     tracks: [],
+    relatedEvents: [],
     }
 
 
@@ -26,7 +27,6 @@ export default class ConcertDetail extends Component {
           }
           return name
         }
-
 
         getTopSongs=(artistName)=>{
             console.log("artist to send,",artistName)
@@ -45,6 +45,30 @@ export default class ConcertDetail extends Component {
                 console.log("error", err)
             });
         }
+
+        getAllEventsAndFindRelated=()=>{
+            axios
+            .get("http://localhost:5000/events", { withCredentials: true})
+            .then((result) => {
+                //this.setState({events: result.data})
+                //console.log("from concert detail", result.data)
+                const thisConcertId = this.props.match.params.concertId
+                const allEvents = [...result.data]
+                const relatedEvents = []
+                allEvents.forEach((event)=>{
+                    if(event.concertId){
+                        if (event.concertId === thisConcertId)
+                        {relatedEvents.push(event)}
+                    }
+                })
+                console.log("related events", relatedEvents)
+                this.setState({relatedEvents:relatedEvents})
+                console.log("this state of concert", this.state.relatedEvents)
+            }).catch((err) => {
+            
+            });
+        }
+
     getOneConcert(){
         console.log("props", this.props.match.params.concertId)
         axios
@@ -55,6 +79,7 @@ export default class ConcertDetail extends Component {
             goodNameConcert.name= this.goodNameFunc(goodNameConcert.name)
             this.setState({concert: result.data._embedded.events[0]})
             this.getTopSongs(goodNameConcert.name)
+            this.getAllEventsAndFindRelated()
             console.log("state", this.state.spotifyLink)
         }).catch((err) => {
         });
@@ -65,7 +90,7 @@ export default class ConcertDetail extends Component {
     }
 
     render() {
-        const {concert,tracks} = this.state;
+        const {concert,tracks, relatedEvents} = this.state;
         // console.log('concert.length',concert.length);
         return (
             <div>
@@ -90,9 +115,9 @@ longitude: "2.19111" */}
                 {
                 tracks.map((track)=>{
                     if(track.preview_url)
-                    return <figure>
-                <figcaption class="song-title" >{track.name}</figcaption>
-                 <audio class="player"
+                    return <figure key={track.id}>
+                <figcaption className="song-title" >{track.name}</figcaption>
+                 <audio className="player"
                  controls
                  src={track.preview_url}>
                    Your browser does not support the
@@ -100,6 +125,14 @@ longitude: "2.19111" */}
                  </audio>
                 </figure>
                 })
+                }
+                {
+                relatedEvents?
+                relatedEvents.map((relatedEvent)=>{
+                return <Link to={`/eventDetail/${relatedEvent._id}`}><h1>{relatedEvent.title}</h1></Link>
+                })
+                :
+                null
                 }
                 </div>
                 :

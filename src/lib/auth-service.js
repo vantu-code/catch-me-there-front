@@ -10,6 +10,7 @@ class Auth {
 
   signup(user) {
     const { username, password, photo } = user;
+    console.log("user from auth-service", user)
     return this.auth
       .post('/auth/signup', { username, password, photo })
       .then(({ data }) => data);

@@ -53,11 +53,11 @@ export default class AddEvent extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.createEvent()
         Auth.me()
         .then((user) => {
-        this.setState({organizerId: user._id})
-        console.log(this.state)
+            this.setState({organizerId: user._id})
+            console.log("added-event", this.state)
+            this.createEvent()
         }).catch((err) => {
             
         });

@@ -10,7 +10,8 @@ import Auth from '../lib/auth-service'
 export default class EventDetail extends Component {
     state={
     event: null,
-    isGoing: false
+    isGoing: false,
+    isMyEvent: false
     }
 
     getOneEvent=(eventId)=>{
@@ -23,7 +24,9 @@ export default class EventDetail extends Component {
             .then((user) => {
                 if(result.data.comingIds.includes(user._id))
                 {this.setState({isGoing: true})}
-                console.log("auth", user._id)
+                if(result.data.organizerId === user._id)
+                {this.setState({isMyEvent: true})}
+                console.log("event -     state", this.state)
             }).catch((err) => {
                 
             });
@@ -36,7 +39,7 @@ export default class EventDetail extends Component {
         leaveEvent=()=>{
         Event.leave(this.props.match.params.eventId)
         .then((result) => {
-        this.setState({isGoing: false})
+        this.setState({isGoing: false , event: result.data})
         this.forceUpdate()
         console.log("leave event", result)
         }).catch((err) => {
@@ -47,7 +50,7 @@ export default class EventDetail extends Component {
         joinEvent=()=>{
             Event.join(this.props.match.params.eventId)
             .then((result) => {
-            this.setState({isGoing: true})
+            this.setState({isGoing: true, event: result.data})
             console.log("join event", result)
             this.forceUpdate()
             }).catch((err) => {
@@ -79,7 +82,10 @@ export default class EventDetail extends Component {
                 }
                     {
                     event.relatedConcert?
-                    <h1>realted to: {event.relatedConcert.name}</h1>
+                    <div>
+                    <h1>realted to:</h1> 
+                    <Link to={`/concertDetail/${event.relatedConcert.id}`}><h2>{event.relatedConcert.name}</h2></Link>
+                    </div>
                     :
                     null
                     }

@@ -26,9 +26,11 @@ class Signup extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+    // console.log("this state of sign up", this.state)
     const { username, password, photo } = this.state;
     //  console.log('Signup -> form submit', { username, password });
-    this.props.signup({ username, password, photo}); // props.signup is Provided by withAuth() and Context API
+    this.props.signup(this.state); // props.signup is Provided by withAuth() and Context API
+
   };
 
   handleChange = event => {
