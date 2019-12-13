@@ -14,6 +14,12 @@ class User {
   addAttending(UserId){
 }
 
+    getOneUser(userId){
+    return this.auth
+    .get(`/profile/${userId}`)
+    .then((data)=> data)
+  }
+
 }
 const userService = new User();
 

@@ -9,6 +9,7 @@ export default class ConcertDetail extends Component {
     state={
     concert: null,
     spotifyLink: '',
+    tracks: [],
     }
 
 
@@ -31,11 +32,17 @@ export default class ConcertDetail extends Component {
             console.log("artist to send,",artistName)
             Spotify.getTop(artistName)
             .then((result) => {
+                console.log("result", result)
                 // console.log("in concert detail", result.data.body.tracks[0].artists[0].external_urls.spotify)
-                this.setState({spotifyLink: result.data.body.tracks[0].artists[0].external_urls.spotify})
+                this.setState({
+                    spotifyLink: result.data.body.tracks[0].artists[0].external_urls.spotify,
+                    tracks: result.data.body.tracks
+                })
+                console.log("tracks", this.state.tracks)
                 console.log(this.state.spotifyLink)
             // this.props.history.push('/events');
             }).catch((err) => {
+                console.log("error", err)
             });
         }
     getOneConcert(){
@@ -58,7 +65,7 @@ export default class ConcertDetail extends Component {
     }
 
     render() {
-        const {concert} = this.state;
+        const {concert,tracks} = this.state;
         // console.log('concert.length',concert.length);
         return (
             <div>
@@ -80,6 +87,20 @@ export default class ConcertDetail extends Component {
                 {/* latitude: "41.39772"
 longitude: "2.19111" */}
                 <img src={concert.images[0].url} />
+                {
+                tracks.map((track)=>{
+                    if(track.preview_url)
+                    return <figure>
+                <figcaption class="song-title" >{track.name}</figcaption>
+                 <audio class="player"
+                 controls
+                 src={track.preview_url}>
+                   Your browser does not support the
+                  <code>audio</code> element.
+                 </audio>
+                </figure>
+                })
+                }
                 </div>
                 :
                 <h1>loading</h1>

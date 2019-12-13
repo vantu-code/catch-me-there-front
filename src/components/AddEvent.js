@@ -3,6 +3,7 @@ import axios from 'axios'
 import Event from '../lib/Event-service'
 import { log } from 'util';
 import paintingService from '../lib/paintingService'
+import Auth from '../lib/auth-service'
 
 export default class AddEvent extends Component {
     state={
@@ -21,7 +22,8 @@ export default class AddEvent extends Component {
     concertId: "",
     relatedConcert: {},
     city: "",
-    country: ""
+    country: "",
+    organizerId: "",
     }
 
     getOneConcert(concertId){
@@ -51,8 +53,14 @@ export default class AddEvent extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-
         this.createEvent()
+        Auth.me()
+        .then((user) => {
+        this.setState({organizerId: user._id})
+        console.log(this.state)
+        }).catch((err) => {
+            
+        });
       };
     
       handleInput = e => {
