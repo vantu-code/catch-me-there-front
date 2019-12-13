@@ -13,16 +13,17 @@ export default class EventDetail extends Component {
     event: null,
     isGoing: false,
     isMyEvent: false,
-    coming: []
+    coming: [],
+    organizer: {}
     }
 
     getOneEvent=(eventId)=>{
         Event.getOne(eventId)
         .then((result) => {
             console.log("event-here result",  this.props)
-            //result.data.comingIds
             this.setState({event:result.data}, ()=>console.log("event-here", this.state.event))
             this.getComingToEvent()
+            this.findOrganizer()
             Auth.me()
             .then((user) => {
                 if(result.data.comingIds.includes(user._id))
@@ -31,12 +32,19 @@ export default class EventDetail extends Component {
                 {this.setState({isMyEvent: true})}
                 console.log("event -     state", this.state)
             }).catch((err) => {
-                
+                console.log(err)
             });
-            // if(req.session.currentUser)
-            // console.log("can I continue?");
             
     }).catch((err) => { 
+    });
+}
+findOrganizer=()=>{
+    User.getOneUser(this.state.event.organizerId)
+    .then((result) => {
+        this.setState({organizer: result.data})
+        console.log("organizer", this.state.organizer)
+    }).catch((err) => {
+        
     });
 }
         leaveEvent=()=>{
@@ -82,7 +90,7 @@ export default class EventDetail extends Component {
 
     }
     render() {
-        const {event, coming} = this.state;
+        const {event, coming, organizer} = this.state;
         return (
             <div>
             {
@@ -110,6 +118,15 @@ export default class EventDetail extends Component {
                     null
                 }
                 {
+                organizer ?
+                <div>
+                <h2>Organizer</h2>
+                <Link to={`/profile/${organizer._id}`}><h4>{organizer.username}</h4></Link>
+                </div>
+                :
+                null
+                }
+                {
                     coming ? (
                         <div className="coming">
                         <h2>Who is coming?</h2>
@@ -125,7 +142,6 @@ export default class EventDetail extends Component {
                     :
                     null
                 }
-                
                 {
                         <button onClick={ () => this.props.history.goBack()}>back</button>
                 }

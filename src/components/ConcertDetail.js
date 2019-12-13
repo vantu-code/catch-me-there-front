@@ -128,9 +128,12 @@ longitude: "2.19111" */}
                 }
                 {
                 relatedEvents?
-                relatedEvents.map((relatedEvent)=>{
+                (<div>
+                <h2>Related events</h2>
+                {relatedEvents.map((relatedEvent)=>{
                 return <div key={relatedEvent._id}><Link to={`/eventDetail/${relatedEvent._id}`}><h1>{relatedEvent.title}</h1></Link></div>
-                })
+                })}
+                </div>)
                 :
                 null
                 }
