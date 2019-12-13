@@ -8,7 +8,11 @@ class User {
     });
   }
 
-
+getAll(){
+    return this.auth
+    .get(`/user/`)
+    .then((data)=> data)
+}
   addOrganizing(userId){
   }
   addAttending(UserId){
@@ -16,7 +20,7 @@ class User {
 
     getOneUser(userId){
     return this.auth
-    .get(`/profile/${userId}`)
+    .get(`/user/${userId}`)
     .then((data)=> data)
   }
 

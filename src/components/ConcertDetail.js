@@ -129,7 +129,7 @@ longitude: "2.19111" */}
                 {
                 relatedEvents?
                 relatedEvents.map((relatedEvent)=>{
-                return <Link to={`/eventDetail/${relatedEvent._id}`}><h1>{relatedEvent.title}</h1></Link>
+                return <div key={relatedEvent._id}><Link to={`/eventDetail/${relatedEvent._id}`}><h1>{relatedEvent.title}</h1></Link></div>
                 })
                 :
                 null
@@ -138,6 +138,9 @@ longitude: "2.19111" */}
                 :
                 <h1>loading</h1>
             } 
+                {
+                        <button onClick={ () => this.props.history.goBack()}>back</button>
+                    }
             </div>
         )
     }

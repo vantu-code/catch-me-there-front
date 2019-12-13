@@ -17,7 +17,8 @@ export default class Profile extends Component {
         if(this.props.match.params.userId){
         User.getOneUser(this.props.match.params.userId)
         .then((user) => {
-            this.setState({user})
+            console.log("in get one user", user)
+            this.setState({user: user.data})
         }).catch((err)=>{
             console.log(err)
         })
@@ -56,6 +57,9 @@ export default class Profile extends Component {
             <button>Edit profile</button>
             :
             null
+            }
+            {
+                        <button onClick={ () => this.props.history.goBack()}>back</button>
             }
             </div>
         )

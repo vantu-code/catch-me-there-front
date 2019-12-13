@@ -4,6 +4,7 @@ import { directive } from '@babel/types';
 import {Link} from 'react-router-dom'
 import Event from '../lib/Event-service'
 import Auth from '../lib/auth-service'
+import User from '../lib/user-service'
 
 
 
@@ -11,7 +12,8 @@ export default class EventDetail extends Component {
     state={
     event: null,
     isGoing: false,
-    isMyEvent: false
+    isMyEvent: false,
+    coming: []
     }
 
     getOneEvent=(eventId)=>{
@@ -20,6 +22,7 @@ export default class EventDetail extends Component {
             console.log("event-here result",  this.props)
             //result.data.comingIds
             this.setState({event:result.data}, ()=>console.log("event-here", this.state.event))
+            this.getComingToEvent()
             Auth.me()
             .then((user) => {
                 if(result.data.comingIds.includes(user._id))
@@ -31,7 +34,7 @@ export default class EventDetail extends Component {
                 
             });
             // if(req.session.currentUser)
-            console.log("can I continue?");
+            // console.log("can I continue?");
             
     }).catch((err) => { 
     });
@@ -58,11 +61,28 @@ export default class EventDetail extends Component {
             });
         }
 
+        getComingToEvent=()=>{
+        //console.log("this state event", this.state.event)
+        const {comingIds} = this.state.event
+        const promiseArr =[]
+        comingIds.forEach((id)=>{
+        promiseArr.push(User.getOneUser(id))
+    })
+    Promise.all(promiseArr)
+    .then((result) => {
+       this.setState({coming:result})
+            //console.log("this state eventdetail", this.state)
+        }).catch((err) => {
+            
+        });
+        }
+
     componentDidMount(){
         this.getOneEvent(this.props.match.params.eventId)
+
     }
     render() {
-        const {event} = this.state;
+        const {event, coming} = this.state;
         return (
             <div>
             {
@@ -75,12 +95,12 @@ export default class EventDetail extends Component {
                 <h2>{event.date}</h2>
                 <h2>coming {event.coming}/{event.maxPeople}</h2>
                 {
-                !this.state.isGoing?
-                <button onClick={this.joinEvent}>Join this event</button>
-                :
-                <button onClick={this.leaveEvent}>Leave this event</button>
+                    !this.state.isGoing?
+                    <button onClick={this.joinEvent}>Join this event</button>
+                    :
+                    <button onClick={this.leaveEvent}>Leave this event</button>
                 }
-                    {
+                {
                     event.relatedConcert?
                     <div>
                     <h1>realted to:</h1> 
@@ -88,7 +108,27 @@ export default class EventDetail extends Component {
                     </div>
                     :
                     null
-                    }
+                }
+                {
+                    coming ? (
+                        <div className="coming">
+                        <h2>Who is coming?</h2>
+                        <ul>
+                        {coming.map(user => (
+                            <li key={user.data._id}>
+                                <Link to={`/profile/${user.data._id}`} key={user.data._id}> {user.data.username} </Link>
+                            </li>)
+                        )}
+                        </ul>
+                        </div>
+                    )
+                    :
+                    null
+                }
+                
+                {
+                        <button onClick={ () => this.props.history.goBack()}>back</button>
+                }
                 </div>
                 :
                 <h1>loading</h1>
