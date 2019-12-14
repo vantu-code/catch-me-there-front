@@ -5,8 +5,9 @@ import {Link} from 'react-router-dom'
 import Event from '../lib/Event-service'
 import Auth from '../lib/auth-service'
 import User from '../lib/user-service'
+import Iframe from 'react-iframe'
 
-
+require('dotenv').config();
 
 export default class EventDetail extends Component {
     state={
@@ -51,7 +52,7 @@ findOrganizer=()=>{
         Event.leave(this.props.match.params.eventId)
         .then((result) => {
         this.setState({isGoing: false , event: result.data})
-        this.forceUpdate()
+        this.getComingToEvent()
         console.log("leave event", result)
         }).catch((err) => {
         console.log(err);
@@ -62,6 +63,7 @@ findOrganizer=()=>{
             Event.join(this.props.match.params.eventId)
             .then((result) => {
             this.setState({isGoing: true, event: result.data})
+            this.getComingToEvent()
             console.log("join event", result)
             this.forceUpdate()
             }).catch((err) => {
@@ -152,6 +154,25 @@ findOrganizer=()=>{
                     :
                     null
                 }
+                {
+                    <Iframe url={`https://www.google.com/maps/embed/v1/place?key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&q=Space+Needle,nou+de+la+rambla+3+Barcelona+ES`}
+        width="450px"
+        height="450px"
+        id="myId"
+        className="myClassname"
+        display="initial"
+        position="relative"/>
+                }
+                {/* {
+                    <Frame onLoad
+                    width="600"
+                    height="450"
+                    frameBorder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?key=API_KEY
+                    &q=Space+Needle,Seattle+WA" allowFullScreen>
+                    </Frame>
+                
+                } */}
                 {
                     isMyEvent?
                     <button onClick={this.deleteEvent}>delete</button>
