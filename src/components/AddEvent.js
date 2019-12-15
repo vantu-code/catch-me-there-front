@@ -26,23 +26,35 @@ export default class AddEvent extends Component {
     organizerId: "",
     }
 
+    goodNameFunc=name=>{
+        for (let i = 0; i < name.length; i++ ){
+            if (name[i] === "-" || name[i] === "|" || name[i] === ":"){
+                if (name[i-1] === " ") {
+                    if (name[i-2] === " ") name = name.substring(0, i-2)
+                    else name = name.substring(0, i-1)
+                }
+                else name = name.substring(0, i)
+            return name
+            }
+          }
+          return name
+        }
+
     getOneConcert(concertId){
         console.log("props", this.props.match.params.concertId)
         axios
         .get(`https://app.ticketmaster.com/discovery/v2/events.json?id=${concertId}&apikey=Y4MH0iVp8WoFqZ4aSc3RFUk6DjJl4K1y`)
         .then((result) => {
+            result.data._embedded.events[0].name= this.goodNameFunc(result.data._embedded.events[0].name)
             this.setState({relatedConcert: result.data._embedded.events[0]})
             this.setState({date: this.state.relatedConcert.dates.start.localDate,
-            location: this.state.relatedConcert._embedded.venues[0].address.line1,
             hour: this.state.relatedConcert.dates.start.localTime,
             location: this.state.relatedConcert._embedded.venues[0].address.line1,
             city: this.state.relatedConcert._embedded.venues[0].city.name,
             country: this.state.relatedConcert._embedded.venues[0].ccountry.name
             })
-
-            // console.log("related", this.state.relatedConcert)
-            // console.log("state", this.state)
         }).catch((err) => {
+            console.log(err);
         });
     }
 

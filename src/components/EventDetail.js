@@ -25,6 +25,8 @@ export default class EventDetail extends Component {
             this.setState({event:result.data}, ()=>console.log("event-here", this.state.event))
             this.getComingToEvent()
             this.findOrganizer()
+            // goodNameConcert.name= this.goodNameFunc(goodNameConcert.name)
+            // this.setState({concert: result.data._embedded.events[0]})
             Auth.me()
             .then((user) => {
                 if(result.data.comingIds.includes(user._id))
@@ -115,10 +117,16 @@ findOrganizer=()=>{
                 <h2>{event.date}</h2>
                 <h2>coming {event.coming}/{event.maxPeople}</h2>
                 {
-                    !this.state.isGoing?
+                    !this.state.isGoing && event.maxPeople > event.coming?
                     <button onClick={this.joinEvent}>Join this event</button>
                     :
+                    this.state.isGoing?
+                    <div>
+                    <a href={event.whatsAppGroup}><h2>WhatsApp Group</h2> </a>
                     <button onClick={this.leaveEvent}>Leave this event</button>
+                    </div>
+                    :
+                    <h2>Fully booked</h2>
                 }
                 {
                     event.relatedConcert?
@@ -167,17 +175,6 @@ findOrganizer=()=>{
                     :
                     null
                 }
-                {/* {
-                    `https://www.google.com/maps/embed/v1/place?key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&q=Space+Needle,nou+de+la+rambla+3,Barcelona+ES`
-                    <Frame onLoad
-                    width="600"
-                    height="450"
-                    frameBorder="0" style="border:0"
-                    src="https://www.google.com/maps/embed/v1/place?key=API_KEY
-                    &q=Space+Needle,Seattle+WA" allowFullScreen>
-                    </Frame>
-                
-                } */}
                 {
                     isMyEvent?
                     <button onClick={this.deleteEvent}>delete</button>
