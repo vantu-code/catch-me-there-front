@@ -123,11 +123,24 @@ findOrganizer=()=>{
                 {
                     event.relatedConcert?
                     <div>
-                    <h1>realted to:</h1> 
+                    <h1>related to:</h1> 
                     <Link to={`/concertDetail/${event.relatedConcert.id}`}><h2>{event.relatedConcert.name}</h2></Link>
+                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&q=${event.relatedConcert._embedded.venues[0].address.line1}+${event.relatedConcert._embedded.venues[0].city.name}`}
+                    width="450px"
+                    height="450px"
+                    id="myId"
+                    className="myClassname"
+                    display="initial"
+                    position="relative"/>
                     </div>
                     :
-                    null
+                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&q=${event.location}+${event.city}`}
+                    width="450px"
+                    height="450px"
+                    id="myId"
+                    className="myClassname"
+                    display="initial"
+                    position="relative"/>
                 }
                 {
                 organizer ?
@@ -153,15 +166,6 @@ findOrganizer=()=>{
                     )
                     :
                     null
-                }
-                {
-                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&q=carrer+den+serra+10+barcelona`}
-        width="450px"
-        height="450px"
-        id="myId"
-        className="myClassname"
-        display="initial"
-        position="relative"/>
                 }
                 {/* {
                     `https://www.google.com/maps/embed/v1/place?key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&q=Space+Needle,nou+de+la+rambla+3,Barcelona+ES`

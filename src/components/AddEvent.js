@@ -32,8 +32,16 @@ export default class AddEvent extends Component {
         .get(`https://app.ticketmaster.com/discovery/v2/events.json?id=${concertId}&apikey=Y4MH0iVp8WoFqZ4aSc3RFUk6DjJl4K1y`)
         .then((result) => {
             this.setState({relatedConcert: result.data._embedded.events[0]})
-            console.log("related", this.state.relatedConcert)
-            console.log("state", this.state)
+            this.setState({date: this.state.relatedConcert.dates.start.localDate,
+            location: this.state.relatedConcert._embedded.venues[0].address.line1,
+            hour: this.state.relatedConcert.dates.start.localTime,
+            location: this.state.relatedConcert._embedded.venues[0].address.line1,
+            city: this.state.relatedConcert._embedded.venues[0].city.name,
+            country: this.state.relatedConcert._embedded.venues[0].ccountry.name
+            })
+
+            // console.log("related", this.state.relatedConcert)
+            // console.log("state", this.state)
         }).catch((err) => {
         });
     }
@@ -79,9 +87,10 @@ export default class AddEvent extends Component {
     }
     componentDidMount(){
         const { concertId } = this.props.match.params
-        if(concertId)
-        {this.setState({concertId: concertId})}
+        if(concertId){
+        this.setState({concertId: concertId})
         this.getOneConcert(concertId);
+        }
     }
     render() {
         return (
@@ -125,7 +134,7 @@ export default class AddEvent extends Component {
      name="vibe" 
      value={this.state.vibe} />
 
-<label>Coming</label>
+     <label>Coming</label>
      <input 
      onChange={this.handleInput} 
      type="number" 
@@ -139,11 +148,36 @@ export default class AddEvent extends Component {
      name="maxPeople" 
      value={this.state.maxPeople} />
 
-     <label>Date</label>
+    <label>Age Range</label>
      <input 
      onChange={this.handleInput} 
      type="text" 
-     name="date" 
+     name="ageRange" 
+     value={this.state.ageRange} />
+
+    <label>Photo-link</label>
+     <input 
+     onChange={this.handleInput} 
+     type="text" 
+     name="photo" 
+     value={this.state.photo} />
+
+    <input
+          className="add-input"
+          type="file"
+          name="image"
+          onChange={e => this.fileChange(e)}
+        />
+{
+    this.state.concertId?
+    null :
+
+    <div>
+    <label>Date</label>
+     <input 
+     onChange={this.handleInput} 
+     type="text" 
+     name="date"
      value={this.state.date} />
 
      <label>Location</label>
@@ -160,28 +194,7 @@ export default class AddEvent extends Component {
      name="hour" 
      value={this.state.hour} />
 
-    <label>Age Range</label>
-     <input 
-     onChange={this.handleInput} 
-     type="text" 
-     name="ageRange" 
-     value={this.state.ageRange} />
-
-    <label>Photo</label>
-     <input 
-     onChange={this.handleInput} 
-     type="text" 
-     name="photo" 
-     value={this.state.photo} />
-
-    <label>Theme Song</label>
-     <input 
-     onChange={this.handleInput} 
-     type="text" 
-     name="themeSong" 
-     value={this.state.themeSong} />
-
-    <label>City</label>
+     <label>City</label>
      <input 
      onChange={this.handleInput} 
      type="text" 
@@ -194,15 +207,11 @@ export default class AddEvent extends Component {
      type="text" 
      name="country" 
      value={this.state.country} />
-
-    <input
-          className="add-input"
-          type="file"
-          name="image"
-          onChange={e => this.fileChange(e)}
-        />
+     </div>
+}
      <button>Submit</button>
      </form>
+
         </div>
         )
     }
