@@ -155,7 +155,7 @@ findOrganizer=()=>{
                     null
                 }
                 {
-                    <Iframe url={`https://www.google.com/maps/embed/v1/place?key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&q=Space+Needle,nou+de+la+rambla+3+Barcelona+ES`}
+                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&q=carrer+den+serra+10+barcelona`}
         width="450px"
         height="450px"
         id="myId"
@@ -164,6 +164,7 @@ findOrganizer=()=>{
         position="relative"/>
                 }
                 {/* {
+                    `https://www.google.com/maps/embed/v1/place?key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&q=Space+Needle,nou+de+la+rambla+3,Barcelona+ES`
                     <Frame onLoad
                     width="600"
                     height="450"

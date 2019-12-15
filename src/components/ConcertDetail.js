@@ -3,6 +3,7 @@ import axios from 'axios'
 import { directive } from '@babel/types';
 import {Link} from 'react-router-dom'
 import Spotify from '../lib/spotify-service'
+import Iframe from 'react-iframe'
 
 
 export default class ConcertDetail extends Component {
@@ -125,6 +126,15 @@ longitude: "2.19111" */}
                  </audio>
                 </figure>
                 })
+                }
+                {
+                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&q=${concert._embedded.venues[0].address.line1}+${concert._embedded.venues[0].city.name}`}
+        width="450px"
+        height="450px"
+        id="myId"
+        className="myClassname"
+        display="initial"
+        position="relative"/>
                 }
                 {
                 relatedEvents?
