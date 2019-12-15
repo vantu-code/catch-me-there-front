@@ -10,7 +10,8 @@ import User from '../lib/user-service'
 export default class Profile extends Component {
     state={
     user: null,
-    myProfile: false
+    myProfile: false,
+    eventsAttending: null,
     }
 
     getUser=()=>{
@@ -19,6 +20,7 @@ export default class Profile extends Component {
         .then((user) => {
             console.log("in get one user", user)
             this.setState({user: user.data})
+            this.eventsAttending()
         }).catch((err)=>{
             console.log(err)
         })
@@ -27,6 +29,7 @@ export default class Profile extends Component {
             Auth.me()
             .then((user) => {
                 this.setState({user, myProfile:true})
+                this.eventsAttending()
                 console.log("user", user.username);
             }).catch((err)=>{
                 console.log(err)
@@ -34,11 +37,29 @@ export default class Profile extends Component {
         }
         }
 
+        eventsAttending=()=>{
+            console.log("this state event", this.state.event)
+            const {attending} = this.state.user
+            const promiseArr =[]
+            attending.forEach((id)=>{
+            promiseArr.push(Event.getOne(id))
+        })
+        Promise.all(promiseArr)
+        .then((result) => {
+           this.setState({eventsAttending:result})
+                //console.log("this state eventdetail", this.state)
+            }).catch((err) => {
+                
+            });
+            }
+
     componentDidMount(){
         this.getUser()
     }
     render() {
         const {user, myProfile} = this.state;
+        console.log(this.state);
+        
         return (
             <div>
             {

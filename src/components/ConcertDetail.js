@@ -105,8 +105,8 @@ export default class ConcertDetail extends Component {
                 <h2>{concert._embedded.venues[0].name}</h2>
                 <h2>{concert._embedded.venues[0].city.name}</h2>
                 <h2>{concert._embedded.venues[0].country.name}</h2>
-                <h2>{concert._embedded.venues[0].location.latitude} latitude</h2>
-                <h2>{concert._embedded.venues[0].location.longitude} longitude</h2>
+                {/* <h2>{concert._embedded.venues[0].location.latitude} latitude</h2>
+                <h2>{concert._embedded.venues[0].location.longitude} longitude</h2> */}
                 <a href={this.state.spotifyLink}><img src="https://i1.wp.com/davan.ac/wp-content/uploads/2006/07/listen-on-spotify-logo.png?ssl=1" width="80"/> </a>
                 <a href={concert.url}><img src="https://www.trzcacak.rs/myfile/full/345-3451475_buy-at-ticketmaster-logos-ticketmaster.png" width="80"/> </a>
                 <Link to={`/addEvents/${this.props.match.params.concertId}`} ><button >Create Group</button></Link>
@@ -128,7 +128,7 @@ longitude: "2.19111" */}
                 })
                 }
                 {
-                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&q=${concert._embedded.venues[0].address.line1}+${concert._embedded.venues[0].city.name}`}
+                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.GOOGLEKEY}&q=${concert._embedded.venues[0].address.line1}+${concert._embedded.venues[0].city.name}`}
         width="450px"
         height="450px"
         id="myId"
@@ -137,7 +137,7 @@ longitude: "2.19111" */}
         position="relative"/>
                 }
                 {
-                relatedEvents?
+                relatedEvents.length>0?
                 (<div>
                 <h2>Related events</h2>
                 {relatedEvents.map((relatedEvent)=>{

@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { withAuth } from '../lib/AuthProvider';
 
+import {themeProvider} from 'styled-components'
+import NavBarStyle from '../StyledComponents/NavBarStyle'
+
 class Navbar extends Component {
   render() {
     const { user, logout, isLoggedin } = this.props;
     console.log("in navbar", this.props)
     return (
-      <div
-        style={{ borderRadius: '5px', padding: '20px', background: '#686de0' }}>
+      <themeProvider>
+      <NavBarStyle>
         {isLoggedin ? (
           <div>
           <h1>Catch Me There</h1>
@@ -34,7 +37,8 @@ class Navbar extends Component {
             </Link>
           </div>
         )}
-      </div>
+      </NavBarStyle>
+      </themeProvider>
     );
   }
 }

@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC&display=swap');
+
+
 .App {
   text-align: center;
+  width: 100%;
+  margin-right: 0;
+  font-family: 'Amatic SC', cursive;
 }
 
 .App-logo {
@@ -14,7 +20,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #dbccab;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -25,7 +31,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #fafafa;
 }
 
 @keyframes App-logo-spin {

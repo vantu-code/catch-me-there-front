@@ -10,8 +10,53 @@ class Concerts extends Component {
       filteredConcerts: [],
       city: "",
       countryCode: '',
+      currentCity: null
      };
   }
+
+  findLocation=()=>{
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+  function success(pos) {
+    var crd = pos.coords;
+    console.log('Your current position is:');
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+    console.log(`More or less ${crd.accuracy} meters.`);
+
+  }
+  
+  function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+  
+  navigator.geolocation.getCurrentPosition(success, error, options);
+}
+
+coorToName=(crd)=>{
+      axios
+    .get
+    (`https://maps.googleapis.com/maps/api/geocode/json?latlng=${crd.latitude},${crd.longitude}&key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&`)
+    .then((result) => {
+      const currentCity = result.data.results[0].address_components[2].long_name
+      if (currentCity)
+      {
+        console.log("from google coor", currentCity)
+        console.log("state", this.state)
+        //this.setState({currentCity})
+      }
+      // console.log("from google coor", result.data.results[0].address_components[2].long_name)
+    }).catch((err) => {
+      console.log(err)
+    });
+}
+
+byMyLocation=()=>{
+  this.getAllConcerts(this.state.currentCity)
+}
 
   getAllConcerts=(city, countryCode)=>{
     axios
@@ -58,6 +103,7 @@ class Concerts extends Component {
   
   componentDidMount() {
 //   this.getAllConcerts();
+this.findLocation()
   
 
   }
@@ -79,18 +125,18 @@ class Concerts extends Component {
   };
 
   render() {
-    const {concerts} = this.state;
+    const {concerts, currentCity} = this.state;
     const {filterConcerts} = this.state;
     return (
  <div>
  {
     <form onSubmit={this.handleSubmit}>
-    <label>Country code</label>
+    {/* <label>Country code</label>
      <input 
      onChange={this.handleInput} 
      type="text" 
      name="countryCode" 
-     value={this.state.countryCode} />
+     value={this.state.countryCode} /> */}
 
     <label>City</label>
      <input 
@@ -100,6 +146,12 @@ class Concerts extends Component {
      value={this.state.city} />
      <button>Search</button>
      </form>
+ }
+ {
+   currentCity?
+   <button onClick={this.byMyLocation}>Find by my location</button>
+   :
+   null
  }
     {    concerts.map((concert)=>{
            return (

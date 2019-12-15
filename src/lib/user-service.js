@@ -14,9 +14,19 @@ getAll(){
     .then((data)=> data)
 }
   addOrganizing(userId){
+    
   }
-  addAttending(UserId){
+  joinEvent(eventId){
+    return this.auth
+    .put(`/user/${eventId}`)
+    .then((data)=>data)
 }
+leaveEvent(eventId){
+  return this.auth
+  .put(`/user/leave/${eventId}`)
+  .then((data)=>data)
+}
+
 
     getOneUser(userId){
     return this.auth

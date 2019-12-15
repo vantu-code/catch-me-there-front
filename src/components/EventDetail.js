@@ -7,6 +7,9 @@ import Auth from '../lib/auth-service'
 import User from '../lib/user-service'
 import Iframe from 'react-iframe'
 
+import {themeProvider} from 'styled-components'
+import Button from '../StyledComponents/Button'
+
 require('dotenv').config();
 
 export default class EventDetail extends Component {
@@ -14,8 +17,9 @@ export default class EventDetail extends Component {
     event: null,
     isGoing: false,
     isMyEvent: false,
-    coming: [],
-    organizer: {}
+    coming: null,
+    organizer: null,
+    googleKey: process.env.GOOGLEKEY
     }
 
     getOneEvent=(eventId)=>{
@@ -51,10 +55,17 @@ findOrganizer=()=>{
     });
 }
         leaveEvent=()=>{
-        Event.leave(this.props.match.params.eventId)
+        const {eventId} = this.props.match.params
+        Event.leave(eventId)
         .then((result) => {
         this.setState({isGoing: false , event: result.data})
         this.getComingToEvent()
+        User.leaveEvent(eventId)
+        .then((result) => {
+            console.log('result back from leaving', result)
+        }).catch((err) => {
+            console.log(err)
+        });
         console.log("leave event", result)
         }).catch((err) => {
         console.log(err);
@@ -62,12 +73,19 @@ findOrganizer=()=>{
         }
 
         joinEvent=()=>{
-            Event.join(this.props.match.params.eventId)
+            const {eventId} = this.props.match.params
+            Event.join(eventId)
             .then((result) => {
             this.setState({isGoing: true, event: result.data})
             this.getComingToEvent()
+            User.joinEvent(eventId)
+            .then((result) => {
+                console.log('result back from joining', result)
+            }).catch((err) => {
+                console.log(err)
+            });
             console.log("join event", result)
-            this.forceUpdate()
+            //this.forceUpdate()
             }).catch((err) => {
             console.log(err);
             });
@@ -88,6 +106,7 @@ findOrganizer=()=>{
             
         });
         }
+
         deleteEvent=()=>{
             // console.log("delete-mode",this.state.event._id)
             Event.delete(this.state.event._id)
@@ -105,14 +124,17 @@ findOrganizer=()=>{
     }
     render() {
         const {event, coming, organizer, isMyEvent} = this.state;
+        console.log("state", this.state);
+        
         return (
-            <div>
+            <themeProvider>
             {
                 event != null ? 
                 <div>
                 <img src={event.photo} width="300"/>
                 <h1>{event.title}</h1>
                 <h2>{event.description}</h2>
+                <h2>{event.location}</h2>
                 <h2>{event.city}</h2>
                 <h2>{event.date}</h2>
                 <h2>coming {event.coming}/{event.maxPeople}</h2>
@@ -133,7 +155,7 @@ findOrganizer=()=>{
                     <div>
                     <h1>related to:</h1> 
                     <Link to={`/concertDetail/${event.relatedConcert.id}`}><h2>{event.relatedConcert.name}</h2></Link>
-                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&q=${event.relatedConcert._embedded.venues[0].address.line1}+${event.relatedConcert._embedded.venues[0].city.name}`}
+                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.GOOGLEKEY}&q=${event.relatedConcert._embedded.venues[0].address.line1}+${event.relatedConcert._embedded.venues[0].city.name}`}
                     width="450px"
                     height="450px"
                     id="myId"
@@ -142,7 +164,7 @@ findOrganizer=()=>{
                     position="relative"/>
                     </div>
                     :
-                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&q=${event.location}+${event.city}`}
+                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.GOOGLEKEY}&q=${event.location}+${event.city}`}
                     width="450px"
                     height="450px"
                     id="myId"
@@ -181,13 +203,13 @@ findOrganizer=()=>{
                     :null
                 }
                 {
-                        <button onClick={ () => this.props.history.goBack()}>back</button>
+                        <Button onClick={ () => this.props.history.goBack()}>back</Button>
                 }
                 </div>
                 :
                 <h1>loading</h1>
             } 
-            </div>
+            </themeProvider>
         )
     }
 }

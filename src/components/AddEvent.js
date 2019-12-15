@@ -91,7 +91,10 @@ export default class AddEvent extends Component {
     createEvent=()=>{
         console.log("statetocreate", this.state)
         Event.create(this.state)
-        .then(() => {
+        .then((result) => {
+            console.log("after creating", result);
+            
+        // User.organizer()
         this.props.history.push('/events');
         }).catch((err) => {
             

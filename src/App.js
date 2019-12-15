@@ -15,6 +15,10 @@ import Profile from './components/Profile'
 import AnonRoute from './components/AnonRoute';
 import PrivateRoute from './components/PrivateRoute';
 
+require('dotenv').config();
+
+
+
 class App extends Component {
   render() {
     return (
