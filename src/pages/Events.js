@@ -38,8 +38,19 @@ class Events extends Component {
           <EventStyle key={event._id}>
           <div>
           <Link to={`/eventDetail/${event._id}`}><h1>{event.title}</h1></Link>
+          {
+          event.relatedConcert?
+          <div>
+          <h2>{event.relatedConcert.dates.start.localDate}</h2>
+          <h2>{event.relatedConcert._embedded.venues[0].name}</h2>
+          <h2>{event.relatedConcert.name}'s conert</h2>
+          </div>
+          :
+          <div>
           <h2>{event.date}</h2>
           <h2>{event.location}</h2>
+          </div>
+          }
           </div>
           <div>
           <Link to={`/eventDetail/${event._id}`}><img src={event.photo}/></Link>
