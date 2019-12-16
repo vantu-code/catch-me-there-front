@@ -5,6 +5,11 @@ import { log } from 'util';
 import paintingService from '../lib/paintingService'
 import Auth from '../lib/auth-service'
 
+import styled, {ThemeProvider} from 'styled-components'
+import AddEventStyle from '../StyledComponents/AddEventStyle'
+import Wrapper from '../StyledComponents/Wrapper'
+import InputLine from '../StyledComponents/InputLine'
+
 export default class AddEvent extends Component {
     state={
     whatsAppGroup: "", 
@@ -93,7 +98,6 @@ export default class AddEvent extends Component {
         Event.create(this.state)
         .then((result) => {
             console.log("after creating", result);
-            
         // User.organizer()
         this.props.history.push('/events');
         }).catch((err) => {
@@ -109,7 +113,7 @@ export default class AddEvent extends Component {
     }
     render() {
         return (
-            <div>
+            <AddEventStyle>
             {
                 this.state.concertId? 
                 <div>
@@ -122,62 +126,62 @@ export default class AddEvent extends Component {
     <form onSubmit={this.handleSubmit}>
 
     <label>WhatsApp Group</label>
-     <input 
+     <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="whatsAppGroup" 
      value={this.state.whatsAppGroup} />
 
      <label>Title</label>
-     <input 
+     <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="title" 
      value={this.state.title} />
 
      <label>Description</label>
-     <input 
+     <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="description" 
      value={this.state.description} />
 
      <label>Vibe</label>
-     <input 
+     <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="vibe" 
      value={this.state.vibe} />
 
      <label>Coming</label>
-     <input 
+     <InputLine 
      onChange={this.handleInput} 
      type="number" 
      name="coming" 
      value={this.state.coming} />
 
      <label>Max People</label>
-     <input 
+     <InputLine 
      onChange={this.handleInput} 
      type="number" 
      name="maxPeople" 
      value={this.state.maxPeople} />
 
     <label>Age Range</label>
-     <input 
+     <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="ageRange" 
      value={this.state.ageRange} />
 
     <label>Photo-link</label>
-     <input 
+     <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="photo" 
      value={this.state.photo} />
 
-    <input
+    <InputLine
           className="add-input"
           type="file"
           name="image"
@@ -189,35 +193,35 @@ export default class AddEvent extends Component {
 
     <div>
     <label>Date</label>
-     <input 
+     <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="date"
      value={this.state.date} />
 
      <label>Location</label>
-     <input 
+     <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="location" 
      value={this.state.location} />
 
     <label>Hour</label>
-     <input 
+     <InputLine
      onChange={this.handleInput} 
      type="text" 
      name="hour" 
      value={this.state.hour} />
 
      <label>City</label>
-     <input 
+     <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="city" 
      value={this.state.city} />
 
     <label>Country</label>
-     <input 
+     <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="country" 
@@ -227,7 +231,7 @@ export default class AddEvent extends Component {
      <button>Submit</button>
      </form>
 
-        </div>
+        </AddEventStyle>
         )
     }
 }

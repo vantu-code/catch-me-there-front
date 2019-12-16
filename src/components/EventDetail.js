@@ -61,8 +61,8 @@ findOrganizer=()=>{
         this.setState({isGoing: false , event: result.data})
         this.getComingToEvent()
         User.leaveEvent(eventId)
-        .then((result) => {
-            console.log('result back from leaving', result)
+        .then((resultUser) => {
+            console.log('result back from leaving', resultUser)
         }).catch((err) => {
             console.log(err)
         });
@@ -79,12 +79,12 @@ findOrganizer=()=>{
             this.setState({isGoing: true, event: result.data})
             this.getComingToEvent()
             User.joinEvent(eventId)
-            .then((result) => {
-                console.log('result back from joining', result)
+            .then((resultUser) => {
+                console.log('result back from joining', resultUser)
             }).catch((err) => {
                 console.log(err)
             });
-            console.log("join event", result)
+            // console.log("join event", result)
             //this.forceUpdate()
             }).catch((err) => {
             console.log(err);
@@ -124,8 +124,7 @@ findOrganizer=()=>{
     }
     render() {
         const {event, coming, organizer, isMyEvent} = this.state;
-        console.log("state", this.state);
-        
+        //console.log("state", this.state);
         return (
             <themeProvider>
             {
@@ -155,7 +154,7 @@ findOrganizer=()=>{
                     <div>
                     <h1>related to:</h1> 
                     <Link to={`/concertDetail/${event.relatedConcert.id}`}><h2>{event.relatedConcert.name}</h2></Link>
-                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.GOOGLEKEY}&q=${event.relatedConcert._embedded.venues[0].address.line1}+${event.relatedConcert._embedded.venues[0].city.name}`}
+                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=AIzaSyDON5ziO3aZ3P0TfhHh026jQCsxBD1gNWs&q=${event.relatedConcert._embedded.venues[0].address.line1}+${event.relatedConcert._embedded.venues[0].city.name}`}
                     width="450px"
                     height="450px"
                     id="myId"
@@ -164,7 +163,7 @@ findOrganizer=()=>{
                     position="relative"/>
                     </div>
                     :
-                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.GOOGLEKEY}&q=${event.location}+${event.city}`}
+                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=AIzaSyDON5ziO3aZ3P0TfhHh026jQCsxBD1gNWs&q=${event.location}+${event.city}`}
                     width="450px"
                     height="450px"
                     id="myId"

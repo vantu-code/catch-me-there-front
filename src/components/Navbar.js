@@ -2,20 +2,33 @@ import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { withAuth } from '../lib/AuthProvider';
 
-import {themeProvider} from 'styled-components'
+import styled, {ThemeProvider} from 'styled-components'
 import NavBarStyle from '../StyledComponents/NavBarStyle'
 
+import Auth from '../lib/auth-service'
+
 class Navbar extends Component {
+  state={
+    user: {}
+  }
+  componentDidMount(){
+    Auth.me()
+    .then((result) => {
+      this.setState({user: result})
+    }).catch((err) => {
+      
+    });
+  }
   render() {
     const { user, logout, isLoggedin } = this.props;
     console.log("in navbar", this.props)
     return (
-      <themeProvider>
+
       <NavBarStyle>
         {isLoggedin ? (
           <div>
           <h1>Catch Me There</h1>
-          <button className="profile-link"><NavLink to='/profile'>Profile</NavLink></button>
+          <button className="profile-link"><NavLink to={`/profile/${this.state.user._id}`}>Profile</NavLink></button>
           <ul>
         <li><NavLink to='/concerts'>Concerts</NavLink></li>
         <li><NavLink to='/events'>Events</NavLink></li>
@@ -38,7 +51,7 @@ class Navbar extends Component {
           </div>
         )}
       </NavBarStyle>
-      </themeProvider>
+
     );
   }
 }

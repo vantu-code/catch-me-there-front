@@ -2,6 +2,11 @@ import axios from 'axios'
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 
+import styled, {ThemeProvider} from 'styled-components'
+import ConcertStyle from '../StyledComponents/ConcertStyle'
+import Wrapper from '../StyledComponents/Wrapper'
+import InputLine from '../StyledComponents/InputLine'
+
 class Concerts extends Component {
   constructor() {
     super();
@@ -26,33 +31,28 @@ class Concerts extends Component {
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
     console.log(`More or less ${crd.accuracy} meters.`);
-
-  }
-  
-  function error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
-  
-  navigator.geolocation.getCurrentPosition(success, error, options);
-}
-
-coorToName=(crd)=>{
-      axios
+    axios
     .get
     (`https://maps.googleapis.com/maps/api/geocode/json?latlng=${crd.latitude},${crd.longitude}&key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&`)
     .then((result) => {
       const currentCity = result.data.results[0].address_components[2].long_name
       if (currentCity)
       {
-        console.log("from google coor", currentCity)
-        console.log("state", this.state)
+        console.log("from google, my city is: ", currentCity)
+        //console.log("state", this.state)
         //this.setState({currentCity})
       }
       // console.log("from google coor", result.data.results[0].address_components[2].long_name)
     }).catch((err) => {
       console.log(err)
     });
+  }
+  function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+  navigator.geolocation.getCurrentPosition(success, error, options);
 }
+
 
 byMyLocation=()=>{
   this.getAllConcerts(this.state.currentCity)
@@ -128,18 +128,12 @@ this.findLocation()
     const {concerts, currentCity} = this.state;
     const {filterConcerts} = this.state;
     return (
- <div>
+ <Wrapper>
  {
     <form onSubmit={this.handleSubmit}>
-    {/* <label>Country code</label>
-     <input 
-     onChange={this.handleInput} 
-     type="text" 
-     name="countryCode" 
-     value={this.state.countryCode} /> */}
 
     <label>City</label>
-     <input 
+     <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="city" 
@@ -155,15 +149,15 @@ this.findLocation()
  }
     {    concerts.map((concert)=>{
            return (
-           <div key={concert.id}>
+           <ConcertStyle key={concert.id}>
            <h1>{concert.name}</h1>
            <h2>{concert.dates.start.localDate}</h2>
-           <Link to={`/concertDetail/${concert.id}`} > <img src={concert.images[1].url} height={150}/> </Link>
-           </div>
+           <Link to={`/concertDetail/${concert.id}`} > <img src={concert.images[1].url} height={80}/> </Link>
+           </ConcertStyle>
            )
          })
        } 
-      </div>
+      </Wrapper>
     );
   }
 }

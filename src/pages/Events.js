@@ -2,6 +2,10 @@ import axios from 'axios'
 import React, { Component } from 'react';
 import Event from '../lib/Event-service'
 import {Link} from 'react-router-dom'
+import styled, {ThemeProvider} from 'styled-components'
+import EventStyle from '../StyledComponents/EventStyle'
+import Wrapper from '../StyledComponents/Wrapper'
+
 
 class Events extends Component {
   constructor(props) {
@@ -28,18 +32,18 @@ class Events extends Component {
     const {events} = this.state;
     // console.log("check", events)
     return (
-      <div>{
+      <Wrapper>{
         events.map((event)=>{
           return (
-          <div key={event._id}>
+          <EventStyle key={event._id}>
           <Link to={`/eventDetail/${event._id}`}><h1>{event.title}</h1></Link>
           <h2>{event.date}</h2>
-          <Link to={`/eventDetail/${event._id}`}><img src={event.photo} height={150}/></Link> 
-          </div>
+          <Link to={`/eventDetail/${event._id}`}><img src={event.photo} height={100}/></Link> 
+          </EventStyle>
           )
         })
       }
-      </div>
+      </Wrapper>
     );
   }
 }

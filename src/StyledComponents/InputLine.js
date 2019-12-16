@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export default styled.div`
+export default styled.input`
 background-color: #A7C7DD;
 color : white;
 width: 100%;
