@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
 
 body {
   width: 100%;
-  margin: 0 auto;
-  font-family: 'Amatic SC', cursive;
+  font-family: 'Roboto Mono', monospace;
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */

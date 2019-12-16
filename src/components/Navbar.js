@@ -4,13 +4,21 @@ import { withAuth } from '../lib/AuthProvider';
 
 import styled, {ThemeProvider} from 'styled-components'
 import NavBarStyle from '../StyledComponents/NavBarStyle'
+import ListItem from '../StyledComponents/ListItem'
 
 import Auth from '../lib/auth-service'
 
 class Navbar extends Component {
   state={
-    user: {}
+    user: {},
+    showMenu: false,
   }
+
+  showMenu=()=>{
+    const showMenu = this.state.showMenu;
+    this.setState({showMenu: !showMenu})
+  }
+
   componentDidMount(){
     Auth.me()
     .then((result) => {
@@ -27,15 +35,26 @@ class Navbar extends Component {
       <NavBarStyle>
         {isLoggedin ? (
           <div>
-          <h1>Catch Me There</h1>
-          <button className="profile-link"><NavLink to={`/profile/${this.state.user._id}`}>Profile</NavLink></button>
+          <article>
+          <NavLink to={`/profile/${this.props.user._id}`} className="profile-top"><img className="profile-photo" src={user.photo} width="20"/><p className="name">{user.username}</p></NavLink>
+          <h1 onClick={this.showMenu} className="title">Catch Me There</h1>
+          <img onClick={this.showMenu} src="https://icon-library.net/images/white-hamburger-menu-icon/white-hamburger-menu-icon-24.jpg" width="30"/>
+          </article>
+          {
+            this.state.showMenu?
           <ul>
-        <li><NavLink to='/concerts'>Concerts</NavLink></li>
-        <li><NavLink to='/events'>Events</NavLink></li>
-        <li><NavLink to='/addEvents'>Create Event</NavLink></li>
+        <ListItem><NavLink onClick={this.showMenu} className="nav-link" to='/concerts'>Concerts</NavLink></ListItem>
+        <ListItem><NavLink onClick={this.showMenu} className="nav-link" to='/events'>Events</NavLink></ListItem>
+        <ListItem><NavLink onClick={this.showMenu} className="nav-link" to='/addEvents'>Create Event</NavLink></ListItem>
+
+        <ListItem><NavLink onClick={this.showMenu} to={`/profile/${this.props.user._id}`} className="profile-link">Profile</NavLink></ListItem>
+
+        <ListItem><button className="logout" onClick={logout}>Logout</button></ListItem>
         </ul>
-            <p>What's up {user.username}?</p>
-            <button onClick={logout}>Logout</button>
+        :
+        null
+          }
+            {/* <p>What's up {user.username}?</p> */}          
           </div>
         ) : (
           <div>

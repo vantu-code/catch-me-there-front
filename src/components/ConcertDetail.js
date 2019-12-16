@@ -4,6 +4,10 @@ import { directive } from '@babel/types';
 import {Link} from 'react-router-dom'
 import Spotify from '../lib/spotify-service'
 import Iframe from 'react-iframe'
+import {MyButton} from '../StyledComponents/Button'
+
+
+import {ConcertDetailStyle} from '../StyledComponents/ConcertDetailStyle'
 
 
 export default class ConcertDetail extends Component {
@@ -94,25 +98,30 @@ export default class ConcertDetail extends Component {
         const {concert,tracks, relatedEvents} = this.state;
         // console.log('concert.length',concert.length);
         return (
-            <div>
+            <ConcertDetailStyle>
             {
                 concert != null ? 
+                <div >
+                <div className="text-wrapper">
+                <h1 className="artistName">{concert.name}</h1>
+                <div className="two-columns">
                 <div>
-                <h1>{concert.name}</h1>
                 <h2>{concert.dates.start.localDate}</h2>
                 <h2>{concert.dates.start.localTime}</h2>
                 <h2>{concert._embedded.venues[0].address.line1}</h2>
+                </div><div>
                 <h2>{concert._embedded.venues[0].name}</h2>
                 <h2>{concert._embedded.venues[0].city.name}</h2>
                 <h2>{concert._embedded.venues[0].country.name}</h2>
-                {/* <h2>{concert._embedded.venues[0].location.latitude} latitude</h2>
-                <h2>{concert._embedded.venues[0].location.longitude} longitude</h2> */}
+                </div>
+                </div>
+                </div>
+                <img style={{width:"100%"}} src={concert.images[0].url} />
+                <article>
                 <a href={this.state.spotifyLink}><img src="https://i1.wp.com/davan.ac/wp-content/uploads/2006/07/listen-on-spotify-logo.png?ssl=1" width="80"/> </a>
                 <a href={concert.url}><img src="https://www.trzcacak.rs/myfile/full/345-3451475_buy-at-ticketmaster-logos-ticketmaster.png" width="80"/> </a>
-                <Link to={`/addEvents/${this.props.match.params.concertId}`} ><button >Create Group</button></Link>
-                {/* latitude: "41.39772"
-longitude: "2.19111" */}
-                <img src={concert.images[0].url} />
+                </article>
+                <Link to={`/addEvents/${this.props.match.params.concertId}`} ><MyButton blue >Create Group</MyButton></Link>
                 {
                 tracks.map((track)=>{
                     if(track.preview_url)
@@ -128,9 +137,9 @@ longitude: "2.19111" */}
                 })
                 }
                 {
-                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=AIzaSyDON5ziO3aZ3P0TfhHh026jQCsxBD1gNWs&q=${concert._embedded.venues[0].address.line1}+${concert._embedded.venues[0].city.name}`}
-        width="450px"
-        height="450px"
+                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLEKEY}&q=${concert._embedded.venues[0].address.line1}+${concert._embedded.venues[0].city.name}`}
+        width="300px"
+        height="300px"
         id="myId"
         className="myClassname"
         display="initial"
@@ -152,9 +161,9 @@ longitude: "2.19111" */}
                 <h1>loading</h1>
             } 
                 {
-                        <button onClick={ () => this.props.history.goBack()}>back</button>
+                        <MyButton black onClick={ () => this.props.history.goBack()}>back</MyButton>
                     }
-            </div>
+            </ConcertDetailStyle>
         )
     }
 }

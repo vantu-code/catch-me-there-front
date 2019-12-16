@@ -4,6 +4,7 @@ import Event from '../lib/Event-service'
 import { log } from 'util';
 import paintingService from '../lib/paintingService'
 import Auth from '../lib/auth-service'
+import {MyButton} from '../StyledComponents/Button'
 
 import styled, {ThemeProvider} from 'styled-components'
 import AddEventStyle from '../StyledComponents/AddEventStyle'
@@ -16,12 +17,12 @@ export default class AddEvent extends Component {
     title: "", 
     description: "", 
     vibe: "",
-    maxPeople: 30,
-    coming: 0, 
+    maxPeople: "",
+    coming: 1, 
     location: "", 
     date: "", 
     hour: "", 
-    ageRange: "", 
+    ageRange: "18-100", 
     photo: "", 
     themeSong: "", 
     concertId: "",
@@ -125,19 +126,19 @@ export default class AddEvent extends Component {
             }
     <form onSubmit={this.handleSubmit}>
 
-    <label>WhatsApp Group</label>
-     <InputLine 
-     onChange={this.handleInput} 
-     type="text" 
-     name="whatsAppGroup" 
-     value={this.state.whatsAppGroup} />
-
      <label>Title</label>
      <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="title" 
      value={this.state.title} />
+
+    <label>WhatsApp Group link</label>
+     <InputLine 
+     onChange={this.handleInput} 
+     type="text" 
+     name="whatsAppGroup" 
+     value={this.state.whatsAppGroup} />
 
      <label>Description</label>
      <InputLine 
@@ -181,7 +182,8 @@ export default class AddEvent extends Component {
      name="photo" 
      value={this.state.photo} />
 
-    <InputLine
+    <label>Or</label>
+    <InputLine 
           className="add-input"
           type="file"
           name="image"
@@ -228,7 +230,7 @@ export default class AddEvent extends Component {
      value={this.state.country} />
      </div>
 }
-     <button>Submit</button>
+     <MyButton blue>Submit</MyButton>
      </form>
 
         </AddEventStyle>

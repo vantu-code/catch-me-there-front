@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../lib/AuthProvider';
 import paintingService from '../lib/paintingService'
+import InputLine from '../StyledComponents/InputLine'
 
 class Signup extends Component {
   state = { 
@@ -43,9 +44,9 @@ class Signup extends Component {
     return (
       <div>
         <h1>Sign Up</h1>
-        <form onSubmit={this.handleFormSubmit}>
+        <form className="signup" onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
-          <input
+          <InputLine
             type="text"
             name="username"
             value={username}
@@ -53,21 +54,21 @@ class Signup extends Component {
           />
 
           <label>Password:</label>
-          <input
+          <InputLine
             type="password"
             name="password"
             value={password}
             onChange={this.handleChange}
           />
 
-          <input
+          <InputLine
           className="add-input"
           type="file"
           name="image"
           onChange={e => this.fileChange(e)}
           />
 
-          <input type="submit" value="Signup" />
+          <InputLine type="submit" value="Signup" />
         </form>
 
         <p>Already have account?</p>

@@ -6,6 +6,7 @@ import styled, {ThemeProvider} from 'styled-components'
 import ConcertStyle from '../StyledComponents/ConcertStyle'
 import Wrapper from '../StyledComponents/Wrapper'
 import InputLine from '../StyledComponents/InputLine'
+import {MyButton} from '../StyledComponents/Button'
 
 class Concerts extends Component {
   constructor() {
@@ -25,7 +26,7 @@ class Concerts extends Component {
     timeout: 5000,
     maximumAge: 0
   };
-  function success(pos) {
+  const success=pos=>{
     var crd = pos.coords;
     console.log('Your current position is:');
     console.log(`Latitude : ${crd.latitude}`);
@@ -33,20 +34,22 @@ class Concerts extends Component {
     console.log(`More or less ${crd.accuracy} meters.`);
     axios
     .get
-    (`https://maps.googleapis.com/maps/api/geocode/json?latlng=${crd.latitude},${crd.longitude}&key=AIzaSyA7lsb4BEujSqiZLXlvsW1HejdLPuHunBI&`)
+    (`https://maps.googleapis.com/maps/api/geocode/json?latlng=${crd.latitude},${crd.longitude}&key=${process.env.REACT_APP_GOOGLEKEY}`)
     .then((result) => {
+      //console.log("from google, my city is: ", result)
       const currentCity = result.data.results[0].address_components[2].long_name
       if (currentCity)
       {
         console.log("from google, my city is: ", currentCity)
-        //console.log("state", this.state)
-        //this.setState({currentCity})
+        this.setState({currentCity}, ()=>console.log("state", this.state))
+        // console.log("state", this.state)
       }
       // console.log("from google coor", result.data.results[0].address_components[2].long_name)
     }).catch((err) => {
       console.log(err)
     });
   }
+
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
@@ -56,11 +59,12 @@ class Concerts extends Component {
 
 byMyLocation=()=>{
   this.getAllConcerts(this.state.currentCity)
+  this.setState({city: this.state.currentCity})
 }
 
   getAllConcerts=(city, countryCode)=>{
     axios
-    .get(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=${countryCode}&city=${city}&date,desc&size=150&apikey=Y4MH0iVp8WoFqZ4aSc3RFUk6DjJl4K1y`)
+    .get(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=&city=${city}&date,desc&size=150&apikey=Y4MH0iVp8WoFqZ4aSc3RFUk6DjJl4K1y`)
     .then((result) => {
         this.filterConcerts(result.data._embedded.events);
     //   this.setState({concerts: result.data._embedded.events})
@@ -138,21 +142,25 @@ this.findLocation()
      type="text" 
      name="city" 
      value={this.state.city} />
-     <button>Search</button>
+     <MyButton blue>Search</MyButton>
      </form>
  }
  {
    currentCity?
-   <button onClick={this.byMyLocation}>Find by my location</button>
+   <MyButton blue onClick={this.byMyLocation}>Find by my location</MyButton>
    :
-   null
+   <img src="https://i.kym-cdn.com/photos/images/original/000/780/746/cc2.gif" width="50"/>
  }
     {    concerts.map((concert)=>{
            return (
            <ConcertStyle key={concert.id}>
-           <h1>{concert.name}</h1>
-           <h2>{concert.dates.start.localDate}</h2>
+           <div>
+           <Link to={`/concertDetail/${concert.id}`} > <h1>{concert.name}</h1></Link>
+           <Link to={`/concertDetail/${concert.id}`} > <h2>{concert.dates.start.localDate}</h2> </Link>
+           </div>
+           <div>
            <Link to={`/concertDetail/${concert.id}`} > <img src={concert.images[1].url} height={80}/> </Link>
+           </div>
            </ConcertStyle>
            )
          })

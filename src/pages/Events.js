@@ -36,9 +36,14 @@ class Events extends Component {
         events.map((event)=>{
           return (
           <EventStyle key={event._id}>
+          <div>
           <Link to={`/eventDetail/${event._id}`}><h1>{event.title}</h1></Link>
           <h2>{event.date}</h2>
-          <Link to={`/eventDetail/${event._id}`}><img src={event.photo} height={100}/></Link> 
+          <h2>{event.location}</h2>
+          </div>
+          <div>
+          <Link to={`/eventDetail/${event._id}`}><img src={event.photo}/></Link>
+          </div> 
           </EventStyle>
           )
         })

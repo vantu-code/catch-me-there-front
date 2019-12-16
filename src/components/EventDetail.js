@@ -7,10 +7,13 @@ import Auth from '../lib/auth-service'
 import User from '../lib/user-service'
 import Iframe from 'react-iframe'
 
-import {themeProvider} from 'styled-components'
-import Button from '../StyledComponents/Button'
+import {ThemeProvider} from 'styled-components'
+import {MyButton} from '../StyledComponents/Button'
+import Wrapper from '../StyledComponents/Wrapper'
+import ListItem from '../StyledComponents/ListItem'
 
-require('dotenv').config();
+
+
 
 export default class EventDetail extends Component {
     state={
@@ -125,8 +128,10 @@ findOrganizer=()=>{
     render() {
         const {event, coming, organizer, isMyEvent} = this.state;
         //console.log("state", this.state);
+        console.log('google',process.env);
+        
         return (
-            <themeProvider>
+            <Wrapper>
             {
                 event != null ? 
                 <div>
@@ -136,10 +141,15 @@ findOrganizer=()=>{
                 <h2>{event.location}</h2>
                 <h2>{event.city}</h2>
                 <h2>{event.date}</h2>
-                <h2>coming {event.coming}/{event.maxPeople}</h2>
                 {
-                    !this.state.isGoing && event.maxPeople > event.coming?
-                    <button onClick={this.joinEvent}>Join this event</button>
+                event.maxPeople != null?
+                <h2>coming {event.coming}/{event.maxPeople}</h2>
+                :
+                <h2>coming {event.coming}</h2>
+                }
+                {
+                    !this.state.isGoing && (event.maxPeople > event.coming || event.maxPeople === null)?
+                    <MyButton black onClick={this.joinEvent}>Join this event</MyButton>
                     :
                     this.state.isGoing?
                     <div>
@@ -154,18 +164,18 @@ findOrganizer=()=>{
                     <div>
                     <h1>related to:</h1> 
                     <Link to={`/concertDetail/${event.relatedConcert.id}`}><h2>{event.relatedConcert.name}</h2></Link>
-                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=AIzaSyDON5ziO3aZ3P0TfhHh026jQCsxBD1gNWs&q=${event.relatedConcert._embedded.venues[0].address.line1}+${event.relatedConcert._embedded.venues[0].city.name}`}
-                    width="450px"
-                    height="450px"
+                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLEKEY}&q=${event.relatedConcert._embedded.venues[0].address.line1}+${event.relatedConcert._embedded.venues[0].city.name}`}
+                    width="300px"
+                    height="300px"
                     id="myId"
                     className="myClassname"
                     display="initial"
                     position="relative"/>
                     </div>
                     :
-                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=AIzaSyDON5ziO3aZ3P0TfhHh026jQCsxBD1gNWs&q=${event.location}+${event.city}`}
-                    width="450px"
-                    height="450px"
+                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLEKEY}&q=${event.location}+${event.city}`}
+                    width="300px"
+                    height="300px"
                     id="myId"
                     className="myClassname"
                     display="initial"
@@ -186,9 +196,9 @@ findOrganizer=()=>{
                         <h2>Who is coming?</h2>
                         <ul>
                         {coming.map(user => (
-                            <li key={user.data._id}>
+                            <ListItem key={user.data._id}>
                                 <Link to={`/profile/${user.data._id}`} key={user.data._id}> {user.data.username} </Link>
-                            </li>)
+                            </ListItem>)
                         )}
                         </ul>
                         </div>
@@ -198,17 +208,17 @@ findOrganizer=()=>{
                 }
                 {
                     isMyEvent?
-                    <button onClick={this.deleteEvent}>delete</button>
+                    <MyButton black onClick={this.deleteEvent}>delete</MyButton>
                     :null
                 }
                 {
-                        <Button onClick={ () => this.props.history.goBack()}>back</Button>
+                        <MyButton black onClick={ () => this.props.history.goBack()}>back</MyButton>
                 }
                 </div>
                 :
-                <h1>loading</h1>
+                <img src="https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjRgpThsLrmAhWo4YUKHXLdDbMQjRx6BAgBEAQ&url=https%3A%2F%2Fgfycat.com%2Fdisastrousunnaturalapisdorsatalaboriosa-hockey&psig=AOvVaw1l_6ij8_XEziySAcx-gxIi&ust=1576592955573519"/>
             } 
-            </themeProvider>
+            </Wrapper>
         )
     }
 }

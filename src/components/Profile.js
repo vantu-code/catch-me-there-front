@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom'
 import Event from '../lib/Event-service'
 import Auth from '../lib/auth-service'
 import User from '../lib/user-service'
+import {MyButton} from '../StyledComponents/Button'
+import ListItem from '../StyledComponents/ListItem'
 
 
 export default class Profile extends Component {
@@ -75,9 +77,17 @@ export default class Profile extends Component {
         }
             }
 
-    componentDidMount(){
-        this.getUser()
-    }
+
+            componentDidMount(){
+                this.getUser()
+            }
+            componentDidUpdate(prevprops){
+                console.log("yooooooooo");
+                if(prevprops.match.params.userId !== this.props.match.params.userId){
+                    
+                this.getUser()
+            }
+            }
     render() {
         const {user, myProfile, eventsAttending, eventsOrganizing} = this.state;
         console.log(this.state);
@@ -88,7 +98,7 @@ export default class Profile extends Component {
             user != null?
             <div>
             <h1>{user.username}</h1>
-            <img src={user.photo}/>
+            <img className="profile-photo" src={user.photo} width="50"/>
             </div>
             :
             null
@@ -99,10 +109,10 @@ export default class Profile extends Component {
                         <h2>Attending</h2>
                         <ul>
                         {eventsAttending.map(event => (
-                            <li key={event.data._id}>
+                            <ListItem key={event.data._id}>
                             {/* <h1>{event.data.title}</h1> */}
                                 <Link to={`/eventDetail/${event.data._id}`} > {event.data.title} </Link>
-                            </li>)
+                            </ListItem>)
                         )}
                         </ul>
                         </div>
@@ -116,10 +126,10 @@ export default class Profile extends Component {
                         <h2>Organizing</h2>
                         <ul>
                         {eventsOrganizing.map(event => (
-                            <li key={event.data._id}>
+                            <ListItem key={event.data._id}>
                             {/* <h1>{event.data.title}</h1> */}
                                 <Link to={`/eventDetail/${event.data._id}`} > {event.data.title} </Link>
-                            </li>)
+                            </ListItem>)
                         )}
                         </ul>
                         </div>
@@ -127,14 +137,14 @@ export default class Profile extends Component {
                     :
                     null
             }
-            {
+            {/* {
             myProfile?
-            <button>Edit profile</button>
+            <MyButton blue>Edit profile</MyButton>
             :
             null
-            }
+            } */}
             {
-                        <button onClick={ () => this.props.history.goBack()}>back</button>
+                        <MyButton blue onClick={ () => this.props.history.goBack()}>back</MyButton>
             }
             </div>
         )
