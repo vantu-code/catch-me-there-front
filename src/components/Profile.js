@@ -98,7 +98,12 @@ export default class Profile extends Component {
             {
             user != null?
             <div>
-            <h1 style={{margin: "10px 0", fontSize: "1.2em"}}>{user.username}</h1>
+            <h1 style={{margin: "10px 0", fontSize: "1.2em",
+                    textShadow: "3px 3px 8px black",
+                    padding: "3px 5px",
+                    borderRadius: "5px",
+                    width: "fit-content",
+                    margin: "0 auto"}}>{user.username}</h1>
             <img className="profile-photo" src={user.photo} width="50"/>
             </div>
             :

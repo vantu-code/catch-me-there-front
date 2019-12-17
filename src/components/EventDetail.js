@@ -136,9 +136,11 @@ findOrganizer=()=>{
             {
                 event != null ? 
                 <div>
+                <div className="event-details-text">
                 <img src={event.photo} width="300"/>
                 <h1>{event.title}</h1>
                 <h2>{event.description}</h2>
+                <h2>vibe: {event.vibe}</h2>
                 <h2>{event.location}</h2>
                 <h2>{event.city}</h2>
                 <h2>{event.date}</h2>
@@ -148,22 +150,16 @@ findOrganizer=()=>{
                 :
                 <h2>coming {event.coming}</h2>
                 }
-                {
-                    !this.state.isGoing && (event.maxPeople > event.coming || event.maxPeople === null)?
-                    <MyButton blue onClick={this.joinEvent}>Join this event</MyButton>
-                    :
-                    this.state.isGoing?
-                    <div>
-                    <MyButton red onClick={this.leaveEvent}>Leave this event</MyButton>
-                    <MyButton special> <a href={event.whatsAppGroup}><h2>WhatsApp Group</h2> </a> </MyButton>
-                    </div>
-                    :
-                    <h2>Fully booked</h2>
-                }
+                </div>
                 {
                     event.relatedConcert?
                     <div>
-                    <h1>related to:</h1> 
+                    <h1 style={{textShadow: "3px 3px 8px black",
+                    backgroundColor: "#56565696",
+                    padding: "3px 5px",
+                    borderRadius: "5px",
+                    width: "fit-content",
+                    margin: "0 auto"}}>related to:</h1> 
                     <div className="related-concert">
                     <div>
                     <Link className="text-related" to={`/concertDetail/${event.relatedConcert.id}`}>
@@ -177,6 +173,18 @@ findOrganizer=()=>{
                     </Link>
                     </div>
                     </div>
+                {
+                    !this.state.isGoing && (event.maxPeople > event.coming || event.maxPeople === null)?
+                    <MyButton blue onClick={this.joinEvent}>Join this event</MyButton>
+                    :
+                    this.state.isGoing?
+                    <div>
+                    <MyButton red onClick={this.leaveEvent}>Leave this event</MyButton>
+                    <MyButton special> <a href={event.whatsAppGroup}><h2>WhatsApp Group</h2> </a> </MyButton>
+                    </div>
+                    :
+                    <h2>Fully booked</h2>
+                }
 
                     <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLEKEY}&q=${event.relatedConcert._embedded.venues[0].address.line1}+${event.relatedConcert._embedded.venues[0].city.name}`}
                     width="300px"
@@ -197,15 +205,15 @@ findOrganizer=()=>{
                 }
                 {
                 organizer ?
-                <div>
+                <div className="coming">
                 <h2>Organizer</h2>
-                <Link to={`/profile/${organizer._id}`} style={{color: "white", textDecoration: "none"}}><h4>{organizer.username}</h4></Link>
+                <Link to={`/profile/${organizer._id}`} style={{color: "white", textDecoration: "none", fontSize: "0.8em"}}><h4>{organizer.username}</h4></Link>
                 </div>
                 :
                 null
                 }
                 {
-                    coming ? (
+                    coming > 0 ? (
                         <div className="coming">
                         <h2>Who is coming?</h2>
                         <ul>
@@ -213,7 +221,7 @@ findOrganizer=()=>{
                             <ListItem key={user.data._id}>
                                 <Link to={`/profile/${user.data._id}`} 
                                 key={user.data._id}
-                                style={{color: "white", textDecoration: "none",}}> 
+                                style={{color: "white", textDecoration: "none", fontSize: "0.8em"}}> 
                                 {user.data.username} </Link>
                             </ListItem>)
                         )}

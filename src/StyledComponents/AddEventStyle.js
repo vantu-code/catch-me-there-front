@@ -8,6 +8,8 @@ height: 100%; /* You must set a specified height */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
 
+  overflow-x:hidden;
+
 color : white;
 width: 100%;
 margin: 10px 0;
