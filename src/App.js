@@ -32,6 +32,7 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <Switch>
+          <AnonRoute exact path="/" component={Login} />
           <AnonRoute exact path="/signup" component={Signup} />
           <AnonRoute exact path="/login" component={Login} />
           <PrivateRoute exact path="/drums" component={Drums} />

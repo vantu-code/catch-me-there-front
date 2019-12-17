@@ -55,19 +55,8 @@ class Navbar extends Component {
           }
             {/* <p>What's up {user.username}?</p> */}          
           </div>
-        ) : (
-          <div>
-            <Link to="/login">
-              {' '}
-              <button>Login</button>{' '}
-            </Link>
-            <br />
-            <Link to="/signup">
-              {' '}
-              <button>Signup</button>{' '}
-            </Link>
-          </div>
-        )}
+        ) : null
+        }
       </NavBarStyle>
 
     );

@@ -44,7 +44,7 @@ class Signup extends Component {
     const { username, password, photo} = this.state;
     return (
       <div>
-        <h1>Sign Up</h1>
+        <h1 style={{marginTop: "30px"}}>Sign Up</h1>
         <form className="signup" onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
           <InputLine
@@ -69,7 +69,7 @@ class Signup extends Component {
           onChange={e => this.fileChange(e)}
           />
 
-          <InputLine type="submit" value="Signup" />
+          <MyButton blue><input type="submit" value="Signup" /></MyButton>
         </form>
 
         <p style={{width: "100%"}}>Already have account?</p>

@@ -12,7 +12,7 @@ height: 100%; /* You must set a specified height */
 
 color : white;
 width: 100%;
-margin: 10px 0;
+margin: 10px 0 auto;
 text-align: center;
 
 position: relative;

@@ -186,9 +186,8 @@ export default class AddEvent extends Component {
      name="photo" 
      value={this.state.photo} />
 
-    <label>Or upload:</label>
-    <InputLine 
-          className="add-input"
+    <label style={{width:"100%", }}><h3>Or upload:</h3></label>
+    <input className="add-input"
           type="file"
           name="image"
           onChange={e => this.fileChange(e)}

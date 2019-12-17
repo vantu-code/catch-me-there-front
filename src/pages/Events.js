@@ -20,7 +20,7 @@ play=()=>{
 }
   getAllEvents=()=>{
     axios
-    .get("http://localhost:5000/events", { withCredentials: true})
+    .get(`${process.env.REACT_APP_API_URL}/events`, { withCredentials: true})
     .then((result) => {
       this.setState({events: result.data})
     }).catch((err) => {

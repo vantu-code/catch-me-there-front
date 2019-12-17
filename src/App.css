@@ -77,9 +77,16 @@ justify-content: space-around;
 font-size: 0.5em;
 }
 .add-input{
-  margin: 15px 0;
+  margin: 0 auto;
+  margin-bottom: 10px;
   height: 2em;
   text-align: center;
+  width: 60%;
+  color: #63C0FF;;
+  background-color: rgb(201, 227, 245);
+  border-radius: 3px;
+  /* #63C0FF */
+  border: 2px solid rgb(165, 237, 255);
 }
 .logout{
   font-family: 'Playfair Display', serif;
@@ -179,6 +186,7 @@ label{
   text-align: left;
   margin: 10px;
 }
+
 
 
 
