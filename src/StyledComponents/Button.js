@@ -17,6 +17,12 @@ width: 60%
 color:white;
 margin: 20px 0;
 `}
+${props=>props.red&&css`
+background-color: #BA2727;
+width: 60%
+color:white;
+margin: 10px 0;
+`}
 `
 
 

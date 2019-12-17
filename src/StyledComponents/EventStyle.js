@@ -20,7 +20,7 @@ img{
     border: 1px solid gray;
     border-radius: 10%;
     object-fit: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+    /* background-repeat: no-repeat;
+    background-position: 50% 50%; */
 }
 `

@@ -120,5 +120,19 @@ margin-top: 35%
     color: white;
     font-size: 0.6em;
   }
+  .drum{
+    width: 150px;
+    height: 150px;
+    border: 1px solid white;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+  .two-drums{
+    display: flex;
+    flex-direction: column;
+  }
 
 

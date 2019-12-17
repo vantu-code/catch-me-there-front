@@ -7,6 +7,7 @@ import Auth from '../lib/auth-service'
 import User from '../lib/user-service'
 import {MyButton} from '../StyledComponents/Button'
 import ListItem from '../StyledComponents/ListItem'
+import Wrapper from '../StyledComponents/Wrapper'
 
 
 export default class Profile extends Component {
@@ -93,11 +94,11 @@ export default class Profile extends Component {
         console.log(this.state);
         
         return (
-            <div>
+            <Wrapper>
             {
             user != null?
             <div>
-            <h1>{user.username}</h1>
+            <h1 style={{margin: "10px 0", fontSize: "1.2em"}}>{user.username}</h1>
             <img className="profile-photo" src={user.photo} width="50"/>
             </div>
             :
@@ -106,12 +107,12 @@ export default class Profile extends Component {
             {
                 eventsAttending !=null ? (
                         <div className="event-attending">
-                        <h2>Attending</h2>
-                        <ul>
+                        <h2 style={{marginTop: "10px", fontSize: "1em"}}>Attending</h2>
+                        <ul style={{width: "100%", padding: "0"}}>
                         {eventsAttending.map(event => (
-                            <ListItem key={event.data._id}>
+                            <ListItem key={event.data._id} style={{width: "100%", margin: 0}}>
                             {/* <h1>{event.data.title}</h1> */}
-                                <Link to={`/eventDetail/${event.data._id}`} > {event.data.title} </Link>
+                                <Link to={`/eventDetail/${event.data._id}`} style={{color: "white", textDecoration: "none", fontSize: "0.8em"}}> {event.data.title} </Link>
                             </ListItem>)
                         )}
                         </ul>
@@ -123,12 +124,12 @@ export default class Profile extends Component {
             {
                 eventsOrganizing !=null ? (
                         <div className="event-organizing">
-                        <h2>Organizing</h2>
-                        <ul>
+                        <h2 style={{marginTop: "10px", fontSize: "1em"}} >Organizing</h2>
+                        <ul style={{width: "100%", padding: "0", fontSize: "0.7em"}}>
                         {eventsOrganizing.map(event => (
-                            <ListItem key={event.data._id}>
+                            <ListItem key={event.data._id} >
                             {/* <h1>{event.data.title}</h1> */}
-                                <Link to={`/eventDetail/${event.data._id}`} > {event.data.title} </Link>
+                                <Link to={`/eventDetail/${event.data._id}`} style={{color: "white", textDecoration: "none"}}> {event.data.title} </Link>
                             </ListItem>)
                         )}
                         </ul>
@@ -146,7 +147,7 @@ export default class Profile extends Component {
             {
                         <MyButton blue onClick={ () => this.props.history.goBack()}>back</MyButton>
             }
-            </div>
+            </Wrapper>
         )
     }
 }

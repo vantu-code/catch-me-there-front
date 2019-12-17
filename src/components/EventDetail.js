@@ -10,6 +10,7 @@ import Iframe from 'react-iframe'
 import {ThemeProvider} from 'styled-components'
 import {MyButton} from '../StyledComponents/Button'
 import Wrapper from '../StyledComponents/Wrapper'
+
 import ListItem from '../StyledComponents/ListItem'
 
 
@@ -149,12 +150,12 @@ findOrganizer=()=>{
                 }
                 {
                     !this.state.isGoing && (event.maxPeople > event.coming || event.maxPeople === null)?
-                    <MyButton black onClick={this.joinEvent}>Join this event</MyButton>
+                    <MyButton blue onClick={this.joinEvent}>Join this event</MyButton>
                     :
                     this.state.isGoing?
                     <div>
+                    <MyButton red onClick={this.leaveEvent}>Leave this event</MyButton>
                     <a href={event.whatsAppGroup}><h2>WhatsApp Group</h2> </a>
-                    <button onClick={this.leaveEvent}>Leave this event</button>
                     </div>
                     :
                     <h2>Fully booked</h2>
@@ -208,7 +209,7 @@ findOrganizer=()=>{
                 }
                 {
                     isMyEvent?
-                    <MyButton black onClick={this.deleteEvent}>delete</MyButton>
+                    <MyButton red onClick={this.deleteEvent}>delete</MyButton>
                     :null
                 }
                 {

@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import Spotify from '../lib/spotify-service'
 import Iframe from 'react-iframe'
 import {MyButton} from '../StyledComponents/Button'
+import Wrapper from '../StyledComponents/Wrapper'
 
 
 import {ConcertDetailStyle} from '../StyledComponents/ConcertDetailStyle'

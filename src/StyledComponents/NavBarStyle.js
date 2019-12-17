@@ -5,7 +5,8 @@ background-color: black;
 border-bottom: 1px solid gray;
 color : white;
 width: 100%;
-/* position: fixed; */
+position: fixed;
+z-index:99;
 
 h1{
     margin: 5px 0 0 0;

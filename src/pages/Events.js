@@ -11,10 +11,13 @@ class Events extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      events: []
+      events: [],
+      sound: document.getElementById("click"),
     };
   }
-
+play=()=>{
+  this.state.sound.play()
+}
   getAllEvents=()=>{
     axios
     .get("http://localhost:5000/events", { withCredentials: true})
@@ -33,8 +36,9 @@ class Events extends Component {
     // console.log("check", events)
     return (
       <Wrapper>{
-        events.map((event)=>{
+        events.map((event, i)=>{
           return (
+            event.title?
           <EventStyle key={event._id}>
           <div>
           <Link to={`/eventDetail/${event._id}`}><h1>{event.title}</h1></Link>
@@ -56,6 +60,7 @@ class Events extends Component {
           <Link to={`/eventDetail/${event._id}`}><img src={event.photo}/></Link>
           </div> 
           </EventStyle>
+         :<h1 key={i}>empty</h1>
           )
         })
       }

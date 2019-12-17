@@ -13,22 +13,22 @@ import InputLine from '../StyledComponents/InputLine'
 
 export default class AddEvent extends Component {
     state={
-    whatsAppGroup: "", 
-    title: "", 
-    description: "", 
-    vibe: "",
-    maxPeople: "",
+    whatsAppGroup: "Mendatory link", 
+    title: "Roof-top party!", 
+    description: "friends meeting for beers and music", 
+    vibe: "chill",
+    maxPeople: 30,
     coming: 1, 
-    location: "", 
-    date: "", 
-    hour: "", 
+    location: "Carrer dels Almogàvers, 122", 
+    date: "20.4.20", 
+    hour: "21:00", 
     ageRange: "18-100", 
     photo: "", 
     themeSong: "", 
     concertId: "",
     relatedConcert: {},
-    city: "",
-    country: "",
+    city: "Barcelona",
+    country: "Spain",
     organizerId: "",
     }
 
@@ -232,7 +232,9 @@ export default class AddEvent extends Component {
 }
      <MyButton blue>Submit</MyButton>
      </form>
-
+    {
+                        <MyButton black onClick={ () => this.props.history.goBack()}>back</MyButton>
+    }
         </AddEventStyle>
         )
     }
