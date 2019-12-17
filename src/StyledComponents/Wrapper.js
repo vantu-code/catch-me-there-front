@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export default styled.div`
 
-background-image: url('https://img3.goodfon.com/wallpaper/nbig/2/cf/joker-mad-joke-face-eyes.jpg');
+background-image: url('https://images.pexels.com/photos/954547/pexels-photo-954547.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
 height: 100%; /* You must set a specified height */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */

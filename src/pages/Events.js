@@ -38,10 +38,10 @@ play=()=>{
       <Wrapper>{
         events.map((event, i)=>{
           return (
-            event.title?
+
           <EventStyle key={event._id}>
           <div>
-          <Link to={`/eventDetail/${event._id}`}><h1>{event.title}</h1></Link>
+          <Link to={`/eventDetail/${event._id}`} style={{textDecoration: "none"}}><h1>{event.title}</h1></Link>
           {
           event.relatedConcert?
           <div>
@@ -56,11 +56,21 @@ play=()=>{
           </div>
           }
           </div>
+          {
+          event.photo?
           <div>
           <Link to={`/eventDetail/${event._id}`}><img src={event.photo}/></Link>
           </div> 
+          :
+          event.relatedConcert?
+          <div>
+          <Link to={`/eventDetail/${event._id}`}><img src={event.relatedConcert.images[1].url}/></Link>
+          </div> 
+          :
+          null
+          }
           </EventStyle>
-         :<h1 key={i}>empty</h1>
+
           )
         })
       }

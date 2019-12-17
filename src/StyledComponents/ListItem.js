@@ -8,7 +8,7 @@ margin: 2px auto;
 text-align: center;
 list-style-type: none;
 font-size: 15px;
-border-bottom: 0.2px solid gray;
+/* border-bottom: 0.2px solid gray; */
 li{
     color:white;
 }

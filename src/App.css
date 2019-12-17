@@ -144,3 +144,35 @@ label{
   animation: flip-scale-2-hor-top 0.5s linear both;
 }
 
+.related-concert{
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid white;
+  border-radius: 5%;
+  margin: 15px;
+}
+.related-concert img{
+    margin:5px;
+    height: 80px;
+    width: 80px;
+    border: 1px solid gray;
+    border-radius: 10%;
+    object-fit: cover;
+}
+.text-related{
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.artistName {
+  margin: 15px 0;
+  padding: 5px 0;
+  border-bottom: 1px solid gray;
+}
+
+
+
+
+

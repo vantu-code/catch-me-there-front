@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withAuth } from '../lib/AuthProvider';
 import InputLine from '../StyledComponents/InputLine'
 import {Link} from 'react-router-dom'
+import { MyButton } from '../StyledComponents/Button';
 
 class Login extends Component {
   state = { username: '', password: '' };
@@ -41,8 +42,8 @@ class Login extends Component {
           />
           <InputLine type="submit" value="Login" />
         </form>
-        <p>Don't have an account?</p>
-        <Link to={'/signup'}> Signup</Link>
+        <p style={{width: "100%"}}>Don't have an account?</p>
+        <Link style={{color: "white", textDecoration: "none", width: "100%"}} to={'/signup'}> <MyButton black>Signup </MyButton></Link>
       </div>
     );
   }

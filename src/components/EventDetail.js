@@ -155,7 +155,7 @@ findOrganizer=()=>{
                     this.state.isGoing?
                     <div>
                     <MyButton red onClick={this.leaveEvent}>Leave this event</MyButton>
-                    <a href={event.whatsAppGroup}><h2>WhatsApp Group</h2> </a>
+                    <MyButton special> <a href={event.whatsAppGroup}><h2>WhatsApp Group</h2> </a> </MyButton>
                     </div>
                     :
                     <h2>Fully booked</h2>
@@ -164,7 +164,20 @@ findOrganizer=()=>{
                     event.relatedConcert?
                     <div>
                     <h1>related to:</h1> 
-                    <Link to={`/concertDetail/${event.relatedConcert.id}`}><h2>{event.relatedConcert.name}</h2></Link>
+                    <div className="related-concert">
+                    <div>
+                    <Link className="text-related" to={`/concertDetail/${event.relatedConcert.id}`}>
+                    <h2>{event.relatedConcert.name}</h2>
+                    <h2>{event.relatedConcert._embedded.venues[0].name}</h2>
+                    </Link>
+                    </div>
+                    <div>
+                    <Link className="text-related" to={`/concertDetail/${event.relatedConcert.id}`}>
+                    <img src={event.relatedConcert.images[0].url} width="100"/>
+                    </Link>
+                    </div>
+                    </div>
+
                     <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLEKEY}&q=${event.relatedConcert._embedded.venues[0].address.line1}+${event.relatedConcert._embedded.venues[0].city.name}`}
                     width="300px"
                     height="300px"
@@ -186,7 +199,7 @@ findOrganizer=()=>{
                 organizer ?
                 <div>
                 <h2>Organizer</h2>
-                <Link to={`/profile/${organizer._id}`}><h4>{organizer.username}</h4></Link>
+                <Link to={`/profile/${organizer._id}`} style={{color: "white", textDecoration: "none"}}><h4>{organizer.username}</h4></Link>
                 </div>
                 :
                 null
@@ -198,7 +211,10 @@ findOrganizer=()=>{
                         <ul>
                         {coming.map(user => (
                             <ListItem key={user.data._id}>
-                                <Link to={`/profile/${user.data._id}`} key={user.data._id}> {user.data.username} </Link>
+                                <Link to={`/profile/${user.data._id}`} 
+                                key={user.data._id}
+                                style={{color: "white", textDecoration: "none",}}> 
+                                {user.data.username} </Link>
                             </ListItem>)
                         )}
                         </ul>
@@ -209,11 +225,11 @@ findOrganizer=()=>{
                 }
                 {
                     isMyEvent?
-                    <MyButton red onClick={this.deleteEvent}>delete</MyButton>
+                    <MyButton red onClick={this.deleteEvent} style={{width: "60%"}} >delete</MyButton>
                     :null
                 }
                 {
-                        <MyButton black onClick={ () => this.props.history.goBack()}>back</MyButton>
+                        <MyButton black onClick={ () => this.props.history.goBack()} style={{width: "50%", marginBottom: "10px"}} >back</MyButton>
                 }
                 </div>
                 :

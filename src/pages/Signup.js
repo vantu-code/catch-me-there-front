@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { withAuth } from '../lib/AuthProvider';
 import paintingService from '../lib/paintingService'
 import InputLine from '../StyledComponents/InputLine'
+import { MyButton } from '../StyledComponents/Button';
 
 class Signup extends Component {
   state = { 
@@ -71,8 +72,8 @@ class Signup extends Component {
           <InputLine type="submit" value="Signup" />
         </form>
 
-        <p>Already have account?</p>
-        <Link to={'/login'}> Login</Link>
+        <p style={{width: "100%"}}>Already have account?</p>
+        <Link style={{color: "white", textDecoration: "none", width: "100%"}} to={'/login'}> <MyButton black>Login </MyButton></Link>
       </div>
     );
   }
