@@ -128,11 +128,19 @@ margin-top: 35%
     align-content: center;
     flex-direction: column;
     justify-content: center;
-
+    border-radius: 5%;
+  }
+  .drum:hover{
+    border: 1px solid #63BFFF;
   }
   .two-drums{
     display: flex;
     flex-direction: column;
   }
-
+label{
+  font-size: 0.8em;
+}
+.folded:hover{
+  animation: flip-scale-2-hor-top 0.5s linear both;
+}
 

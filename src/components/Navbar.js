@@ -42,13 +42,12 @@ class Navbar extends Component {
           </article>
           {
             this.state.showMenu?
-          <ul>
+          <ul className="folded">
         <ListItem><NavLink onClick={this.showMenu} className="nav-link" to='/concerts'>Concerts</NavLink></ListItem>
         <ListItem><NavLink onClick={this.showMenu} className="nav-link" to='/events'>Events</NavLink></ListItem>
         <ListItem><NavLink onClick={this.showMenu} className="nav-link" to='/addEvents'>Create Event</NavLink></ListItem>
-        <ListItem><NavLink onClick={this.showMenu} className="nav-link" to='/drums'>Drums</NavLink></ListItem>
         <ListItem><NavLink onClick={this.showMenu} to={`/profile/${this.props.user._id}`} className="profile-link">Profile</NavLink></ListItem>
-
+        <ListItem><NavLink onClick={this.showMenu} className="nav-link" to='/drums'>Drums</NavLink></ListItem>
         <ListItem><button className="logout" onClick={logout}>Logout</button></ListItem>
         </ul>
         :

@@ -120,9 +120,13 @@ export default class AddEvent extends Component {
                 <div>
                 <h2>Create your group for the concert:</h2>
                 <h1>{this.state.relatedConcert.name}</h1>
+                <hr/>
                 </div>
                 :
+                <div>
                 <h1>Create your awesome event</h1>
+                <hr/>
+                </div>
             }
     <form onSubmit={this.handleSubmit}>
 
@@ -182,7 +186,7 @@ export default class AddEvent extends Component {
      name="photo" 
      value={this.state.photo} />
 
-    <label>Or</label>
+    <label>Or upload:</label>
     <InputLine 
           className="add-input"
           type="file"

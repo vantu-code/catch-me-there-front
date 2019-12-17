@@ -11,12 +11,14 @@ export default class Drums extends Component {
         snare: document.getElementById("snare"),
         hiHat: document.getElementById("hiHat"),
         openHat: document.getElementById("openHat"),
+        classDrum: "drum",
         // snare:
         // hiHat:
     }
     kick=()=>{
     this.state.kick.currentTime = 0
     this.state.kick.play()
+    // setTimeout(check, 1000)
     }
     snare=()=>{
     this.state.snare.currentTime = 0
@@ -37,7 +39,7 @@ export default class Drums extends Component {
             <Wrapper>
             <DrumsStyle>
             <div className="two-drums">
-            <div className="drum" onClick={this.snare}> Snare</div>
+            <div className={this.state.classDrum} onClick={this.snare}> Snare</div>
             <div className="drum" onClick={this.kick}> kick</div>
             </div>
             <div className="two-drums">

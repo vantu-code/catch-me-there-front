@@ -33,7 +33,7 @@ play=()=>{
   }
   render() {
     const {events} = this.state;
-    // console.log("check", events)
+    console.log("check", events)
     return (
       <Wrapper>{
         events.map((event, i)=>{

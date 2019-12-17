@@ -3,6 +3,7 @@ import styled,{css} from 'styled-components'
 export const MyButton = styled.button`
 ${props=>props.black&&css`
 background-color: black;
+width: 40%
 color:white;
 `}
 ${props=>props.blue&&css`
