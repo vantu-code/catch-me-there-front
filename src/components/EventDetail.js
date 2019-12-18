@@ -167,10 +167,10 @@ findOrganizer=()=>{
                     event.relatedConcert?
                     <div>
                     <h1 style={{textShadow: "3px 3px 8px black",
-                    backgroundColor: "#56565696",
                     padding: "3px 5px",
                     width: "fit-content",
-                    margin: "0 auto"}}>related to:</h1> 
+                    margin: "0 auto",
+                    textDecoration: "underline"}}>Related to:</h1> 
                     <div className="related-concert">
                     <div>
                     <Link className="text-related" to={`/concertDetail/${event.relatedConcert.id}`}>
@@ -217,8 +217,7 @@ findOrganizer=()=>{
                 {
                 organizer ?
                 <div className="coming">
-                <p>Organizer</p>
-                <p><Link to={`/profile/${organizer._id}`} style={{color: "white", textDecoration: "none", fontSize: "0.8em"}}>: {organizer.username}</Link></p>
+                <p>Organizer: <Link to={`/profile/${organizer._id}`} style={{color: "white", textDecoration: "none", fontSize: "0.9em", textDecoration: "underline"}}>{organizer.username}</Link></p>
                 </div>
                 :
                 null
@@ -232,7 +231,7 @@ findOrganizer=()=>{
                             <ListItem key={user.data._id}>
                                 <Link to={`/profile/${user.data._id}`} 
                                 key={user.data._id}
-                                style={{color: "white", textDecoration: "none", fontSize: "0.8em"}}> 
+                                style={{color: "white", textDecoration: "none", fontSize: "0.8em", textDecoration: "underline"}}> 
                                 {user.data.username} </Link>
                             </ListItem>)
                         )}

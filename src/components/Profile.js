@@ -114,12 +114,12 @@ export default class Profile extends Component {
             {
                 eventsAttending != null ? (
                         <div className="event-attending">
-                        <h2 style={{marginTop: "10px", fontSize: "0.9em", borderTop: "1px dashed gray"}}>Attending</h2>
+                        <h2 style={{marginTop: "10px", paddingTop: "10px", fontSize: "0.9em", borderTop: "1px dashed gray"}}>Attending</h2>
                         <ul style={{width: "100%", padding: "0"}}>
                         {eventsAttending.map(event => (
                             <ListItem key={event.data._id} style={{width: "100%", margin: 0, border: "none"}}>
                             {/* <h1>{event.data.title}</h1> */}
-                                <Link to={`/eventDetail/${event.data._id}`} style={{color: "white", textDecoration: "none", fontSize: "0.8em", border: "none"}}> {event.data.title} </Link>
+                                <Link to={`/eventDetail/${event.data._id}`} style={{color: "white", textDecoration: "none", fontSize: "0.8em", border: "none", textDecoration: "underline"}}> {event.data.title} </Link>
                             </ListItem>)
                         )}
                         </ul>
@@ -131,12 +131,12 @@ export default class Profile extends Component {
             {
                 eventsOrganizing !== null ? (
                         <div className="event-organizing">
-                        <h2 style={{marginTop: "10px", fontSize: "0.9em", borderTop: "1px dashed gray"}} >Organizing</h2>
+                        <h2 style={{marginTop: "10px", fontSize: "0.9em", paddingTop: "10px", borderTop: "1px dashed gray"}} >Organizing</h2>
                         <ul style={{width: "100%", padding: "0", fontSize: "0.7em"}}>
                         {eventsOrganizing.map(event => (
                             <ListItem key={event.data._id} >
                             {/* <h1>{event.data.title}</h1> */}
-                                <Link to={`/eventDetail/${event.data._id}`} style={{color: "white", textDecoration: "none", border: "none", fontSize: "0.8em"}}> {event.data.title} </Link>
+                                <Link to={`/eventDetail/${event.data._id}`} style={{color: "white", textDecoration: "none", border: "none", fontSize: "0.8em", textDecoration: "underline"}}> {event.data.title} </Link>
                             </ListItem>)
                         )}
                         </ul>
