@@ -104,9 +104,9 @@ export default class Profile extends Component {
                     borderRadius: "5px",
                     width: "fit-content",
                     margin: "0 auto"}}>{user.username}</h1>
-            <img className="profile-photo" src={user.photo} width="50"/>
-            <h2>{user.email}</h2>
-            <h2>{user.about}</h2>
+            <img className="profile-photo" src={user.photo} width="100"/>
+            <h2 className="email">{user.email}</h2>
+            <h2 className="about">{user.about}</h2>
             </div>
             :
             null

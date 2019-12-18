@@ -122,7 +122,7 @@ export default class ConcertDetail extends Component {
                 <a href={this.state.spotifyLink}><img src="https://i1.wp.com/davan.ac/wp-content/uploads/2006/07/listen-on-spotify-logo.png?ssl=1" width="80"/> </a>
                 <a href={concert.url}><img src="https://www.trzcacak.rs/myfile/full/345-3451475_buy-at-ticketmaster-logos-ticketmaster.png" width="80"/> </a>
                 </article>
-                <Link to={`/addEvents/${this.props.match.params.concertId}`} ><MyButton blue >Create related event</MyButton></Link>
+                <Link to={`/addEvents/${this.props.match.params.concertId}`} ><MyButton blue >Create related hangout</MyButton></Link>
                 {
                 tracks.map((track)=>{
                     if(track.preview_url)
