@@ -12,6 +12,7 @@ position: relative;
 /* margin-top: 100px; */
 padding-top:90px;
 overflow-y:hidden;
+overflow-x:hidden;
 h2, h1{
     margin: 0;
     color: white;

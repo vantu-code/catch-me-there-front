@@ -5,6 +5,7 @@ export default styled.input`
 /* color : black; */
 /* font-family: 'Oswald', sans-serif; */
 font-family: 'Saira', sans-serif;
+
 background-color: #A7C7DD80;
 color: white;
 width: 80%;

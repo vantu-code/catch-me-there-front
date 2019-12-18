@@ -137,7 +137,7 @@ findOrganizer=()=>{
                 event != null ? 
                 <div>
                 <div className="event-details-text">
-                <img src={event.photo} width="300" style={{margin: "10px 0"}} />
+                <img src={event.photo} width="100%vw" style={{margin: "10px 0"}} />
                 <h1>{event.title}</h1>
                 <h2>{event.description}</h2>
                 <h2>vibe: {event.vibe}</h2>
@@ -198,7 +198,7 @@ findOrganizer=()=>{
                 }
 
                     <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLEKEY}&q=${event.relatedConcert._embedded.venues[0].address.line1}+${event.relatedConcert._embedded.venues[0].city.name}`}
-                    width="300px"
+                    width="100%vw"
                     height="300px"
                     id="myId"
                     className="myClassname"
@@ -207,7 +207,7 @@ findOrganizer=()=>{
                     </div>
                     :
                     <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLEKEY}&q=${event.location}+${event.city}`}
-                    width="300px"
+                    width="100%vw"
                     height="300px"
                     id="myId"
                     className="myClassname"
