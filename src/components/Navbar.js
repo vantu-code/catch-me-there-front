@@ -37,18 +37,23 @@ class Navbar extends Component {
           <div>
           <article>
           <NavLink to={`/profile/${this.props.user._id}`} className="profile-top"><img className="profile-photo" src={user.photo} width="20"/><p className="name">{user.username}</p></NavLink>
-          <NavLink to={`/events`}><img src='/images/catch-me-there-logo-white.png' className="title" height="17" /></NavLink>
+          <NavLink to={`/events`}><img src='/images/catch-me-there-logo-white.png' className="title" height="20" /></NavLink>
+          {
+          !this.state.showMenu?
           <img onClick={this.showMenu} src="https://icon-library.net/images/white-hamburger-menu-icon/white-hamburger-menu-icon-24.jpg" width="30"/>
+          :
+          <img onClick={this.showMenu} src="/images/X.png" width="18" height="18" style={{marginTop: "10px", marginLeft: "8px", marginRight: "4px"}}/>
+          }
           </article>
           {
             this.state.showMenu?
           <ul className="folded">
-        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)"}}><NavLink onClick={this.showMenu} className="nav-link" to='/concerts'>Concerts</NavLink></ListItem>
-        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)"}}><NavLink onClick={this.showMenu} className="nav-link" to='/events'>Events</NavLink></ListItem>
-        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)"}}><NavLink onClick={this.showMenu} className="nav-link" to='/addEvents'>Create Event</NavLink></ListItem>
-        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)"}}><NavLink onClick={this.showMenu} to={`/profile/${this.props.user._id}`} className="profile-link">Profile</NavLink></ListItem>
-        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)"}}><NavLink onClick={this.showMenu} className="nav-link" to='/drums'>Drums</NavLink></ListItem>
+        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)", margin: "15px 0", fontSize: "1.3em"}}><NavLink onClick={this.showMenu} className="nav-link" to='/events'>Events</NavLink></ListItem>
+        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)", margin: "15px 0", fontSize: "1.3em"}}><NavLink onClick={this.showMenu} className="nav-link" to='/concerts'>Concerts</NavLink></ListItem>
+        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)", margin: "15px 0", fontSize: "1.3em"}}><NavLink onClick={this.showMenu} className="nav-link" to='/addEvents'>Create Event</NavLink></ListItem>
+        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)", margin: "15px 0", fontSize: "1.3em"}}><NavLink onClick={this.showMenu} to={`/profile/${this.props.user._id}`} className="profile-link">Profile</NavLink></ListItem>
         <ListItem><button className="logout" onClick={logout}>Logout</button></ListItem>
+        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)", marginTop: "100px", borderBottom: "none", fontSize: "1.3em"}}><NavLink onClick={this.showMenu} className="nav-link" to='/drums'>🥁 Drums</NavLink></ListItem>
         </ul>
         :
         null

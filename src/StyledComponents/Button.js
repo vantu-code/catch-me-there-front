@@ -7,7 +7,7 @@ width: 40%
 color:white;
 `}
 ${props=>props.blue&&css`
-background-color: #63BFFF;
+background-color: #1274C0;
 width: 60%
 color:white;
 margin: 10px 0;

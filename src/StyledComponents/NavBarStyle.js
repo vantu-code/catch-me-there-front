@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
 export default styled.div`
-background-color: black;
+/* background-color: black; */
 /* opacity: 0.8; */
+background-color: #142427;
 border-bottom: 1px solid gray;
 color : white;
 width: 100%;

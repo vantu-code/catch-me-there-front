@@ -149,7 +149,7 @@ this.findLocation()
    currentCity?
    <MyButton second onClick={this.byMyLocation}>My location</MyButton>
    :
-   <img src="https://i.kym-cdn.com/photos/images/original/000/780/746/cc2.gif" width="50"/>
+   <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/09b24e31234507.564a1d23c07b4.gif" width="50"/>
  }
     {    concerts.map((concert)=>{
            return (

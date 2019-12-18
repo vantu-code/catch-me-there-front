@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export default styled.div`
 
-background-image: url('https://images.pexels.com/photos/954547/pexels-photo-954547.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+/* background-image: url('https://images.pexels.com/photos/954547/pexels-photo-954547.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); */
 /* background-image: url('https://images.pexels.com/photos/2796145/pexels-photo-2796145.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); */
 
 /* width: 200px;  */

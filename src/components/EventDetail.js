@@ -141,9 +141,21 @@ findOrganizer=()=>{
                 <h1>{event.title}</h1>
                 <h2>{event.description}</h2>
                 <h2>vibe: {event.vibe}</h2>
+                {
+                !event.relatedConcert?
+                <div>
                 <h2>{event.location}</h2>
                 <h2>{event.city}</h2>
                 <h2>{event.date}</h2>
+                </div>
+                :
+                <div>
+                <h2>{event.relatedConcert._embedded.venues[0].name}</h2>
+                <h2>{event.relatedConcert._embedded.venues[0].address.line1}</h2>
+                <h2>{event.relatedConcert._embedded.venues[0].city.name}</h2>
+                <h2>{event.relatedConcert._embedded.venues[0].country.name}</h2>
+                </div>
+                }
                 {
                 event.maxPeople != null?
                 <h2>coming {event.coming}/{event.maxPeople}</h2>
@@ -157,7 +169,6 @@ findOrganizer=()=>{
                     <h1 style={{textShadow: "3px 3px 8px black",
                     backgroundColor: "#56565696",
                     padding: "3px 5px",
-                    borderRadius: "5px",
                     width: "fit-content",
                     margin: "0 auto"}}>related to:</h1> 
                     <div className="related-concert">

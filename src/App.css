@@ -1,5 +1,7 @@
 /* @import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap'); */
-@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap'); */
+@import url('https://fonts.googleapis.com/css?family=Saira&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans&display=swap');
 
 html{
   overflow-x: hidden;
@@ -7,7 +9,9 @@ html{
   
 }
 body{
-  background-color: black;
+  /* background-color: black; */
+  background-color: #142427;
+
   margin: 0;
   margin-top:-10px;
   text-decoration: none;
@@ -18,7 +22,9 @@ body{
   text-align: center;
   width: 100%;
   /* font-family: 'Playfair Display', serif; */
-  font-family: 'Oswald', sans-serif;
+  /* font-family: 'Oswald', sans-serif; */
+  /* font-family: 'Saira', sans-serif; */
+  font-family: 'Fira Sans', sans-serif;
 }
 
 .App-logo {
@@ -95,9 +101,21 @@ font-size: 0.5em;
 }
 .logout{
   /* font-family: 'Playfair Display', serif; */
-  font-family: 'Oswald', sans-serif;
+  /* font-family: 'Oswald', sans-serif; */
+    /* style: none; */
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+
+  /* font-family: 'Saira', sans-serif; */
+  font-family: 'Fira Sans', sans-serif;
   color: white;
-  font-size: 1em;
+  font-size: 1.3em;
+  background-color: transparent;
+
 }
 .title{
   color: white;
@@ -106,15 +124,17 @@ font-size: 0.5em;
   padding-top: 15px;
   /* padding-left: 20px; */
   /* font-family: 'Playfair Display', serif; */
-  font-family: 'Oswald', sans-serif;
+  /* font-family: 'Oswald', sans-serif; */
+  /* font-family: 'Saira', sans-serif; */
+  font-family: 'Fira Sans', sans-serif;
 }
 .signup{
 height: 100%;
-margin-top: 35%
+margin-top: 10%
 }
 .login{
   height: 100%;
-  margin-top: 35%
+  margin-top: 10%
   }
   .profile-photo{
     border-radius: 50%;
@@ -157,12 +177,15 @@ label{
 .folded:hover{
   animation: flip-scale-2-hor-top 0.5s linear both;
 }
+.folded{
+height: 700px;
+}
 
 .related-concert{
   display: flex;
   justify-content: space-between;
   border: 1px solid white;
-  border-radius: 5%;
+  /* border-radius: 5%; */
   margin: 15px;
 }
 .related-concert img{
@@ -178,6 +201,9 @@ label{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-left: 10px;
+  text-align: left;
+  text-decoration: none;
 }
 .artistName {
   margin: 15px 0;
@@ -193,5 +219,11 @@ label{
   margin: 10px;
 }
 
+
+@media (min-width: 480px) {
+  body{
+    background-color: tomato;
+  }
+}
 
 

@@ -3,6 +3,8 @@ import styled from 'styled-components'
 export default styled.input`
 /* background-color: #A7C7DD; */
 /* color : black; */
+/* font-family: 'Oswald', sans-serif; */
+font-family: 'Saira', sans-serif;
 background-color: #A7C7DD80;
 color: white;
 width: 80%;

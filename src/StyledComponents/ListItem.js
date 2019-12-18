@@ -9,6 +9,7 @@ text-align: center;
 list-style-type: none;
 font-size: 15px;
 /* border-bottom: 0.2px solid gray; */
+padding-bottom: 20px;
 li{
     color:white;
 }

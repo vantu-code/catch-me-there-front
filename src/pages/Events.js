@@ -64,8 +64,9 @@ play=()=>{
      onChange={this.handleInput} 
      type="text" 
      name="city" 
+     
      value={this.state.city} />
-     <MyButton small>Search</MyButton>
+     <MyButton small style={{marginTop: "5px"}}>Search</MyButton>
      </form>
  }
  {
@@ -75,13 +76,18 @@ play=()=>{
           <EventStyle key={event._id}>
           <div>
           <Link to={`/eventDetail/${event._id}`} style={{textDecoration: "none"}}><h1>{event.title}</h1></Link>
+          {
+          !event.relatedConcert?
           <Link to={`/eventDetail/${event._id}`} style={{textDecoration: "none"}}><h1>{event.city}</h1></Link>
+          :
+          <Link to={`/eventDetail/${event._id}`} style={{textDecoration: "none"}}><h1>{event.relatedConcert._embedded.venues[0].city.name}</h1></Link>
+          }
           {
           event.relatedConcert?
           <div>
           <h2>{event.relatedConcert.dates.start.localDate}</h2>
           <h2>{event.relatedConcert._embedded.venues[0].name}</h2>
-          <h2>-{event.relatedConcert.name}'s conert-</h2>
+          <h2>related to: {event.relatedConcert.name}</h2>
           </div>
           :
           <div>

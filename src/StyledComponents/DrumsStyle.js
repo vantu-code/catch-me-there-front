@@ -7,5 +7,5 @@ height: 300px; /* You must set a specified height */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
 display: flex;
-margin-top: 80px;
+margin-top: 140px;
 `
