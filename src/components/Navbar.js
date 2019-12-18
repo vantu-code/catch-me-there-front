@@ -36,13 +36,13 @@ class Navbar extends Component {
         {isLoggedin ? (
           <div>
           <article>
-          <NavLink to={`/profile/${this.props.user._id}`} className="profile-top"><img className="profile-photo" src={user.photo} width="20"/><p className="name">{user.username}</p></NavLink>
+          <NavLink to={`/profile/${this.props.user._id}`} style={{textDecoration: "none"}} className="profile-top"><img className="profile-photo" src={user.photo} width="20"/><p className="name" >{user.username}</p></NavLink>
           <NavLink to={`/events`}><img src='/images/catch-me-there-logo-white.png' className="title" height="20" /></NavLink>
           {
           !this.state.showMenu?
           <img onClick={this.showMenu} src="https://icon-library.net/images/white-hamburger-menu-icon/white-hamburger-menu-icon-24.jpg" width="30"/>
           :
-          <img onClick={this.showMenu} src="/images/X.png" width="18" height="18" style={{marginTop: "10px", marginLeft: "8px", marginRight: "4px"}}/>
+          <img onClick={this.showMenu} src="/images/X.png" width="18" height="18" style={{marginTop: "15px", marginLeft: "8px", marginRight: "4px"}}/>
           }
           </article>
           {

@@ -1,5 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap'); */
+
 @import url('https://fonts.googleapis.com/css?family=Saira&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans&display=swap');
 
@@ -21,8 +20,7 @@ body{
 .App {
   text-align: center;
   width: 100%;
-  /* font-family: 'Playfair Display', serif; */
-  /* font-family: 'Oswald', sans-serif; */
+
   /* font-family: 'Saira', sans-serif; */
   font-family: 'Fira Sans', sans-serif;
 }
@@ -66,9 +64,7 @@ h1, h2{
   font-size: 0.8em;
 
 }
-/* .coming ul{
-  padding: 0;
-} */
+
 .coming{
 display: flex;
 }
@@ -100,8 +96,7 @@ font-size: 0.5em;
   border: 2px solid rgb(165, 237, 255);
 }
 .logout{
-  /* font-family: 'Playfair Display', serif; */
-  /* font-family: 'Oswald', sans-serif; */
+
     /* style: none; */
     background-color: Transparent;
     background-repeat:no-repeat;
@@ -122,9 +117,7 @@ font-size: 0.5em;
   text-decoration: none;
   /* margin-top: 30px; */
   padding-top: 15px;
-  /* padding-left: 20px; */
-  /* font-family: 'Playfair Display', serif; */
-  /* font-family: 'Oswald', sans-serif; */
+
   /* font-family: 'Saira', sans-serif; */
   font-family: 'Fira Sans', sans-serif;
 }
@@ -138,6 +131,7 @@ margin-top: 10%
   }
   .profile-photo{
     border-radius: 50%;
+    margin-top: 10px;
   }
   .profile-line{
     display: flex;
@@ -153,6 +147,7 @@ margin-top: 10%
   .name{
     color: white;
     font-size: 0.6em;
+    text-decoration: none;
   }
   .drum{
     width: 150px;
