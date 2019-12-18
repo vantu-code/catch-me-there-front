@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export default styled.div`
 
+background-color: #00000080;
 color : white;
 width: 90%;
 margin: 10px auto;

@@ -44,7 +44,8 @@ class Signup extends Component {
     const { username, password, photo} = this.state;
     return (
       <div>
-        <h1 style={{marginTop: "30px"}}>Sign Up</h1>
+        <img src='/images/catch-me-there-logo-white.png' className="title" height="25" style={{marginTop: "20px"}} />
+        <h1 >Sign Up</h1>
         <form className="signup" onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
           <InputLine
@@ -63,16 +64,17 @@ class Signup extends Component {
           />
 
           <InputLine
+          style={{marginTop: "30px"}}
           className="add-input"
           type="file"
           name="image"
           onChange={e => this.fileChange(e)}
           />
 
-          <MyButton blue><input type="submit" value="Signup" /></MyButton>
+          <MyButton login><input type="submit" value="Signup" /></MyButton>
         </form>
 
-        <p style={{width: "100%"}}>Already have account?</p>
+        <p style={{width: "100%"}}>Already have an account?</p>
         <Link style={{color: "white", textDecoration: "none", width: "100%"}} to={'/login'}> <MyButton black>Login </MyButton></Link>
       </div>
     );

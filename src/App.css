@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap'); */
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
 
 html{
   overflow-x: hidden;
@@ -17,7 +17,8 @@ body{
 .App {
   text-align: center;
   width: 100%;
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
+  font-family: 'Oswald', sans-serif;
 }
 
 .App-logo {
@@ -59,8 +60,11 @@ h1, h2{
   font-size: 0.8em;
 
 }
-.coming ul{
+/* .coming ul{
   padding: 0;
+} */
+.coming{
+display: flex;
 }
 audio{
   width: 100%;
@@ -83,13 +87,15 @@ font-size: 0.5em;
   text-align: center;
   width: 60%;
   color: #63C0FF;;
-  background-color: rgb(201, 227, 245);
+  /* background-color: rgb(201, 227, 245); */
+  background-color: #A7C7DD80;
   border-radius: 3px;
   /* #63C0FF */
   border: 2px solid rgb(165, 237, 255);
 }
 .logout{
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
+  font-family: 'Oswald', sans-serif;
   color: white;
   font-size: 1em;
 }
@@ -97,9 +103,10 @@ font-size: 0.5em;
   color: white;
   text-decoration: none;
   /* margin-top: 30px; */
-  padding-top: 5px;
+  padding-top: 15px;
   /* padding-left: 20px; */
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
+  font-family: 'Oswald', sans-serif;
 }
 .signup{
 height: 100%;
@@ -167,7 +174,6 @@ label{
     object-fit: cover;
 }
 .text-related{
-
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -186,7 +192,6 @@ label{
   text-align: left;
   margin: 10px;
 }
-
 
 
 

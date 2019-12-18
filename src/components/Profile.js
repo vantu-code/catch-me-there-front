@@ -100,7 +100,7 @@ export default class Profile extends Component {
             <div>
             <h1 style={{margin: "10px 0", fontSize: "1.2em",
                     textShadow: "3px 3px 8px black",
-                    padding: "3px 5px",
+                    padding: "15px 5px",
                     borderRadius: "5px",
                     width: "fit-content",
                     margin: "0 auto"}}>{user.username}</h1>

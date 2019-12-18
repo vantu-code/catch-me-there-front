@@ -137,7 +137,7 @@ findOrganizer=()=>{
                 event != null ? 
                 <div>
                 <div className="event-details-text">
-                <img src={event.photo} width="300"/>
+                <img src={event.photo} width="300" style={{margin: "10px 0"}} />
                 <h1>{event.title}</h1>
                 <h2>{event.description}</h2>
                 <h2>vibe: {event.vibe}</h2>
@@ -206,8 +206,8 @@ findOrganizer=()=>{
                 {
                 organizer ?
                 <div className="coming">
-                <h2>Organizer</h2>
-                <Link to={`/profile/${organizer._id}`} style={{color: "white", textDecoration: "none", fontSize: "0.8em"}}><h4>{organizer.username}</h4></Link>
+                <p>Organizer</p>
+                <p><Link to={`/profile/${organizer._id}`} style={{color: "white", textDecoration: "none", fontSize: "0.8em"}}>: {organizer.username}</Link></p>
                 </div>
                 :
                 null

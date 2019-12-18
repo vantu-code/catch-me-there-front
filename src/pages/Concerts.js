@@ -142,12 +142,12 @@ this.findLocation()
      type="text" 
      name="city" 
      value={this.state.city} />
-     <MyButton blue>Search</MyButton>
+     <MyButton small>Search</MyButton>
      </form>
  }
  {
    currentCity?
-   <MyButton blue onClick={this.byMyLocation}>Find by my location</MyButton>
+   <MyButton second onClick={this.byMyLocation}>My location</MyButton>
    :
    <img src="https://i.kym-cdn.com/photos/images/original/000/780/746/cc2.gif" width="50"/>
  }

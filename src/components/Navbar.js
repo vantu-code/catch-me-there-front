@@ -37,7 +37,7 @@ class Navbar extends Component {
           <div>
           <article>
           <NavLink to={`/profile/${this.props.user._id}`} className="profile-top"><img className="profile-photo" src={user.photo} width="20"/><p className="name">{user.username}</p></NavLink>
-          <h1 onClick={this.showMenu} className="title">Catch Me There</h1>
+          <NavLink to={`/events`}><img src='/images/catch-me-there-logo-white.png' className="title" height="17" /></NavLink>
           <img onClick={this.showMenu} src="https://icon-library.net/images/white-hamburger-menu-icon/white-hamburger-menu-icon-24.jpg" width="30"/>
           </article>
           {

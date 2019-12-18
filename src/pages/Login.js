@@ -23,7 +23,8 @@ class Login extends Component {
 
     return (
       <div>
-        <h1 style={{marginTop: "30px"}}>Login</h1>
+        <img src='/images/catch-me-there-logo-white.png' className="title" height="25" style={{marginTop: "20px"}} />
+        <h1>Login</h1>
         <form className="login" onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
           <InputLine
@@ -40,7 +41,7 @@ class Login extends Component {
             value={password}
             onChange={this.handleChange}
           />
-          <MyButton blue><input type="submit" value="Login" /></MyButton>
+          <MyButton login><input type="submit" value="Login" /></MyButton>
         </form>
         <p style={{width: "100%"}}>Don't have an account?</p>
         <Link style={{color: "white", textDecoration: "none", width: "100%"}} to={'/signup'}> <MyButton black>Signup </MyButton></Link>

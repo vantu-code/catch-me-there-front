@@ -3,10 +3,15 @@ import styled from 'styled-components'
 export default styled.div`
 
 background-image: url('https://images.pexels.com/photos/954547/pexels-photo-954547.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-height: 100%; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover;
+/* background-image: url('https://images.pexels.com/photos/2796145/pexels-photo-2796145.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); */
+
+/* width: 200px;  */
+/* You must set a specified height */
+background-position: center; /* Center the image */
+background-repeat: repeat-y; /* Do not repeat the image */
+background-size: 500px;
+
+height: 100%;
 
 
 width: 100%;
