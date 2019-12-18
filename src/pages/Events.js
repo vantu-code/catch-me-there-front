@@ -38,7 +38,7 @@ play=()=>{
       event.city.toLowerCase() === city.toLowerCase()
     )
     this.setState({eventsCopy: result})
-    console.log(result, " events", events)
+    //console.log(result, " events", events)
   };
 
   handleInput = e => {
@@ -53,7 +53,7 @@ play=()=>{
   }
   render() {
     const {events, eventsCopy} = this.state;
-    console.log("check", events)
+    //console.log("check", events)
     return (
       <Wrapper>
   {

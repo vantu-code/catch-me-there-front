@@ -28,10 +28,10 @@ class Concerts extends Component {
   };
   const success=pos=>{
     var crd = pos.coords;
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
+    //console.log('Your current position is:');
+    //console.log(`Latitude : ${crd.latitude}`);
+    //console.log(`Longitude: ${crd.longitude}`);
+    //console.log(`More or less ${crd.accuracy} meters.`);
     axios
     .get
     (`https://maps.googleapis.com/maps/api/geocode/json?latlng=${crd.latitude},${crd.longitude}&key=${process.env.REACT_APP_GOOGLEKEY}`)
@@ -40,8 +40,8 @@ class Concerts extends Component {
       const currentCity = result.data.results[0].address_components[2].long_name
       if (currentCity)
       {
-        console.log("from google, my city is: ", currentCity)
-        this.setState({currentCity}, ()=>console.log("state", this.state))
+        //console.log("from google, my city is: ", currentCity)
+        this.setState({currentCity})
         // console.log("state", this.state)
       }
       // console.log("from google coor", result.data.results[0].address_components[2].long_name)
@@ -149,13 +149,14 @@ this.findLocation()
    currentCity?
    <MyButton second onClick={this.byMyLocation}>My location</MyButton>
    :
-   <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/09b24e31234507.564a1d23c07b4.gif" width="50"/>
+   <img style={{marginTop: "10px"}} src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/09b24e31234507.564a1d23c07b4.gif" width="50"/>
  }
     {    concerts.map((concert)=>{
            return (
            <ConcertStyle key={concert.id}>
            <div>
            <Link to={`/concertDetail/${concert.id}`} > <h1>{concert.name}</h1></Link>
+           <Link to={`/concertDetail/${concert.id}`} ><h1>{concert._embedded.venues[0].name}</h1></Link>
            <Link to={`/concertDetail/${concert.id}`} > <h2>{concert.dates.start.localDate}</h2> </Link>
            </div>
            <div>

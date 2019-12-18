@@ -23,7 +23,7 @@ class Signup extends Component {
     uploadData.append('photo', file)
     paintingService.imageUpload(uploadData)
     .then((image) => {
-      console.log("image", image)
+      //console.log("image", image)
         this.setState({ photo: image })
     })
     .catch((error) => console.log(error))

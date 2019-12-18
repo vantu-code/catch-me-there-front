@@ -48,7 +48,7 @@ export default class AddEvent extends Component {
         }
 
     getOneConcert(concertId){
-        console.log("props", this.props.match.params.concertId)
+        //console.log("props", this.props.match.params.concertId)
         axios
         .get(`https://app.ticketmaster.com/discovery/v2/events.json?id=${concertId}&apikey=Y4MH0iVp8WoFqZ4aSc3RFUk6DjJl4K1y`)
         .then((result) => {
@@ -58,8 +58,9 @@ export default class AddEvent extends Component {
             hour: this.state.relatedConcert.dates.start.localTime,
             location: this.state.relatedConcert._embedded.venues[0].address.line1,
             city: this.state.relatedConcert._embedded.venues[0].city.name,
-            country: this.state.relatedConcert._embedded.venues[0].ccountry.name
+            country: this.state.relatedConcert._embedded.venues[0].country.name
             })
+            console.log("state event", this.state)
         }).catch((err) => {
             console.log(err);
         });
@@ -83,7 +84,7 @@ export default class AddEvent extends Component {
         Auth.me()
         .then((user) => {
             this.setState({organizerId: user._id})
-            console.log("added-event", this.state)
+            //console.log("added-event", this.state)
             this.createEvent()
         }).catch((err) => {
             
@@ -96,10 +97,10 @@ export default class AddEvent extends Component {
       };
 
     createEvent=()=>{
-        console.log("statetocreate", this.state)
+        //console.log("statetocreate", this.state)
         Event.create(this.state)
         .then((result) => {
-            console.log("after creating", result);
+            //console.log("after creating", result);
         // User.organizer()
         this.props.history.push('/events');
         }).catch((err) => {

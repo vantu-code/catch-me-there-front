@@ -29,7 +29,7 @@ class Navbar extends Component {
   }
   render() {
     const { user, logout, isLoggedin } = this.props;
-    console.log("in navbar", this.props)
+    //console.log("in navbar", this.props)
     return (
 
       <NavBarStyle>
@@ -48,12 +48,12 @@ class Navbar extends Component {
           {
             this.state.showMenu?
           <ul className="folded">
-        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)", margin: "15px 0", fontSize: "1.3em"}}><NavLink onClick={this.showMenu} className="nav-link" to='/events'>Events</NavLink></ListItem>
-        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)", margin: "15px 0", fontSize: "1.3em"}}><NavLink onClick={this.showMenu} className="nav-link" to='/concerts'>Concerts</NavLink></ListItem>
-        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)", margin: "15px 0", fontSize: "1.3em"}}><NavLink onClick={this.showMenu} className="nav-link" to='/addEvents'>Create Event</NavLink></ListItem>
-        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)", margin: "15px 0", fontSize: "1.3em"}}><NavLink onClick={this.showMenu} to={`/profile/${this.props.user._id}`} className="profile-link">Profile</NavLink></ListItem>
+        <ListItem className="menuLink"><NavLink onClick={this.showMenu} className="nav-link" to='/events'>Events</NavLink></ListItem>
+        <ListItem className="menuLink"><NavLink onClick={this.showMenu} className="nav-link" to='/concerts'>Concerts</NavLink></ListItem>
+        <ListItem className="menuLink"><NavLink onClick={this.showMenu} className="nav-link" to='/addEvents'>Create Event</NavLink></ListItem>
+        <ListItem className="menuLink"><NavLink onClick={this.showMenu} to={`/profile/${this.props.user._id}`} className="profile-link">Profile</NavLink></ListItem>
         <ListItem><button className="logout" onClick={logout}>Logout</button></ListItem>
-        <ListItem style={{borderBottom: "0.1px solid rgb(133,133,133,72)", marginTop: "100px", borderBottom: "none", fontSize: "1.3em"}}><NavLink onClick={this.showMenu} className="nav-link" to='/drums'>🥁 Drums</NavLink></ListItem>
+        <ListItem className="drumLink" ><NavLink onClick={this.showMenu} className="nav-link" to='/drums'>ヅ Drums</NavLink></ListItem>
         </ul>
         :
         null

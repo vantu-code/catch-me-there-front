@@ -29,8 +29,8 @@ export default class EventDetail extends Component {
     getOneEvent=(eventId)=>{
         Event.getOne(eventId)
         .then((result) => {
-            console.log("event-here result",  this.props)
-            this.setState({event:result.data}, ()=>console.log("event-here", this.state.event))
+            //console.log("event-here result",  this.props)
+            this.setState({event:result.data})
             this.getComingToEvent()
             this.findOrganizer()
             // goodNameConcert.name= this.goodNameFunc(goodNameConcert.name)
@@ -41,7 +41,7 @@ export default class EventDetail extends Component {
                 {this.setState({isGoing: true})}
                 if(result.data.organizerId === user._id)
                 {this.setState({isMyEvent: true})}
-                console.log("event -     state", this.state)
+                //console.log("event -     state", this.state)
             }).catch((err) => {
                 console.log(err)
             });
@@ -53,7 +53,7 @@ findOrganizer=()=>{
     User.getOneUser(this.state.event.organizerId)
     .then((result) => {
         this.setState({organizer: result.data})
-        console.log("organizer", this.state.organizer)
+        //console.log("organizer", this.state.organizer)
     }).catch((err) => {
         
     });
@@ -66,11 +66,11 @@ findOrganizer=()=>{
         this.getComingToEvent()
         User.leaveEvent(eventId)
         .then((resultUser) => {
-            console.log('result back from leaving', resultUser)
+            //console.log('result back from leaving', resultUser)
         }).catch((err) => {
             console.log(err)
         });
-        console.log("leave event", result)
+        //console.log("leave event", result)
         }).catch((err) => {
         console.log(err);
         });
@@ -84,7 +84,7 @@ findOrganizer=()=>{
             this.getComingToEvent()
             User.joinEvent(eventId)
             .then((resultUser) => {
-                console.log('result back from joining', resultUser)
+                //console.log('result back from joining', resultUser)
             }).catch((err) => {
                 console.log(err)
             });
@@ -129,7 +129,7 @@ findOrganizer=()=>{
     render() {
         const {event, coming, organizer, isMyEvent} = this.state;
         //console.log("state", this.state);
-        console.log('google',process.env);
+        //console.log('google',process.env);
         
         return (
             <Wrapper>

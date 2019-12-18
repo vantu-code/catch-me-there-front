@@ -27,7 +27,7 @@ export default class Profile extends Component {
             this.eventsOrganizing()
             Auth.me()
             .then((result) => {
-                console.log("result from if me",  result)
+                //console.log("result from if me",  result)
                 if (userId === result._id){
                 this.setState({myProfile : true})
                 }
@@ -42,7 +42,7 @@ export default class Profile extends Component {
         const {organizing} = this.state.user
         if (organizing.length > 0){
             const organizingCopy = [...organizing]
-            console.log("event id", organizingCopy)
+            //console.log("event id", organizingCopy)
             const promiseArr =[]
             organizing.forEach((id)=>{
             promiseArr.push(Event.getOne(id))
@@ -59,11 +59,11 @@ export default class Profile extends Component {
 
 
         eventsAttending=()=>{
-            console.log("this state event", this.state.event)
+            //console.log("this state event", this.state.event)
             const {attending} = this.state.user
         if (attending.length > 0){
             const attendingCopy = [...attending]
-            console.log("event id", attendingCopy)
+            //console.log("event id", attendingCopy)
             const promiseArr =[]
             attending.forEach((id)=>{
             promiseArr.push(Event.getOne(id))
@@ -83,7 +83,7 @@ export default class Profile extends Component {
                 this.getUser()
             }
             componentDidUpdate(prevprops){
-                console.log("yooooooooo");
+                //console.log("yooooooooo");
                 if(prevprops.match.params.userId !== this.props.match.params.userId){
                     
                 this.getUser()
@@ -91,7 +91,7 @@ export default class Profile extends Component {
             }
     render() {
         const {user, myProfile, eventsAttending, eventsOrganizing} = this.state;
-        console.log(this.state);
+        //console.log(this.state);
         
         return (
             <Wrapper>

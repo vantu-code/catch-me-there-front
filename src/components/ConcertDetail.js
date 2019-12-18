@@ -35,17 +35,17 @@ export default class ConcertDetail extends Component {
         }
 
         getTopSongs=(artistName)=>{
-            console.log("artist to send,",artistName)
+            //console.log("artist to send,",artistName)
             Spotify.getTop(artistName)
             .then((result) => {
-                console.log("result", result)
+                //console.log("result", result)
                 // console.log("in concert detail", result.data.body.tracks[0].artists[0].external_urls.spotify)
                 this.setState({
                     spotifyLink: result.data.body.tracks[0].artists[0].external_urls.spotify,
                     tracks: result.data.body.tracks
                 })
-                console.log("tracks", this.state.tracks)
-                console.log(this.state.spotifyLink)
+                //console.log("tracks", this.state.tracks)
+                //console.log(this.state.spotifyLink)
             // this.props.history.push('/events');
             }).catch((err) => {
                 console.log("error", err)
@@ -67,16 +67,16 @@ export default class ConcertDetail extends Component {
                         {relatedEvents.push(event)}
                     }
                 })
-                console.log("related events", relatedEvents)
+                //console.log("related events", relatedEvents)
                 this.setState({relatedEvents:relatedEvents})
-                console.log("this state of concert", this.state.relatedEvents)
+                //console.log("this state of concert", this.state.relatedEvents)
             }).catch((err) => {
             
             });
         }
 
     getOneConcert(){
-        console.log("props", this.props.match.params.concertId)
+        //console.log("props", this.props.match.params.concertId)
         axios
         .get(`https://app.ticketmaster.com/discovery/v2/events.json?id=${this.props.match.params.concertId}&apikey=Y4MH0iVp8WoFqZ4aSc3RFUk6DjJl4K1y`)
         .then((result) => {
@@ -86,7 +86,7 @@ export default class ConcertDetail extends Component {
             this.setState({concert: result.data._embedded.events[0]})
             this.getTopSongs(goodNameConcert.name)
             this.getAllEventsAndFindRelated()
-            console.log("state", this.state.spotifyLink)
+            //console.log("state", this.state.spotifyLink)
         }).catch((err) => {
         });
     }
