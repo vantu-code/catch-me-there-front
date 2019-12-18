@@ -10,12 +10,13 @@ import styled, {ThemeProvider} from 'styled-components'
 import AddEventStyle from '../StyledComponents/AddEventStyle'
 import Wrapper from '../StyledComponents/Wrapper'
 import InputLine from '../StyledComponents/InputLine'
+import TextArea from '../StyledComponents/TextArea'
 
 export default class AddEvent extends Component {
     state={
     whatsAppGroup: "Mendatory link", 
     title: "Roof-top party!", 
-    description: "friends meeting for beers and music", 
+    description: "friends meeting for beers and amazing music", 
     vibe: "chill",
     maxPeople: 30,
     coming: 1, 
@@ -145,7 +146,8 @@ export default class AddEvent extends Component {
      value={this.state.whatsAppGroup} />
 
      <label>Description</label>
-     <InputLine 
+     <TextArea 
+     rows= "4"
      onChange={this.handleInput} 
      type="text" 
      name="description" 

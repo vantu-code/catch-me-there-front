@@ -4,12 +4,15 @@ import { withAuth } from '../lib/AuthProvider';
 import paintingService from '../lib/paintingService'
 import InputLine from '../StyledComponents/InputLine'
 import { MyButton } from '../StyledComponents/Button';
+import TextArea from '../StyledComponents/TextArea'
 
 class Signup extends Component {
   state = { 
     username: '', 
     password: '',
     photo: '',
+    email: '',
+    about: '',
   };
 
 
@@ -29,7 +32,7 @@ class Signup extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     // console.log("this state of sign up", this.state)
-    const { username, password, photo } = this.state;
+    const { username, password, photo, email, about } = this.state;
     //  console.log('Signup -> form submit', { username, password });
     this.props.signup(this.state); // props.signup is Provided by withAuth() and Context API
 
@@ -41,10 +44,10 @@ class Signup extends Component {
   };
 
   render() {
-    const { username, password, photo} = this.state;
+    const { username, password, photo, email, about} = this.state;
     return (
       <div>
-        <img src='/images/catch-me-there-logo-white.png' className="title" height="25" style={{marginTop: "20px"}} />
+        <img src='/images/catch-me-there-logo-white.png' className="title" height="25" style={{marginTop: "20px"}} alt="Catch me there" />
         <h1 >Sign Up</h1>
         <form className="signup" onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
@@ -60,6 +63,22 @@ class Signup extends Component {
             type="password"
             name="password"
             value={password}
+            onChange={this.handleChange}
+          />
+
+          <label>Email:</label>
+          <InputLine
+            type="email"
+            name="email"
+            value={email}
+            onChange={this.handleChange}
+          />
+
+          <label>About:</label>
+          <TextArea rows="4"
+            type="text"
+            name="about"
+            value={about}
             onChange={this.handleChange}
           />
 

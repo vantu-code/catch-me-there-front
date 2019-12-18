@@ -105,6 +105,8 @@ export default class Profile extends Component {
                     width: "fit-content",
                     margin: "0 auto"}}>{user.username}</h1>
             <img className="profile-photo" src={user.photo} width="50"/>
+            <h2>{user.email}</h2>
+            <h2>{user.about}</h2>
             </div>
             :
             null
