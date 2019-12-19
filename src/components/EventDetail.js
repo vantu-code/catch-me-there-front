@@ -184,18 +184,6 @@ findOrganizer=()=>{
                     </Link>
                     </div>
                     </div>
-                {
-                    !this.state.isGoing && (event.maxPeople > event.coming || event.maxPeople === null)?
-                    <MyButton blue onClick={this.joinEvent}>Join this event</MyButton>
-                    :
-                    this.state.isGoing?
-                    <div>
-                    <MyButton red onClick={this.leaveEvent}>Leave this event</MyButton>
-                    <MyButton special> <a href={event.whatsAppGroup}><h2>WhatsApp Group</h2> </a> </MyButton>
-                    </div>
-                    :
-                    <h2>Fully booked</h2>
-                }
 
                     <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLEKEY}&q=${event.relatedConcert._embedded.venues[0].address.line1}+${event.relatedConcert._embedded.venues[0].city.name}`}
                     width="100%vw"
@@ -213,6 +201,18 @@ findOrganizer=()=>{
                     className="myClassname"
                     display="initial"
                     position="relative"/>
+                }
+                {
+                    !this.state.isGoing && (event.maxPeople > event.coming || event.maxPeople === null)?
+                    <MyButton blue onClick={this.joinEvent}>Join this event</MyButton>
+                    :
+                    this.state.isGoing?
+                    <div>
+                    <MyButton red onClick={this.leaveEvent}>Leave this event</MyButton>
+                    <MyButton special> <a href={event.whatsAppGroup}><h2>WhatsApp Group</h2> </a> </MyButton>
+                    </div>
+                    :
+                    <h2>Fully booked</h2>
                 }
                 {
                 organizer ?
