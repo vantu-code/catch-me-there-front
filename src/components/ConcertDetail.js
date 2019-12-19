@@ -117,12 +117,12 @@ export default class ConcertDetail extends Component {
                 </div>
                 </div>
                 </div>
-                <img style={{width:"100%", margin: "15px"}} src={concert.images[0].url} />
+                <img style={{width:"100vw", margin: "15px 0"}} src={concert.images[0].url} />
                 <article>
                 <a href={this.state.spotifyLink}><img src="https://i1.wp.com/davan.ac/wp-content/uploads/2006/07/listen-on-spotify-logo.png?ssl=1" width="80"/> </a>
                 <a href={concert.url}><img src="https://www.trzcacak.rs/myfile/full/345-3451475_buy-at-ticketmaster-logos-ticketmaster.png" width="80"/> </a>
                 </article>
-                <Link to={`/addEvents/${this.props.match.params.concertId}`} ><MyButton blue >Create related event</MyButton></Link>
+                <Link to={`/addEvents/${this.props.match.params.concertId}`} ><MyButton blue >Create related hangout</MyButton></Link>
                 {
                 tracks.map((track)=>{
                     if(track.preview_url)
@@ -139,7 +139,7 @@ export default class ConcertDetail extends Component {
                 }
                 {
                     <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLEKEY}&q=${concert._embedded.venues[0].address.line1}+${concert._embedded.venues[0].city.name}`}
-        width="300px"
+        width="100%vw"
         height="300px"
         id="myId"
         className="myClassname"
@@ -151,7 +151,7 @@ export default class ConcertDetail extends Component {
                 (<div>
                 <h2>Related events</h2>
                 {relatedEvents.map((relatedEvent)=>{
-                return <div key={relatedEvent._id} style={{border: "1px solid white", margin: "5px 0"}}><Link to={`/eventDetail/${relatedEvent._id}`} ><h1>{relatedEvent.title}</h1></Link></div>
+                return <div key={relatedEvent._id} ><Link to={`/eventDetail/${relatedEvent._id}`} ><h1 style={{margin: "10px 0", textDecoration: "underline"}}>{relatedEvent.title}</h1></Link></div>
                 })}
                 </div>)
                 :

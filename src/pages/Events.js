@@ -33,12 +33,17 @@ play=()=>{
   handleSubmit = e => {
     e.preventDefault();
     const {events, eventsCopy, city} = this.state
+    if (city === ""){
+    this.getAllEvents()
+    }
+    else {
     const eventArr = [...events]
     const result = eventArr.filter(event=>
       event.city.toLowerCase() === city.toLowerCase()
     )
     this.setState({eventsCopy: result})
     //console.log(result, " events", events)
+    }
   };
 
   handleInput = e => {
@@ -60,6 +65,7 @@ play=()=>{
     <form onSubmit={this.handleSubmit}>
 
     <label>City</label>
+    <br></br>
      <InputLine 
      onChange={this.handleInput} 
      type="text" 

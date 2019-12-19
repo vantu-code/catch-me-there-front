@@ -15,7 +15,7 @@ import TextArea from '../StyledComponents/TextArea'
 export default class AddEvent extends Component {
     state={
     whatsAppGroup: "Mendatory link", 
-    title: "Roof-top party!", 
+    title: "", 
     description: "friends meeting for beers and amazing music", 
     vibe: "chill",
     maxPeople: 30,
