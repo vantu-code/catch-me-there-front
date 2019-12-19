@@ -149,7 +149,7 @@ export default class ConcertDetail extends Component {
                 {
                 relatedEvents.length>0?
                 (<div>
-                <h2 style={{marginTop:"10px"}}>Related events:</h2>
+                <h2 style={{marginTop:"10px"}}>Related hangouts:</h2>
                 {relatedEvents.map((relatedEvent)=>{
                 return <div key={relatedEvent._id} className="related-events-inconcert"><Link to={`/eventDetail/${relatedEvent._id}`} ><h1>{relatedEvent.title}</h1></Link></div>
                 })}

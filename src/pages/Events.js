@@ -58,15 +58,15 @@ play=()=>{
       <Wrapper>
   {
     <form onSubmit={this.handleSubmit}>
-
-    <label>City</label>
+    <br></br>
+    <label className="form-search">City</label>
      <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="city" 
      
      value={this.state.city} />
-     <MyButton small style={{marginTop: "5px"}}>Search</MyButton>
+     <MyButton small >Search</MyButton>
      </form>
  }
  {

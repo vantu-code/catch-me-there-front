@@ -15,7 +15,7 @@ import TextArea from '../StyledComponents/TextArea'
 export default class AddEvent extends Component {
     state={
     whatsAppGroup: "Mendatory link", 
-    title: "Roof-top party!", 
+    title: "", 
     description: "friends meeting for beers and amazing music", 
     vibe: "chill",
     maxPeople: 30,
@@ -120,13 +120,13 @@ export default class AddEvent extends Component {
             {
                 this.state.concertId? 
                 <div>
-                <h2>Create your group for the concert:</h2>
+                <h2 style={{margin: "15px", fontSize: "1.1em"}}>Create your group for the concert:</h2>
                 <h1>{this.state.relatedConcert.name}</h1>
                 <hr/>
                 </div>
                 :
                 <div>
-                <h1>Create your awesome event</h1>
+                <h1 style={{margin: "15px", fontSize: "1.1em"}}>Create your awesome event</h1>
                 <hr/>
                 </div>
             }
@@ -137,6 +137,7 @@ export default class AddEvent extends Component {
      onChange={this.handleInput} 
      type="text" 
      name="title" 
+     placeholder="Roof-top party!"
      value={this.state.title} />
 
     <label>WhatsApp Group link</label>

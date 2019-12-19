@@ -134,8 +134,8 @@ this.findLocation()
     return (
  <Wrapper>
  {
-    <form onSubmit={this.handleSubmit}>
-
+    <form className="form-search" onSubmit={this.handleSubmit}>
+    <br></br>
     <label>City</label>
      <InputLine 
      onChange={this.handleInput} 
