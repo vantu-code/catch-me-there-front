@@ -137,8 +137,8 @@ findOrganizer=()=>{
                 event != null ? 
                 <div>
                 <div className="event-details-text">
-                <img src={event.photo} width="300" style={{margin: "10px 0"}} />
-                <h1>{event.title}</h1>
+                <h1 style={{fontSize:"1.2em", textAlign: "center"}}>{event.title}</h1>
+                <img src={event.photo} width="100%vw" style={{margin: "10px 0"}} />
                 <h2>{event.description}</h2>
                 <h2>vibe: {event.vibe}</h2>
                 {
@@ -184,21 +184,9 @@ findOrganizer=()=>{
                     </Link>
                     </div>
                     </div>
-                {
-                    !this.state.isGoing && (event.maxPeople > event.coming || event.maxPeople === null)?
-                    <MyButton blue onClick={this.joinEvent}>Join this event</MyButton>
-                    :
-                    this.state.isGoing?
-                    <div>
-                    <MyButton red onClick={this.leaveEvent}>Leave this event</MyButton>
-                    <MyButton special> <a href={event.whatsAppGroup}><h2>WhatsApp Group</h2> </a> </MyButton>
-                    </div>
-                    :
-                    <h2>Fully booked</h2>
-                }
 
                     <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLEKEY}&q=${event.relatedConcert._embedded.venues[0].address.line1}+${event.relatedConcert._embedded.venues[0].city.name}`}
-                    width="300px"
+                    width="100%vw"
                     height="300px"
                     id="myId"
                     className="myClassname"
@@ -207,12 +195,24 @@ findOrganizer=()=>{
                     </div>
                     :
                     <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLEKEY}&q=${event.location}+${event.city}`}
-                    width="300px"
+                    width="100%vw"
                     height="300px"
                     id="myId"
                     className="myClassname"
                     display="initial"
                     position="relative"/>
+                }
+                {
+                    !this.state.isGoing && (event.maxPeople > event.coming || event.maxPeople === null)?
+                    <MyButton blue onClick={this.joinEvent}>Join this hangout</MyButton>
+                    :
+                    this.state.isGoing?
+                    <div>
+                    <MyButton red onClick={this.leaveEvent}>Leave this hangout</MyButton>
+                    <MyButton special> <a href={event.whatsAppGroup}><h2>WhatsApp Group</h2> </a> </MyButton>
+                    </div>
+                    :
+                    <h2>Fully booked</h2>
                 }
                 {
                 organizer ?
@@ -223,17 +223,17 @@ findOrganizer=()=>{
                 null
                 }
                 {
-                    coming > 0 ? (
+                    coming?(
                         <div className="coming">
                         <h2>Who is coming?</h2>
-                        <ul>
+                        <ul style={{listStyleType: "none"}}>
                         {coming.map(user => (
-                            <ListItem key={user.data._id}>
+                            <li key={user.data._id}>
                                 <Link to={`/profile/${user.data._id}`} 
                                 key={user.data._id}
-                                style={{color: "white", textDecoration: "none", fontSize: "0.8em", textDecoration: "underline"}}> 
+                                style={{color: "white", textDecoration: "none", fontSize: "0.8em", textDecoration: "underline", textAlign: "left", display: "flex", justifyContent: "flex-start"}}> 
                                 {user.data.username} </Link>
-                            </ListItem>)
+                            </li>)
                         )}
                         </ul>
                         </div>

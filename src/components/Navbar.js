@@ -48,8 +48,8 @@ class Navbar extends Component {
           {
             this.state.showMenu?
           <ul className="folded">
-        <ListItem className="menuLink"><NavLink onClick={this.showMenu} className="nav-link" to='/events'>Hang-outs</NavLink></ListItem>
         <ListItem className="menuLink"><NavLink onClick={this.showMenu} className="nav-link" to='/concerts'>Concerts</NavLink></ListItem>
+        <ListItem className="menuLink"><NavLink onClick={this.showMenu} className="nav-link" to='/events'>Hang-outs</NavLink></ListItem>
         <ListItem className="menuLink"><NavLink onClick={this.showMenu} className="nav-link" to='/addEvents'>Create Hang-out</NavLink></ListItem>
         <ListItem className="menuLink"><NavLink onClick={this.showMenu} to={`/profile/${this.props.user._id}`} className="profile-link">Profile</NavLink></ListItem>
         <ListItem><button className="logout" onClick={logout}>Logout</button></ListItem>

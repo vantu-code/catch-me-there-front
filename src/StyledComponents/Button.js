@@ -5,6 +5,7 @@ ${props=>props.black&&css`
 background-color: black;
 width: 40%
 color:white;
+margin: 10px 0;
 `}
 ${props=>props.blue&&css`
 background-color: #1274C0;
@@ -23,7 +24,7 @@ ${props=>props.small&&css`
 background-color: black;
 width: 30%;
 color:white;
-/* margin: 10px 0; */
+margin: 10px 0;
 `}
 ${props=>props.second&&css`
 background-color: #63BFFF70;

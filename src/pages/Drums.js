@@ -37,7 +37,7 @@ export default class Drums extends Component {
     render() {
         return (
             <Wrapper>
-            <h1 style={{fontSize: "1.5em"}}>Play your beat</h1>
+            <h1 style={{fontSize: "1.5em", marginTop: "100px"}}>Play your beat</h1>
             <DrumsStyle>
             <div className="two-drums">
             <div className={this.state.classDrum} onClick={this.snare}> Snare</div>
