@@ -16,6 +16,7 @@ body{
   margin-top:-10px;
   text-decoration: none;
   color: white;
+  overflow-x:hidden;
 }
 
 .App {
@@ -81,7 +82,7 @@ margin-top: 10px;
 display: flex;
 flex-direction: row;
 justify-content: space-around;
-
+margin-top: 15px;
 font-size: 0.5em;
 }
 .add-input{
@@ -208,7 +209,7 @@ height: 700px;
   margin: 15px 0;
   padding: 5px 0;
   border-bottom: 1px solid gray;
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 .event-details-text{
   text-align: left;

@@ -137,8 +137,8 @@ findOrganizer=()=>{
                 event != null ? 
                 <div>
                 <div className="event-details-text">
+                <h1 style={{fontSize:"1.2em", textAlign: "center"}}>{event.title}</h1>
                 <img src={event.photo} width="100%vw" style={{margin: "10px 0"}} />
-                <h1>{event.title}</h1>
                 <h2>{event.description}</h2>
                 <h2>vibe: {event.vibe}</h2>
                 {
@@ -204,11 +204,11 @@ findOrganizer=()=>{
                 }
                 {
                     !this.state.isGoing && (event.maxPeople > event.coming || event.maxPeople === null)?
-                    <MyButton blue onClick={this.joinEvent}>Join this event</MyButton>
+                    <MyButton blue onClick={this.joinEvent}>Join this hangout</MyButton>
                     :
                     this.state.isGoing?
                     <div>
-                    <MyButton red onClick={this.leaveEvent}>Leave this event</MyButton>
+                    <MyButton red onClick={this.leaveEvent}>Leave this hangout</MyButton>
                     <MyButton special> <a href={event.whatsAppGroup}><h2>WhatsApp Group</h2> </a> </MyButton>
                     </div>
                     :
@@ -223,17 +223,17 @@ findOrganizer=()=>{
                 null
                 }
                 {
-                    coming > 0 ? (
+                    coming?(
                         <div className="coming">
                         <h2>Who is coming?</h2>
-                        <ul>
+                        <ul style={{listStyleType: "none"}}>
                         {coming.map(user => (
-                            <ListItem key={user.data._id}>
+                            <li key={user.data._id}>
                                 <Link to={`/profile/${user.data._id}`} 
                                 key={user.data._id}
-                                style={{color: "white", textDecoration: "none", fontSize: "0.8em", textDecoration: "underline"}}> 
+                                style={{color: "white", textDecoration: "none", fontSize: "0.8em", textDecoration: "underline", textAlign: "left", display: "flex", justifyContent: "flex-start"}}> 
                                 {user.data.username} </Link>
-                            </ListItem>)
+                            </li>)
                         )}
                         </ul>
                         </div>

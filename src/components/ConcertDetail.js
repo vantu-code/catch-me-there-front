@@ -117,7 +117,7 @@ export default class ConcertDetail extends Component {
                 </div>
                 </div>
                 </div>
-                <img style={{width:"100%", margin: "15px 0"}} src={concert.images[0].url} />
+                <img style={{width:"100vw", margin: "15px 0"}} src={concert.images[0].url} />
                 <article>
                 <a href={this.state.spotifyLink}><img src="https://i1.wp.com/davan.ac/wp-content/uploads/2006/07/listen-on-spotify-logo.png?ssl=1" width="80"/> </a>
                 <a href={concert.url}><img src="https://www.trzcacak.rs/myfile/full/345-3451475_buy-at-ticketmaster-logos-ticketmaster.png" width="80"/> </a>
@@ -151,7 +151,7 @@ export default class ConcertDetail extends Component {
                 (<div>
                 <h2 style={{marginTop:"10px"}}>Related hangouts:</h2>
                 {relatedEvents.map((relatedEvent)=>{
-                return <div key={relatedEvent._id} className="related-events-inconcert"><Link to={`/eventDetail/${relatedEvent._id}`} ><h1>{relatedEvent.title}</h1></Link></div>
+                return <div key={relatedEvent._id} ><Link to={`/eventDetail/${relatedEvent._id}`} ><h1 style={{margin: "10px 0", textDecoration: "underline"}}>{relatedEvent.title}</h1></Link></div>
                 })}
                 </div>)
                 :

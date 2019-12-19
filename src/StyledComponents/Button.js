@@ -5,7 +5,7 @@ ${props=>props.black&&css`
 background-color: black;
 width: 40%
 color:white;
-margin: 20px 0;
+margin: 10px 0;
 `}
 ${props=>props.blue&&css`
 background-color: #1274C0;
