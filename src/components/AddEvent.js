@@ -14,16 +14,16 @@ import TextArea from '../StyledComponents/TextArea'
 
 export default class AddEvent extends Component {
     state={
-    whatsAppGroup: "Mendatory link", 
+    whatsAppGroup: "", 
     title: "", 
-    description: "friends meeting for beers and amazing music", 
+    description: "", 
     vibe: "chill",
     maxPeople: 30,
     coming: 1, 
-    location: "Carrer dels Almogàvers, 122", 
-    date: "20.4.20", 
+    location: "", 
+    date: "", 
     hour: "21:00", 
-    ageRange: "18-100", 
+    ageRange: "", 
     photo: "", 
     themeSong: "", 
     concertId: "",
@@ -204,7 +204,7 @@ export default class AddEvent extends Component {
     <label>Date</label>
      <InputLine 
      onChange={this.handleInput} 
-     type="text" 
+     type="date" 
      name="date"
      value={this.state.date} />
 

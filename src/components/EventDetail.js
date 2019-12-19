@@ -140,7 +140,8 @@ findOrganizer=()=>{
                 <h1 style={{fontSize:"1.2em", textAlign: "center"}}>{event.title}</h1>
                 <img src={event.photo} width="100%vw" style={{margin: "10px 0"}} />
                 <h2>{event.description}</h2>
-                <h2>vibe: {event.vibe}</h2>
+                <h2>Vibe: {event.vibe}</h2>
+                <h2>Age range: {event.ageRange}</h2>
                 {
                 !event.relatedConcert?
                 <div>
