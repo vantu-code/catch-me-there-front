@@ -137,7 +137,7 @@ this.findLocation()
     <form className="form-search" onSubmit={this.handleSubmit}>
     <br></br>
     <label>City</label>
-    <br></br>
+
      <InputLine 
      onChange={this.handleInput} 
      type="text" 

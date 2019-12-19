@@ -17,19 +17,19 @@ export default class AddEvent extends Component {
     whatsAppGroup: "", 
     title: "", 
     description: "", 
-    vibe: "chill",
+    vibe: "",
     maxPeople: 30,
     coming: 1, 
     location: "", 
     date: "", 
-    hour: "21:00", 
+    hour: "", 
     ageRange: "", 
     photo: "", 
     themeSong: "", 
     concertId: "",
     relatedConcert: {},
-    city: "Barcelona",
-    country: "Spain",
+    city: "",
+    country: "",
     organizerId: "",
     }
 
@@ -218,7 +218,7 @@ export default class AddEvent extends Component {
     <label>Hour</label>
      <InputLine
      onChange={this.handleInput} 
-     type="text" 
+     type="time" 
      name="hour" 
      value={this.state.hour} />
 

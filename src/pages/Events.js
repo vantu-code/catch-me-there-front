@@ -64,8 +64,8 @@ play=()=>{
   {
     <form onSubmit={this.handleSubmit}>
 
-    <label>City</label>
     <br></br>
+    <label>City</label>
      <InputLine 
      onChange={this.handleInput} 
      type="text" 
