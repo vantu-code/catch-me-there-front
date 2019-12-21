@@ -2,11 +2,12 @@ import styled from 'styled-components'
 
 export const ConcertDetailStyle = styled.div`
 article{
-    display: flex;
-    justify-content: space-around;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-around; */
     width: 100%;
 }
-text-align: center;
+/* text-align: left; */
 text-decoration: none;
 position: relative;
 /* margin-top: 100px; */

@@ -12,11 +12,12 @@ import {MyButton} from '../StyledComponents/Button'
 import Wrapper from '../StyledComponents/Wrapper'
 
 import ListItem from '../StyledComponents/ListItem'
+import { withAuth } from '../lib/AuthProvider';
 
 
 
 
-export default class EventDetail extends Component {
+class EventDetail extends Component {
     state={
     event: null,
     isGoing: false,
@@ -128,17 +129,25 @@ findOrganizer=()=>{
     }
     render() {
         const {event, coming, organizer, isMyEvent} = this.state;
+        const { user, logout, isLoggedin } = this.props;
         //console.log("state", this.state);
         //console.log('google',process.env);
         
         return (
-            <Wrapper>
+            <Wrapper
+            style={{paddingTop:(isLoggedin ? "90" : "0")}}
+            >
+            {
+              !isLoggedin?
+              <Link to={`/events`}><img src='/images/catch-me-there-logo-white.png' className="title" style={{margin:"30px"}} height="20" /></Link>
+              :
+              null
+            }
             {
                 event != null ? 
                 <div>
                 <div className="event-details-text">
-                <h1 style={{fontSize:"1.2em", textAlign: "center"}}>{event.title}</h1>
-                <img src={event.photo} width="100%vw" style={{margin: "10px 0"}} />
+                <h1 style={{fontSize:"1.2em", textAlign: "left", margin: "15px 0"}}>{event.title}</h1>
                 <h2>{event.description}</h2>
                 <h2>Vibe: {event.vibe}</h2>
                 <h2>Age range: {event.ageRange}</h2>
@@ -163,15 +172,23 @@ findOrganizer=()=>{
                 :
                 <h2>coming {event.coming}</h2>
                 }
+                {
+                event.photo?
+                <img src={event.photo} width="100%vw" style={{margin: "15px 0"}} />
+                :
+                event.relatedConcert?
+                <img src={event.relatedConcert.images[0].url} width="100%vw" style={{margin: "15px 0"}} />
+                :
+                null
+                }
                 </div>
                 {
                     event.relatedConcert?
                     <div>
                     <h1 style={{textShadow: "3px 3px 8px black",
-                    padding: "3px 5px",
-                    width: "fit-content",
-                    margin: "0 auto",
-                    textDecoration: "underline"}}>Related to:</h1> 
+                    padding: "0 10px",
+                    fontSize: "1em",
+                    textAlign: "left"}}>Related to:</h1> 
                     <div className="related-concert">
                     <div>
                     <Link className="text-related" to={`/concertDetail/${event.relatedConcert.id}`}>
@@ -205,12 +222,17 @@ findOrganizer=()=>{
                 }
                 {
                     !this.state.isGoing && (event.maxPeople > event.coming || event.maxPeople === null)?
+                    (
+                    isLoggedin?
                     <MyButton blue onClick={this.joinEvent}>Join this hangout</MyButton>
+                    :
+                    <MyButton blue ><Link to={`/login`} style={{color: "white", textDecoration: "none"}}> Join this hangout </Link></MyButton>
+                    )
                     :
                     this.state.isGoing?
                     <div>
                     <MyButton red onClick={this.leaveEvent}>Leave this hangout</MyButton>
-                    <MyButton special> <a href={event.whatsAppGroup}><h2>WhatsApp Group</h2> </a> </MyButton>
+                    <MyButton special> <a href={event.whatsAppGroup}><h2>WhatsApp group</h2> </a> </MyButton>
                     </div>
                     :
                     <h2>Fully booked</h2>
@@ -227,7 +249,7 @@ findOrganizer=()=>{
                     coming?(
                         <div className="coming">
                         <h2>Who is coming?</h2>
-                        <ul style={{listStyleType: "none"}}>
+                        <ul style={{listStyleType: "none", textAlign: "left"}}>
                         {coming.map(user => (
                             <li key={user.data._id}>
                                 <Link to={`/profile/${user.data._id}`} 
@@ -258,3 +280,6 @@ findOrganizer=()=>{
         )
     }
 }
+
+
+export default withAuth(EventDetail);

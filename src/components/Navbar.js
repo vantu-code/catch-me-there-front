@@ -18,6 +18,9 @@ class Navbar extends Component {
     const showMenu = this.state.showMenu;
     this.setState({showMenu: !showMenu})
   }
+  hideMenu=()=>{
+    this.setState({showMenu: false})
+  }
 
   componentDidMount(){
     Auth.me()
@@ -29,15 +32,15 @@ class Navbar extends Component {
   }
   render() {
     const { user, logout, isLoggedin } = this.props;
-    //console.log("in navbar", this.props)
+    // console.log("in navbar", this.props)
     return (
 
       <NavBarStyle>
         {isLoggedin ? (
           <div>
           <article>
-          <NavLink to={`/profile/${this.props.user._id}`} style={{textDecoration: "none"}} className="profile-top"><img className="profile-photo" src={user.photo} width="20"/><p className="name" >{user.username}</p></NavLink>
-          <NavLink to={`/events`}><img src='/images/catch-me-there-logo-white.png' className="title" height="20" /></NavLink>
+          <NavLink to={`/profile/${this.props.user._id}`} style={{textDecoration: "none"}} className="profile-top" onClick={this.hideMenu}><img className="profile-photo" src={user.photo} width="20"/><p className="name" >{user.username}</p></NavLink>
+          <NavLink to={`/events`}><img src='/images/catch-me-there-logo-white.png' className="title" height="20" onClick={this.hideMenu}/></NavLink>
           {
           !this.state.showMenu?
           <img onClick={this.showMenu} src="https://icon-library.net/images/white-hamburger-menu-icon/white-hamburger-menu-icon-24.jpg" width="30"/>

@@ -7,6 +7,8 @@ import EventStyle from '../StyledComponents/EventStyle'
 import Wrapper from '../StyledComponents/Wrapper'
 import InputLine from '../StyledComponents/InputLine'
 import {MyButton} from '../StyledComponents/Button'
+import { withAuth } from '../lib/AuthProvider';
+import {NavLink} from 'react-router-dom';
 
 
 class Events extends Component {
@@ -57,10 +59,21 @@ play=()=>{
 
   }
   render() {
+    const { user, logout, isLoggedin } = this.props;
     const {events, eventsCopy} = this.state;
+    // console.log("logged in", isLoggedin)
+    // console.log("props", this.props)
     //console.log("check", events)
     return (
-      <Wrapper>
+      <Wrapper
+      style={{paddingTop:(isLoggedin ? "90" : "0")}}
+      >
+      {
+        !isLoggedin?
+        <NavLink to={`/events`}><img src='/images/catch-me-there-logo-white.png' className="title" style={{margin:"30px"}} height="20" /></NavLink>
+        :
+        null
+      }
   {
     <form onSubmit={this.handleSubmit}>
 
@@ -125,4 +138,4 @@ play=()=>{
   }
 }
 
-export default Events;
+export default withAuth(Events);

@@ -32,9 +32,11 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <Switch>
-          <AnonRoute exact path="/" component={Login} />
+          <AnonRoute exact path="/" component={Events} />
           <AnonRoute exact path="/signup" component={Signup} />
           <AnonRoute exact path="/login" component={Login} />
+          <AnonRoute exact path="/events-home" component={Events} />
+          <AnonRoute exact path="/eventDetail/:eventId" component={EventDetail} />
           <PrivateRoute exact path="/drums" component={Drums} />
           <PrivateRoute exact path="/profile/:userId" component={Profile} />
           <PrivateRoute exact path="/profile/" component={Profile} />

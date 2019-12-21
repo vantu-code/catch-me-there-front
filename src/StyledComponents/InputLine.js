@@ -4,7 +4,8 @@ export default styled.input`
 /* background-color: #A7C7DD; */
 /* color : black; */
 /* font-family: 'Oswald', sans-serif; */
-font-family: 'Saira', sans-serif;
+/* font-family: 'Saira', sans-serif; */
+font-family: 'Roboto', sans-serif;
 
 background-color: #A7C7DD80;
 color: white;

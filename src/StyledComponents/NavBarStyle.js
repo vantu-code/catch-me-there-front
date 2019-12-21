@@ -2,8 +2,9 @@ import styled from 'styled-components'
 
 export default styled.div`
 /* background-color: black; */
+background-color: rgb(27, 27, 27);
 /* opacity: 0.8; */
-background-color: #142427;
+/* background-color: #142427; */
 border-bottom: 1px solid gray;
 color : white;
 width: 100%;
@@ -35,4 +36,15 @@ p{
 }
 /* position: fixed; */
 /* height: 10%; */
+@media (min-width: 480px) {
+    /* align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+    width: 414px;
+    /* height: 736px; */
+    margin: 0 auto;
+    /* background-color: tomato; */
+
+}
 `
