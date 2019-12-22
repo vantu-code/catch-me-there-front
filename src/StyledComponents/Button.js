@@ -36,8 +36,9 @@ color:white;
 margin: 10px 0;
 `}
 ${props=>props.second&&css`
-background-color: #63BFFF70;
-
+background-color: #63BFFF10;
+opacity: 0.8;
+border-radius: 4px;
 width: 30%
 color:white;
 margin: 10px 0;

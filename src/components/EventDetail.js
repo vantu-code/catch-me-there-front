@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { directive } from '@babel/types';
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import Event from '../lib/Event-service'
 import Auth from '../lib/auth-service'
 import User from '../lib/user-service'
@@ -139,7 +139,14 @@ findOrganizer=()=>{
             >
             {
               !isLoggedin?
-              <Link to={`/events`}><img src='/images/catch-me-there-logo-white.png' className="title" style={{margin:"30px"}} height="20" /></Link>
+              <div>
+              <div className="fake-nav">
+              <NavLink className="fake-link" to={`/login`}>Login </NavLink>
+              <NavLink to={`/events-home`}><img src='/images/catch-me-there-logo-white.png' height="20" /></NavLink>
+              <NavLink className="fake-link" to={`/signup`}>Signup </NavLink>
+              </div>
+              <hr></hr>
+              </div>
               :
               null
             }

@@ -1,14 +1,14 @@
 import axios from 'axios'
 import React, { Component } from 'react';
 import Event from '../lib/Event-service'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import styled, {ThemeProvider} from 'styled-components'
 import EventStyle from '../StyledComponents/EventStyle'
 import Wrapper from '../StyledComponents/Wrapper'
 import InputLine from '../StyledComponents/InputLine'
 import {MyButton} from '../StyledComponents/Button'
 import { withAuth } from '../lib/AuthProvider';
-import {NavLink} from 'react-router-dom';
+// import {NavLink} from 'react-router-dom';
 
 
 class Events extends Component {
@@ -70,7 +70,14 @@ play=()=>{
       >
       {
         !isLoggedin?
-        <NavLink to={`/events`}><img src='/images/catch-me-there-logo-white.png' className="title" style={{margin:"30px"}} height="20" /></NavLink>
+        <div>
+        <div className="fake-nav">
+        <Link className="fake-link" to={`/login`}>Login </Link>
+        <Link to={`/events-home`}><img src='/images/catch-me-there-logo-white.png' height="20" /></Link>
+        <Link className="fake-link" to={`/signup`}>Signup </Link>
+        </div>
+        <hr></hr>
+        </div>
         :
         null
       }
@@ -91,15 +98,16 @@ play=()=>{
  {
           eventsCopy.map((event, i)=>{
           return (
-            
-          <EventStyle key={event._id}>
+          <Link to={(isLoggedin? `/eventDetail/${event._id}`: `/eventDetail-home/${event._id}`)} style={{textDecoration: "none"}} key={i}>
+          <EventStyle 
+          key={event._id}>
           <div>
-          <Link to={`/eventDetail/${event._id}`} style={{textDecoration: "none"}}><h1>{event.title}</h1></Link>
+          <h1>{event.title}</h1>
           {
           !event.relatedConcert?
-          <Link to={`/eventDetail/${event._id}`} style={{textDecoration: "none"}}><h1>{event.city}</h1></Link>
+          <h1>{event.city}</h1>
           :
-          <Link to={`/eventDetail/${event._id}`} style={{textDecoration: "none"}}><h1>{event.relatedConcert._embedded.venues[0].city.name}</h1></Link>
+          <h1>{event.relatedConcert._embedded.venues[0].city.name}</h1>
           }
           {
           event.relatedConcert?
@@ -118,17 +126,18 @@ play=()=>{
           {
           event.photo?
           <div>
-          <Link to={`/eventDetail/${event._id}`}><img src={event.photo}/></Link>
+          <img src={event.photo}/>
           </div> 
           :
           event.relatedConcert?
           <div>
-          <Link to={`/eventDetail/${event._id}`}><img src={event.relatedConcert.images[1].url}/></Link>
+          <img src={event.relatedConcert.images[1].url}/>
           </div> 
           :
           null
           }
           </EventStyle>
+          </Link>
 
           )
         })

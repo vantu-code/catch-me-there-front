@@ -152,18 +152,20 @@ this.findLocation()
    :
    <img style={{marginTop: "10px"}} src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/09b24e31234507.564a1d23c07b4.gif" width="50"/>
  }
-    {    concerts.map((concert)=>{
+    {    concerts.map((concert, i)=>{
            return (
-           <ConcertStyle key={concert.id}>
+          <Link to={`/concertDetail/${concert.id}`} style={{textDecoration:"none"}} key={concert.id}>
+           <ConcertStyle key={i}>
            <div>
-           <Link to={`/concertDetail/${concert.id}`} > <h1>{concert.name}</h1></Link>
-           <Link to={`/concertDetail/${concert.id}`} ><h1>{concert._embedded.venues[0].name}</h1></Link>
-           <Link to={`/concertDetail/${concert.id}`} > <h2>{concert.dates.start.localDate}</h2> </Link>
+           <h1>{concert.name}</h1>
+           <h1>{concert._embedded.venues[0].name}</h1>
+            <h2>{concert.dates.start.localDate}</h2> 
            </div>
            <div>
-           <Link to={`/concertDetail/${concert.id}`} > <img src={concert.images[1].url} height={80}/> </Link>
+            <img src={concert.images[1].url} height={80}/> 
            </div>
            </ConcertStyle>
+           </Link>
            )
          })
        } 

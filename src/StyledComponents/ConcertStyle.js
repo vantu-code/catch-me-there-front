@@ -14,6 +14,7 @@ display:flex;
 justify-content: space-between;
 align-items: center;
 padding-left: 30px;
+border-radius: 5px;
 img{
     margin:5px;
     height: 80px;
