@@ -30,19 +30,15 @@ class EventDetail extends Component {
     getOneEvent=(eventId)=>{
         Event.getOne(eventId)
         .then((result) => {
-            //console.log("event-here result",  this.props)
             this.setState({event:result.data})
             this.getComingToEvent()
             this.findOrganizer()
-            // goodNameConcert.name= this.goodNameFunc(goodNameConcert.name)
-            // this.setState({concert: result.data._embedded.events[0]})
             Auth.me()
             .then((user) => {
                 if(result.data.comingIds.includes(user._id))
                 {this.setState({isGoing: true})}
                 if(result.data.organizerId === user._id)
                 {this.setState({isMyEvent: true})}
-                //console.log("event -     state", this.state)
             }).catch((err) => {
                 console.log(err)
             });
@@ -54,7 +50,6 @@ findOrganizer=()=>{
     User.getOneUser(this.state.event.organizerId)
     .then((result) => {
         this.setState({organizer: result.data})
-        //console.log("organizer", this.state.organizer)
     }).catch((err) => {
         
     });
@@ -67,11 +62,9 @@ findOrganizer=()=>{
         this.getComingToEvent()
         User.leaveEvent(eventId)
         .then((resultUser) => {
-            //console.log('result back from leaving', resultUser)
         }).catch((err) => {
             console.log(err)
         });
-        //console.log("leave event", result)
         }).catch((err) => {
         console.log(err);
         });
@@ -85,19 +78,15 @@ findOrganizer=()=>{
             this.getComingToEvent()
             User.joinEvent(eventId)
             .then((resultUser) => {
-                //console.log('result back from joining', resultUser)
             }).catch((err) => {
                 console.log(err)
             });
-            // console.log("join event", result)
-            //this.forceUpdate()
             }).catch((err) => {
             console.log(err);
             });
         }
 
         getComingToEvent=()=>{
-        //console.log("this state event", this.state.event)
         const {comingIds} = this.state.event
         const promiseArr =[]
         comingIds.forEach((id)=>{
@@ -105,15 +94,13 @@ findOrganizer=()=>{
     })
     Promise.all(promiseArr)
     .then((result) => {
-       this.setState({coming:result})
-            //console.log("this state eventdetail", this.state)
+    this.setState({coming:result})
         }).catch((err) => {
-            
+        console.log(err)
         });
         }
 
         deleteEvent=()=>{
-            // console.log("delete-mode",this.state.event._id)
             Event.delete(this.state.event._id)
             .then((result) => {
             this.setState({isMyEvent: false})
@@ -130,8 +117,6 @@ findOrganizer=()=>{
     render() {
         const {event, coming, organizer, isMyEvent} = this.state;
         const { user, logout, isLoggedin } = this.props;
-        //console.log("state", this.state);
-        //console.log('google',process.env);
         
         return (
             <Wrapper

@@ -8,7 +8,6 @@ import Wrapper from '../StyledComponents/Wrapper'
 import InputLine from '../StyledComponents/InputLine'
 import {MyButton} from '../StyledComponents/Button'
 import { withAuth } from '../lib/AuthProvider';
-// import {NavLink} from 'react-router-dom';
 
 
 class Events extends Component {
@@ -29,7 +28,7 @@ play=()=>{
     .then((result) => {
       this.setState({events: result.data, eventsCopy: result.data})
     }).catch((err) => {
-      
+      console.log(err)
     });
   }
   handleSubmit = e => {
@@ -44,7 +43,6 @@ play=()=>{
       event.city.toLowerCase() === city.toLowerCase()
     )
     this.setState({eventsCopy: result})
-    //console.log(result, " events", events)
     }
   };
 
@@ -61,9 +59,6 @@ play=()=>{
   render() {
     const { user, logout, isLoggedin } = this.props;
     const {events, eventsCopy} = this.state;
-    // console.log("logged in", isLoggedin)
-    // console.log("props", this.props)
-    //console.log("check", events)
     return (
       <Wrapper
       style={{paddingTop:(isLoggedin ? "90" : "0")}}

@@ -19,14 +19,7 @@ width: 60%
 color:white;
 margin: 10px 0;
 `}
-/* ${props=>props.login&&css`
-background-color: #44A2B020;
-width: 45%;
-color:white;
-margin: 10px 0;
-`} */
 ${props=>props.small&&css`
-/* background-color: #44A2B0; */
 border: 1px solid white;
 background-color: black;
 opacity: 0.8;
@@ -52,7 +45,6 @@ opacity: 0.8;
 border-radius: 4px;
 text-decoration: none;
 padding: 2px 0;
-/* font-size: 1.1em; */
 `}
 ${props=>props.red&&css`
 background-color: #65070780;

@@ -60,8 +60,7 @@ class Navbar extends Component {
         </ul>
         :
         null
-          }
-            {/* <p>What's up {user.username}?</p> */}          
+          }  
           </div>
         ) : null
         }
