@@ -95,6 +95,7 @@ play=()=>{
           return (
           <Link to={(isLoggedin? `/eventDetail/${event._id}`: `/eventDetail-home/${event._id}`)} style={{textDecoration: "none"}} key={i}>
           <EventStyle 
+          className="events-style"
           key={event._id}>
           <div>
           <h1>{event.title}</h1>

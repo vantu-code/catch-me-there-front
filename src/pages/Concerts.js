@@ -51,8 +51,9 @@ class Concerts extends Component {
 
 
 byMyLocation=()=>{
-  this.getAllConcerts(this.state.currentCity)
+  this.setState({loading:true})
   this.setState({city: this.state.currentCity})
+  this.getAllConcerts(this.state.currentCity)
 }
 
   getAllConcerts=(city, countryCode)=>{
@@ -60,6 +61,7 @@ byMyLocation=()=>{
     .get(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=&city=${city}&date,desc&size=150&apikey=Y4MH0iVp8WoFqZ4aSc3RFUk6DjJl4K1y`)
     .then((result) => {
         this.filterConcerts(result.data._embedded.events);
+        this.setState({cloading:false})
     }).catch((err) => {
       console.log(err)
     });

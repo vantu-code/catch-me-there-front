@@ -139,6 +139,7 @@ findOrganizer=()=>{
                 event != null ? 
                 <div>
                 <div className="event-details-text">
+                <div>
                 <h1 style={{fontSize:"1.2em", textAlign: "left", margin: "15px 0"}}>{event.title}</h1>
                 <h2>{event.description}</h2>
                 <h2>Vibe: {event.vibe}</h2>
@@ -164,70 +165,77 @@ findOrganizer=()=>{
                 :
                 <h2>coming {event.coming}</h2>
                 }
+                </div>
+                <div>
                 {
                 event.photo?
-                <img src={event.photo} width="100%vw" style={{margin: "15px 0"}} />
+                <img src={event.photo} width="100%vw" style={{margin: "15px 0"}} className="event-image" />
                 :
                 event.relatedConcert?
-                <img src={event.relatedConcert.images[0].url} width="100%vw" style={{margin: "15px 0"}} />
+                <img src={event.relatedConcert.images[0].url} width="100%vw" style={{margin: "15px 0"}} className="event-image"/>
                 :
                 null
                 }
                 </div>
+                </div>
                 {
                     event.relatedConcert?
                     <div>
-                    <h1 style={{textShadow: "3px 3px 8px black",
-                    padding: "0 10px",
-                    fontSize: "1em",
-                    textAlign: "left"}}>Related to:</h1> 
-                    <div className="related-concert">
+                        <h1 style={{textShadow: "3px 3px 8px black",
+                            padding: "0 10px",
+                            fontSize: "1em",
+                            textAlign: "left"}}>Related to:
+                        </h1> 
+                        <div className="related-and-image">
+                        <div className="related-concert">
+                            <div>
+                                <Link className="text-related" to={`/concertDetail/${event.relatedConcert.id}`}>
+                                    <h2>{event.relatedConcert.name}</h2>
+                                    <h2>{event.relatedConcert._embedded.venues[0].name}</h2>
+                                </Link>
+                            </div>
+                            <div>
+                                <Link className="text-related" to={`/concertDetail/${event.relatedConcert.id}`}>
+                                <img src={event.relatedConcert.images[0].url} width="100"/>
+                                </Link>
+                            </div>
+                        </div>
                     <div>
-                    <Link className="text-related" to={`/concertDetail/${event.relatedConcert.id}`}>
-                    <h2>{event.relatedConcert.name}</h2>
-                    <h2>{event.relatedConcert._embedded.venues[0].name}</h2>
-                    </Link>
-                    </div>
-                    <div>
-                    <Link className="text-related" to={`/concertDetail/${event.relatedConcert.id}`}>
-                    <img src={event.relatedConcert.images[0].url} width="100"/>
-                    </Link>
-                    </div>
-                    </div>
-
                     <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLEKEY}&q=${event.relatedConcert._embedded.venues[0].address.line1}+${event.relatedConcert._embedded.venues[0].city.name}`}
-                    width="100%vw"
-                    height="300px"
-                    id="myId"
-                    className="myClassname"
-                    display="initial"
-                    position="relative"/>
+                        width="100%vw"
+                        height="300px"
+                        id="myId"
+                        className="map"
+                        display="initial"
+                        position="relative"/>
                     </div>
-                    :
-                    <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLEKEY}&q=${event.location}+${event.city}`}
+                </div> 
+                </div>
+                :
+                <Iframe url={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLEKEY}&q=${event.location}+${event.city}`}
                     width="100%vw"
                     height="300px"
                     id="myId"
-                    className="myClassname"
+                    className="map"
                     display="initial"
                     position="relative"/>
                 }
                 {
                     !this.state.isGoing && (event.maxPeople > event.coming || event.maxPeople === null)?
                     (
-                    isLoggedin?
-                    <MyButton blue onClick={this.joinEvent}>Join this hangout</MyButton>
-                    :
-                    <MyButton blue ><Link to={`/login`} style={{color: "white", textDecoration: "none"}}> Join this hangout </Link></MyButton>
+                        isLoggedin?
+                        <MyButton blue onClick={this.joinEvent}>Join this hangout</MyButton>
+                        :
+                        <MyButton blue ><Link to={`/login`} style={{color: "white", textDecoration: "none"}}> Join this hangout </Link></MyButton>
                     )
                     :
-                    this.state.isGoing?
-                    <div>
-                    <MyButton red onClick={this.leaveEvent}>Leave this hangout</MyButton>
-                    <MyButton special> <a href={event.whatsAppGroup}><h2>WhatsApp group</h2> </a> </MyButton>
-                    </div>
+                        this.state.isGoing?
+                        <div>
+                            <MyButton red onClick={this.leaveEvent}>Leave this hangout</MyButton>
+                            <MyButton special> <a href={event.whatsAppGroup}><h2>WhatsApp group</h2> </a> </MyButton>
+                        </div>
                     :
-                    <h2>Fully booked</h2>
+                        <h2>Fully booked</h2>
                 }
                 {
                 organizer ?
@@ -258,7 +266,7 @@ findOrganizer=()=>{
                 }
                 {
                     isMyEvent?
-                    <MyButton red onClick={this.deleteEvent} style={{width: "60%"}} >delete</MyButton>
+                    <MyButton red onClick={this.deleteEvent} >delete</MyButton>
                     :null
                 }
                 {

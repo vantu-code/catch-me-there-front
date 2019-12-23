@@ -36,15 +36,12 @@ p{
 }
 /* position: fixed; */
 /* height: 10%; */
-@media (min-width: 480px) {
-    /* align-items: center;
-    display: flex;
-    justify-content: center;
-    align-items: center; */
-    width: 414px;
-    /* height: 736px; */
+@media (min-width: 800px) {
+
+    /* width: 414px; */
+
     margin: 0 auto;
-    /* background-color: tomato; */
+
 
 }
 `

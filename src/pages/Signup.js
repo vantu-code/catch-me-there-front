@@ -71,6 +71,7 @@ class Signup extends Component {
             type="email"
             name="email"
             value={email}
+            required
             onChange={this.handleChange}
           />
 
@@ -79,6 +80,7 @@ class Signup extends Component {
             type="text"
             name="about"
             value={about}
+            required
             onChange={this.handleChange}
           />
 
@@ -95,7 +97,6 @@ class Signup extends Component {
 
         <p >Already have an account?</p>
         <Link style={{textDecoration: "none"}} to={'/login'} className="log-sign"> Login </Link>
-        <Link style={{textDecoration: "none"}} to={'/events'} className="log-sign"> Events </Link>
       </div>
     );
   }

@@ -22,4 +22,8 @@ h2, h1{
     margin: 0;
     color: white;
 }
+
+@media (min-width: 800px){
+    height: 100%;
+}
 `

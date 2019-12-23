@@ -48,7 +48,6 @@ export default class AddEvent extends Component {
         }
 
     getOneConcert(concertId){
-        //console.log("props", this.props.match.params.concertId)
         axios
         .get(`https://app.ticketmaster.com/discovery/v2/events.json?id=${concertId}&apikey=Y4MH0iVp8WoFqZ4aSc3RFUk6DjJl4K1y`)
         .then((result) => {
@@ -84,7 +83,6 @@ export default class AddEvent extends Component {
         Auth.me()
         .then((user) => {
             this.setState({organizerId: user._id})
-            //console.log("added-event", this.state)
             this.createEvent()
         }).catch((err) => {
             
@@ -97,11 +95,8 @@ export default class AddEvent extends Component {
       };
 
     createEvent=()=>{
-        //console.log("statetocreate", this.state)
         Event.create(this.state)
         .then((result) => {
-            //console.log("after creating", result);
-        // User.organizer()
         this.props.history.push('/events');
         }).catch((err) => {
             
@@ -116,18 +111,18 @@ export default class AddEvent extends Component {
     }
     render() {
         return (
-            <AddEventStyle>
+            <AddEventStyle className="add-event">
             {
                 this.state.concertId? 
                 <div>
-                <h2 style={{margin: "15px", fontSize: "1.1em"}}>Create your group for the concert:</h2>
-                <h1>{this.state.relatedConcert.name}</h1>
-                <hr/>
+                    <h2 style={{margin: "15px", fontSize: "1.1em"}}>Create your group for the concert:</h2>
+                    <h1>{this.state.relatedConcert.name}</h1>
+                    <hr/>
                 </div>
                 :
                 <div>
-                <h1 style={{margin: "15px", fontSize: "1.1em"}}>Create your awesome event</h1>
-                <hr/>
+                    <h1 style={{margin: "15px", fontSize: "1.1em"}}>Create your awesome event</h1>
+                    <hr/>
                 </div>
             }
     <form onSubmit={this.handleSubmit}>
@@ -138,6 +133,7 @@ export default class AddEvent extends Component {
      type="text" 
      name="title" 
      placeholder="Roof-top party!"
+     required
      value={this.state.title} />
 
     <label>WhatsApp Group link</label>
@@ -145,6 +141,7 @@ export default class AddEvent extends Component {
      onChange={this.handleInput} 
      type="text" 
      name="whatsAppGroup" 
+     required
      value={this.state.whatsAppGroup} />
 
      <label>Description</label>
@@ -153,6 +150,7 @@ export default class AddEvent extends Component {
      onChange={this.handleInput} 
      type="text" 
      name="description" 
+     required
      value={this.state.description} />
 
      <label>Vibe</label>
@@ -188,6 +186,7 @@ export default class AddEvent extends Component {
      onChange={this.handleInput} 
      type="text" 
      name="photo" 
+     required
      value={this.state.photo} />
 
     <label style={{width:"100%", }}><h3>Or upload:</h3></label>
@@ -227,6 +226,7 @@ export default class AddEvent extends Component {
      onChange={this.handleInput} 
      type="text" 
      name="city" 
+     required
      value={this.state.city} />
 
     <label>Country</label>
@@ -234,13 +234,14 @@ export default class AddEvent extends Component {
      onChange={this.handleInput} 
      type="text" 
      name="country" 
+     required
      value={this.state.country} />
      </div>
 }
      <MyButton blue>Submit</MyButton>
      </form>
     {
-                        <MyButton black onClick={ () => this.props.history.goBack()}>back</MyButton>
+    <MyButton black onClick={ () => this.props.history.goBack()}>back</MyButton>
     }
         </AddEventStyle>
         )

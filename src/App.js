@@ -24,8 +24,8 @@ dotenv.config()
 class App extends Component {
   render() {
 
-    console.log('process.env.NODE_ENV', process.env.NODE_ENV);
-    console.log('REACT_APP_API_URL', process.env.REACT_APP_API_URL);
+    // console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+    // console.log('REACT_APP_API_URL', process.env.REACT_APP_API_URL);
 
 
     return (

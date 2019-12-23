@@ -25,4 +25,8 @@ img{
     background-repeat: no-repeat;
     background-position: 50% 50%;
 }
+@media (min-width: 800px) {
+width: 85%;
+}
+
 `

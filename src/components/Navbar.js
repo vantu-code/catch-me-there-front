@@ -34,8 +34,8 @@ class Navbar extends Component {
     const { user, logout, isLoggedin } = this.props;
     // console.log("in navbar", this.props)
     return (
-
-      <NavBarStyle>
+      
+      <NavBarStyle className="nav-bar">
         {isLoggedin ? (
           <div>
           <article>

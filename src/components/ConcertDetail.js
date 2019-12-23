@@ -105,7 +105,7 @@ export default class ConcertDetail extends Component {
                     </div>
                 </div>
                 <img style={{width:"100%", margin: "15px 0"}} src={concert.images[0].url} />
-                <article>
+                <article className="links-out">
                     <a href={this.state.spotifyLink}><img src="https://i1.wp.com/davan.ac/wp-content/uploads/2006/07/listen-on-spotify-logo.png?ssl=1" width="80"/> </a>
                     <a href={concert.url}><img src="https://www.trzcacak.rs/myfile/full/345-3451475_buy-at-ticketmaster-logos-ticketmaster.png" width="80"/> </a>
                 </article>
