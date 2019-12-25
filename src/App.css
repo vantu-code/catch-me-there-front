@@ -120,6 +120,8 @@ text-align: left;
 .title{
   color: white;
   text-decoration: none;
+  height: auto;
+  width: auto;
 
   padding-top: 15px;
 
@@ -362,7 +364,11 @@ body{
 
 .title{
   width: 100%;
+
 }
+/* .title-login{
+  transform: scale(0.5);
+} */
 .events-style{
   width: 85%;
   }
