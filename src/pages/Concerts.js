@@ -126,7 +126,7 @@ this.findLocation()
     return (
  <Wrapper>
  {
-    <form className="form-search" onSubmit={this.handleSubmit}>
+    <form className="form-search" className="main-form" onSubmit={this.handleSubmit}>
     <br></br>
     <label>City</label>
 
@@ -140,7 +140,7 @@ this.findLocation()
  }
  {
    currentCity?
-   <MyButton second onClick={this.byMyLocation}>My location</MyButton>
+   <MyButton second onClick={this.byMyLocation} className="my-location" >My location</MyButton>
    :
    <img style={{marginTop: "10px"}} src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/09b24e31234507.564a1d23c07b4.gif" width="50"/>
  }

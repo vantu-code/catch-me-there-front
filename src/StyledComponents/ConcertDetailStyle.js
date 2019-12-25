@@ -18,5 +18,12 @@ h2, h1{
     margin: 0;
     color: white;
 }
-
+@media (min-width: 800px){
+    height: 100%;
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 0;
+    padding: 0 auto;
+    margin-left: 20%;
+}
 `

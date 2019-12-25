@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { directive } from '@babel/types';
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import Event from '../lib/Event-service'
 import Auth from '../lib/auth-service'
 import User from '../lib/user-service'
@@ -17,7 +17,6 @@ export default class Profile extends Component {
     eventsAttending: null,
     eventsOrganizing: null,
     }
-
     getUser=()=>{
         const {userId} = this.props.match.params
         User.getOneUser(userId)
@@ -75,9 +74,10 @@ export default class Profile extends Component {
             }
             componentDidUpdate(prevprops){
                 if(prevprops.match.params.userId !== this.props.match.params.userId){
-                    
                 this.getUser()
             }
+
+
             }
     render() {
         const {user, myProfile, eventsAttending, eventsOrganizing} = this.state;
@@ -109,8 +109,8 @@ export default class Profile extends Component {
                         <ul style={{width: "100%", padding: "0"}}>
                         {
                             eventsAttending.map(event => (
-                            <ListItem key={event.data._id} style={{width: "100%", margin: 0, border: "none"}}>
-                                <Link to={`/eventDetail/${event.data._id}`} style={{color: "white", textDecoration: "none", fontSize: "0.8em", border: "none", textDecoration: "underline"}}> {event.data.title} </Link>
+                            <ListItem  key={event.data._id} style={{width: "100%", margin: 0, border: "none"}}>
+                                <NavLink onClick={this.getUser} to={`/eventDetail/${event.data._id}`} style={{color: "white", textDecoration: "none", fontSize: "0.8em", border: "none", textDecoration: "underline"}}> {event.data.title} </NavLink>
                             </ListItem>)
                         )}
                         </ul>
@@ -126,14 +126,15 @@ export default class Profile extends Component {
                         <ul style={{width: "100%", padding: "0", fontSize: "0.7em"}}>
                         {eventsOrganizing.map(event => (
                             <ListItem key={event.data._id} >
-                                <Link to={`/eventDetail/${event.data._id}`} 
+                                <NavLink onClick={this.getUser} to={`/eventDetail/${event.data._id}`} 
                                 style={{color: "white", 
                                 textDecoration: "none", 
                                 border: "none", 
                                 fontSize: "0.8em", 
                                 textDecoration: "underline"}}> 
-                                {event.data.title} 
-                                </Link>
+                                {event.data.title}
+                                {this.props.user} 
+                                </NavLink>
                             </ListItem>)
                         )}
                         </ul>
@@ -143,7 +144,7 @@ export default class Profile extends Component {
                     null
             }
             {
-            <MyButton black onClick={ () => this.props.history.goBack()}>back</MyButton>
+            <MyButton black className="back-profile" onClick={ () => this.props.history.goBack()}>back</MyButton>
             }
             </Wrapper>
         )

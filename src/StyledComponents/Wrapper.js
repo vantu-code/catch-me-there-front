@@ -25,5 +25,11 @@ h2, h1{
 
 @media (min-width: 800px){
     height: 100%;
+    width: 60%;
+    padding-top:90px;
+    margin: 0 auto;
+    /* padding-top: 0; */
+    padding: 0 auto;
+    margin-left: 20%;
 }
 `

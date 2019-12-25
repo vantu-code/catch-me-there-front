@@ -77,15 +77,13 @@ play=()=>{
         null
       }
   {
-    <form onSubmit={this.handleSubmit}>
-
+    <form className="main-form" onSubmit={this.handleSubmit}>
     <br></br>
     <label>City</label>
      <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="city" 
-     
      value={this.state.city} />
      <MyButton small >Search</MyButton>
      </form>

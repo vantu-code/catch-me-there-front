@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink, Switch, Route } from 'react-router-dom';
 
-
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Events from './pages/Events';
@@ -13,6 +12,8 @@ import EventDetail from './components/EventDetail'
 import Profile from './components/Profile'
 import Drums from './pages/Drums'
 
+import Auth from './lib/auth-service'
+
 import AnonRoute from './components/AnonRoute';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -22,12 +23,11 @@ dotenv.config()
 
 
 class App extends Component {
+
   render() {
 
     // console.log('process.env.NODE_ENV', process.env.NODE_ENV);
     // console.log('REACT_APP_API_URL', process.env.REACT_APP_API_URL);
-
-
     return (
       <div className="App">
         <Navbar />
@@ -39,7 +39,7 @@ class App extends Component {
           <AnonRoute exact path="/eventDetail-home/:eventId" component={EventDetail} />
           <PrivateRoute exact path="/drums" component={Drums} />
           <PrivateRoute exact path="/profile/:userId" component={Profile} />
-          <PrivateRoute exact path="/profile/" component={Profile} />
+          <PrivateRoute exact path="/profile/" component={Profile}/>
           <PrivateRoute exact path="/events" component={Events} />
           <PrivateRoute exact path="/eventDetail/:eventId" component={EventDetail} />
           <PrivateRoute exact path="/concerts" component={Concerts} />

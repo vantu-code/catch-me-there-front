@@ -34,14 +34,19 @@ article{
 p{
     margin:0
 }
-/* position: fixed; */
-/* height: 10%; */
+
 @media (min-width: 800px) {
-
-    /* width: 414px; */
-
+    position: fixed;
+    width: 15vw;
+display: flex;
+justify-content: flex-start;
+align-content:left;
     margin: 0 auto;
-
-
+    width: 100%vw;
+    article{
+        margin: 0 auto;
+    }
+    ul{
+    }
 }
 `

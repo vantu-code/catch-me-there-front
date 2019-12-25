@@ -291,8 +291,15 @@ form button{
   font-size: 0.7em;
   margin-top: 5px;
 }
-
-
+.nav-desktop{
+  display: none;
+}
+.in-concert-image{
+  width: 100%;
+}
+.all-time-profile{
+  display: none;
+}
 
 /* @media (min-width: 480px) {
   html{
@@ -328,8 +335,9 @@ form button{
 
 @media (min-width: 800px) {
 html{
-  background-color: rgba(0, 123, 188);
+  /* background-color: rgba(0, 123, 188); */
 
+  background-color: rgb(59, 59, 59);
 /* background-image: url('https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'); */
 /* background-image: url('https://images.unsplash.com/photo-1525642351754-db88d9142dee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80'); */
 
@@ -340,18 +348,20 @@ background-size: cover;
 body{
   /* overflow-y: hidden; */
   background-color: rgba(0, 0, 0, 0);
-  width: 60%;
+  /* width: 60%; */
   margin: 0 auto;
   height: 100vw;
 }
 .nav-bar{
-  background-color: rgba(0, 0, 0, 0.26);
-  width: 60%;
-  margin: 0 auto;
-  border-radius: 10px;
+  display: none;
 }
+.nav-desktop{
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.473);
+}
+
 .title{
-  width: 50%;
+  width: 100%;
 }
 .events-style{
   width: 85%;
@@ -361,8 +371,16 @@ transform:scale(1.05);
 border: 1px dashed white;
 }
 .folded{
-  background-color: black;
+  background-color: rgba(36, 36, 36, 0.315);
   height: 100vw;
+/* margin-right: 7vw; */
+  width: 100%
+}
+.side-bar{
+  width: 100%;
+}
+.menuLink{
+  border: none;
 }
 .drumLink{
   display: none;
@@ -386,12 +404,139 @@ border: 1px dashed white;
   display: flex;
   justify-content: space-between;
 }
+.concert-head{
+  display: flex;
+  justify-content: space-between;
+}
+.in-concert-image{
+  /* display: flex;
+  justify-content: center; */
+  margin:5px;
+  height: 250px;
+  width: 400px;
+  border: 1px solid rgba(128, 128, 128, 0.349);
+  border-radius: 2%;
+  object-fit: cover;
+  /* transform: scale(0.9); */
+}
+.text-wrapper{
+  font-size: 2em;
+  margin: 15px;
+}
+.links-out{
+  display: flex;
+  justify-content: space-between;
+}
 .add-event{
   background-color: rgba(0, 0, 0, 0);
 }
 .add-input{
   width: 55%;
 }
+.all-time-profile{
+position: fixed;
+margin-top: auto;
+width: 15vw;
+display: flex;
+flex-direction: column;
+background-image: url('https://images.pexels.com/photos/1480690/pexels-photo-1480690.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+background-position: center;
+background-repeat: repeat;
+background-size: cover;
+background-size: 1300px;
+/* background-color: rgba(0, 0, 0, 0.473); */
+justify-content: flex-start;
+align-content: flex-start;
+float: right;
+height: 100vw;
+z-index:99;
+right: 0; 
+top: 0; 
+transition: top 0.8s;
+}
+.back-profile{
+  display: none;
+}
+.main-title{
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.473);
+  /* height: 11%; */
+  display: flex;
+  z-index:99;
+  justify-content: flex-start;
+  position: fixed;
+  margin: 30px;
+  display: none;
+}
+.main-form{
+  /* overflow-y: scroll; */
+  /* background-color: black; */
+  background-image: url('/images/Artboard.png');
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  width: 100%;
+  z-index:99;
+  position: fixed;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right:0;
+  padding-left: 20%;
+  height: 7%;
+}
+/* html:not([data-scroll='0']){
+
+    
+  
+  font-size: 4em;
+} */
+.main-form input{
+  text-align: left;
+  width: 30%;
+  margin: 0 auto;
+}
+.main-form label{
+margin-left: 4vw;
+}
+.main-form button{
+  margin-right: 50%;
+  width: 10vw;
+}
+.main-form br{
+  display: none;
+}
+
+.profile-top{
+  /* display: none; */
+}
+.title{
+  margin-top: -15px;
+}
+.name{
+  font-size: 0.8em;
+}
+.my-location{
+  z-index:99;
+position: fixed;
+margin: 0 auto;
+width: 10vw;
+margin-left: 30%;
+top:0;
+padding: 0 -10px;
+position: fixed;
+/* height: 5%; */
+margin-top: 19px;
+margin-right: 200px;
+background-color: rgba(89, 176, 179, 0.658);
+}
+
+/* .main-nav{
+  position: fixed;
+  z-index:99;
+} */
 /* .map{
   width:100%;
 } */
