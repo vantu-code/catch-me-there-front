@@ -1,12 +1,13 @@
 import axios from 'axios'
 import React, { Component } from 'react';
 import Event from '../lib/Event-service'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import styled, {ThemeProvider} from 'styled-components'
 import EventStyle from '../StyledComponents/EventStyle'
 import Wrapper from '../StyledComponents/Wrapper'
 import InputLine from '../StyledComponents/InputLine'
 import {MyButton} from '../StyledComponents/Button'
+import { withAuth } from '../lib/AuthProvider';
 
 
 class Events extends Component {
@@ -27,7 +28,7 @@ play=()=>{
     .then((result) => {
       this.setState({events: result.data, eventsCopy: result.data})
     }).catch((err) => {
-      
+      console.log(err)
     });
   }
   handleSubmit = e => {
@@ -42,7 +43,6 @@ play=()=>{
       event.city.toLowerCase() === city.toLowerCase()
     )
     this.setState({eventsCopy: result})
-    //console.log(result, " events", events)
     }
   };
 
@@ -57,20 +57,33 @@ play=()=>{
 
   }
   render() {
+    const { user, logout, isLoggedin } = this.props;
     const {events, eventsCopy} = this.state;
-    //console.log("check", events)
     return (
-      <Wrapper>
+      <Wrapper
+      style={{paddingTop:(isLoggedin ? "90" : "0")}}
+      >
+      {
+        !isLoggedin?
+        <div>
+        <div className="fake-nav">
+        <Link className="fake-link" to={`/login`}>Login </Link>
+        <Link to={`/events-home`}><img src='/images/catch-me-there-logo-white.png' height="20" /></Link>
+        <Link className="fake-link" to={`/signup`}>Signup </Link>
+        </div>
+        <hr></hr>
+        </div>
+        :
+        null
+      }
   {
-    <form onSubmit={this.handleSubmit}>
-
+    <form className="main-form" onSubmit={this.handleSubmit}>
     <br></br>
     <label>City</label>
      <InputLine 
      onChange={this.handleInput} 
      type="text" 
      name="city" 
-     
      value={this.state.city} />
      <MyButton small >Search</MyButton>
      </form>
@@ -78,15 +91,17 @@ play=()=>{
  {
           eventsCopy.map((event, i)=>{
           return (
-            
-          <EventStyle key={event._id}>
+          <Link to={(isLoggedin? `/eventDetail/${event._id}`: `/eventDetail-home/${event._id}`)} style={{textDecoration: "none"}} key={i}>
+          <EventStyle 
+          className="events-style"
+          key={event._id}>
           <div>
-          <Link to={`/eventDetail/${event._id}`} style={{textDecoration: "none"}}><h1>{event.title}</h1></Link>
+          <h1>{event.title}</h1>
           {
           !event.relatedConcert?
-          <Link to={`/eventDetail/${event._id}`} style={{textDecoration: "none"}}><h1>{event.city}</h1></Link>
+          <h1>{event.city}</h1>
           :
-          <Link to={`/eventDetail/${event._id}`} style={{textDecoration: "none"}}><h1>{event.relatedConcert._embedded.venues[0].city.name}</h1></Link>
+          <h1>{event.relatedConcert._embedded.venues[0].city.name}</h1>
           }
           {
           event.relatedConcert?
@@ -105,17 +120,18 @@ play=()=>{
           {
           event.photo?
           <div>
-          <Link to={`/eventDetail/${event._id}`}><img src={event.photo}/></Link>
+          <img src={event.photo}/>
           </div> 
           :
           event.relatedConcert?
           <div>
-          <Link to={`/eventDetail/${event._id}`}><img src={event.relatedConcert.images[1].url}/></Link>
+          <img src={event.relatedConcert.images[1].url}/>
           </div> 
           :
           null
           }
           </EventStyle>
+          </Link>
 
           )
         })
@@ -125,4 +141,4 @@ play=()=>{
   }
 }
 
-export default Events;
+export default withAuth(Events);

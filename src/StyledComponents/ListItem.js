@@ -13,5 +13,8 @@ padding-bottom: 20px;
 li{
     color:white;
 }
+@media (min-width: 800px) {
+    
+}
 `
 

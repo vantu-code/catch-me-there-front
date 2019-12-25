@@ -18,4 +18,7 @@ border: none;
 border-bottom: 1px solid white;
 /* position: fixed; */
 /* height: 10%; */
+@media (min-width: 800px){
+width: 55%;
+}
 `

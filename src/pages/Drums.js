@@ -12,13 +12,10 @@ export default class Drums extends Component {
         hiHat: document.getElementById("hiHat"),
         openHat: document.getElementById("openHat"),
         classDrum: "drum",
-        // snare:
-        // hiHat:
     }
     kick=()=>{
     this.state.kick.currentTime = 0
     this.state.kick.play()
-    // setTimeout(check, 1000)
     }
     snare=()=>{
     this.state.snare.currentTime = 0
@@ -37,17 +34,17 @@ export default class Drums extends Component {
     render() {
         return (
             <Wrapper>
-            <h1 style={{fontSize: "1.5em", marginTop: "100px"}}>Play your beat</h1>
-            <DrumsStyle>
-            <div className="two-drums">
-            <div className={this.state.classDrum} onClick={this.snare}> Snare</div>
-            <div className="drum" onClick={this.kick}> kick</div>
-            </div>
-            <div className="two-drums">
-            <div className="drum" onClick={this.openHat}> Open hat</div>
-            <div className="drum" onClick={this.hiHat}> Hi-hat</div>
-            </div>
-            </DrumsStyle>
+                <h1 style={{fontSize: "1.5em", marginTop: "100px"}}>Play your beat</h1>
+                <DrumsStyle>
+                    <div className="two-drums">
+                        <div className={this.state.classDrum} onClick={this.snare}> Snare</div>
+                        <div className="drum" onClick={this.kick}> kick</div>
+                    </div>
+                    <div className="two-drums">
+                        <div className="drum" onClick={this.openHat}> Open hat</div>
+                        <div className="drum" onClick={this.hiHat}> Hi-hat</div>
+                    </div>
+                </DrumsStyle>
             </Wrapper>
         )
     }

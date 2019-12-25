@@ -11,7 +11,7 @@ class Event {
   create(fullObject){
     return this.auth
     .post('/events', fullObject)
-    .then(({data})=>console.log(data))
+    .then(({data})=>data)
   }
 
   getOne(eventId){
@@ -21,7 +21,6 @@ class Event {
   }
 
   delete(eventId){
-    console.log("in delete")
     return this.auth
     .delete(`/events/delete/${eventId}`)
     .then((data)=> data)

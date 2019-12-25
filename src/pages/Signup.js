@@ -71,6 +71,7 @@ class Signup extends Component {
             type="email"
             name="email"
             value={email}
+            required
             onChange={this.handleChange}
           />
 
@@ -79,6 +80,7 @@ class Signup extends Component {
             type="text"
             name="about"
             value={about}
+            required
             onChange={this.handleChange}
           />
 
@@ -90,11 +92,11 @@ class Signup extends Component {
           onChange={e => this.fileChange(e)}
           />
 
-          <MyButton login><input type="submit" value="Signup" /></MyButton>
+          <MyButton login><input type="submit" value="Signup" className="login-btn" /></MyButton>
         </form>
 
-        <p style={{width: "100%"}}>Already have an account?</p>
-        <Link style={{color: "white", textDecoration: "none", width: "100%"}} to={'/login'}> <MyButton black>Login </MyButton></Link>
+        <p >Already have an account?</p>
+        <Link style={{textDecoration: "none"}} to={'/login'} className="log-sign"> Login </Link>
       </div>
     );
   }

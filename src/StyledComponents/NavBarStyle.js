@@ -1,7 +1,12 @@
 import styled from 'styled-components'
 
 export default styled.div`
+<<<<<<< HEAD
 background-color: black;
+=======
+/* background-color: black; */
+background-color: rgb(27, 27, 27);
+>>>>>>> develop
 /* opacity: 0.8; */
 /* background-color: #142427; */
 border-bottom: 1px solid gray;
@@ -33,6 +38,19 @@ article{
 p{
     margin:0
 }
-/* position: fixed; */
-/* height: 10%; */
+
+@media (min-width: 800px) {
+    position: fixed;
+    width: 15vw;
+display: flex;
+justify-content: flex-start;
+align-content:left;
+    margin: 0 auto;
+    width: 100%vw;
+    article{
+        margin: 0 auto;
+    }
+    ul{
+    }
+}
 `

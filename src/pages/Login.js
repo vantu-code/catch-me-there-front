@@ -41,10 +41,12 @@ class Login extends Component {
             value={password}
             onChange={this.handleChange}
           />
-          <MyButton login><input type="submit" value="Login" /></MyButton>
+          <button ><input type="submit" value="Login" className="login-btn"/></button>
         </form>
-        <p style={{width: "100%"}}>Don't have an account?</p>
-        <Link style={{color: "white", textDecoration: "none", width: "100%"}} to={'/signup'}> <MyButton black>Signup </MyButton></Link>
+
+        <p >Don't have an account?</p>
+        <Link style={{textDecoration: "none", display: "inline"}} to={'/signup'} className="log-sign">Signup</Link>
+
       </div>
     );
   }

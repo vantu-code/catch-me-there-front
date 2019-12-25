@@ -16,7 +16,8 @@ class Concerts extends Component {
       filteredConcerts: [],
       city: "",
       countryCode: '',
-      currentCity: null
+      currentCity: null,
+      loading: false,
      };
   }
 
@@ -28,23 +29,15 @@ class Concerts extends Component {
   };
   const success=pos=>{
     var crd = pos.coords;
-    //console.log('Your current position is:');
-    //console.log(`Latitude : ${crd.latitude}`);
-    //console.log(`Longitude: ${crd.longitude}`);
-    //console.log(`More or less ${crd.accuracy} meters.`);
     axios
     .get
     (`https://maps.googleapis.com/maps/api/geocode/json?latlng=${crd.latitude},${crd.longitude}&key=${process.env.REACT_APP_GOOGLEKEY}`)
     .then((result) => {
-      //console.log("from google, my city is: ", result)
       const currentCity = result.data.results[0].address_components[2].long_name
       if (currentCity)
       {
-        //console.log("from google, my city is: ", currentCity)
         this.setState({currentCity})
-        // console.log("state", this.state)
       }
-      // console.log("from google coor", result.data.results[0].address_components[2].long_name)
     }).catch((err) => {
       console.log(err)
     });
@@ -58,8 +51,9 @@ class Concerts extends Component {
 
 
 byMyLocation=()=>{
-  this.getAllConcerts(this.state.currentCity)
+  this.setState({loading:true})
   this.setState({city: this.state.currentCity})
+  this.getAllConcerts(this.state.currentCity)
 }
 
   getAllConcerts=(city, countryCode)=>{
@@ -67,7 +61,7 @@ byMyLocation=()=>{
     .get(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=&city=${city}&date,desc&size=150&apikey=Y4MH0iVp8WoFqZ4aSc3RFUk6DjJl4K1y`)
     .then((result) => {
         this.filterConcerts(result.data._embedded.events);
-    //   this.setState({concerts: result.data._embedded.events})
+        this.setState({cloading:false})
     }).catch((err) => {
       console.log(err)
     });
@@ -88,7 +82,6 @@ byMyLocation=()=>{
         }
       }
     })
-    // const filteredConcerts = [...this.state.filteredConcerts]
 
     let unique = [...fromDBCopy];
 
@@ -100,8 +93,7 @@ byMyLocation=()=>{
             }
         }
     }
-    this.setState({concerts: unique})
-    // console.log("uuun", unique);
+    this.setState({concerts: unique, loading: false})
   }
 
   
@@ -117,7 +109,7 @@ this.findLocation()
 
   handleSubmit = e => {
     e.preventDefault();
-    // console.dir(e.target);
+    this.setState({loading:true})
     const {city, countryCode} = this.state;
     this.getAllConcerts(city, countryCode);
   };
@@ -129,12 +121,12 @@ this.findLocation()
   };
 
   render() {
-    const {concerts, currentCity} = this.state;
+    const {concerts, currentCity, loading} = this.state;
     const {filterConcerts} = this.state;
     return (
  <Wrapper>
  {
-    <form className="form-search" onSubmit={this.handleSubmit}>
+    <form className="form-search" className="main-form" onSubmit={this.handleSubmit}>
     <br></br>
     <label>City</label>
 
@@ -148,25 +140,37 @@ this.findLocation()
  }
  {
    currentCity?
-   <MyButton second onClick={this.byMyLocation}>My location</MyButton>
+   <MyButton second onClick={this.byMyLocation} className="my-location" >My location</MyButton>
    :
    <img style={{marginTop: "10px"}} src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/09b24e31234507.564a1d23c07b4.gif" width="50"/>
  }
-    {    concerts.map((concert)=>{
+ {
+        loading?
+         <div >
+         <img style={{marginTop: "10px",margin: "0 auto", width: "50%"}} src="https://royalsocietypublishing.org/ux3/widgets/publication-content/images/spinner.gif" width="50"/>
+         </div>
+         :
+         null
+ }
+    {    
+      concerts.map((concert, i)=>{
            return (
-           <ConcertStyle key={concert.id}>
+          <Link to={`/concertDetail/${concert.id}`} style={{textDecoration:"none"}} key={concert.id}>
+           <ConcertStyle key={i}>
            <div>
-           <Link to={`/concertDetail/${concert.id}`} > <h1>{concert.name}</h1></Link>
-           <Link to={`/concertDetail/${concert.id}`} ><h1>{concert._embedded.venues[0].name}</h1></Link>
-           <Link to={`/concertDetail/${concert.id}`} > <h2>{concert.dates.start.localDate}</h2> </Link>
+           <h1>{concert.name}</h1>
+           <h1>{concert._embedded.venues[0].name}</h1>
+            <h2>{concert.dates.start.localDate}</h2> 
            </div>
            <div>
-           <Link to={`/concertDetail/${concert.id}`} > <img src={concert.images[1].url} height={80}/> </Link>
+            <img src={concert.images[1].url} height={80}/> 
            </div>
            </ConcertStyle>
+           </Link>
            )
          })
        } 
+
       </Wrapper>
     );
   }
