@@ -47,7 +47,7 @@ class Signup extends Component {
     const { username, password, photo, email, about} = this.state;
     return (
       <div>
-        <img src='/images/catch-me-there-logo-white.png' className="title" height="25" style={{marginTop: "20px"}} alt="Catch me there" />
+        <img src='/images/catch-me-there-logo-white.png' className="title-login" height="25" style={{marginTop: "20px"}} alt="Catch me there" />
         <h1 >Sign Up</h1>
         <form className="signup" onSubmit={this.handleFormSubmit}>
           <label>Username:</label>

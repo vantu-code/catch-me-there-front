@@ -98,7 +98,7 @@ class Navbar extends Component {
         }
       </NavBarStyle>
       <div className="main-title">
-      <NavLink to={`/events`}><img src='/images/catch-me-there-logo-white.png' height="20" /></NavLink>
+      {/* <NavLink to={`/events`}><img src='/images/catch-me-there-logo-white.png' height="20" /></NavLink> */}
       </div>
 
       {

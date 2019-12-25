@@ -23,7 +23,7 @@ class Login extends Component {
 
     return (
       <div>
-        <img src='/images/catch-me-there-logo-white.png' className="title" height="25" style={{marginTop: "20px"}} />
+        <img src='/images/catch-me-there-logo-white.png' className="title-login" height="25" style={{marginTop: "20px"}} />
         <h1>Login</h1>
         <form className="login" onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
