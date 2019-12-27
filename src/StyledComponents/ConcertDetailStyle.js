@@ -5,7 +5,8 @@ article{
     /* display: flex;
     flex-direction: column;
     justify-content: space-around; */
-    width: 100%;
+    width: 100vw;
+    /* margin-left: 20%; */
 }
 /* text-align: left; */
 text-decoration: none;
@@ -20,10 +21,20 @@ h2, h1{
 }
 @media (min-width: 800px){
     height: 100%;
-    width: 60%;
-    margin: 0 auto;
+    /* width: 60%; */
+    margin: 0 20%;
     padding-top: 0;
     padding: 0 auto;
-    margin-left: 20%;
+article{
+width: 80%;
+}
+.links-out{
+    margin-left: 50px;
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  /* padding-right: 50%; */
+}
+
 }
 `

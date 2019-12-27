@@ -26,6 +26,7 @@ img{
     background-position: 50% 50%;
 }
 @media (min-width: 800px) {
+
 width: 85%;
 }
 
