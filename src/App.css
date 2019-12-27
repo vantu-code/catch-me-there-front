@@ -572,15 +572,17 @@ margin-left: 4vw;
   z-index:99;
 position: fixed;
 margin: 0 auto;
-width: 6vw;
-height: 15px;
-margin-left: 12%;
-font-size: 10px;
+width: 100px;
+height: 20px;
+margin-left: 350px;
+font-size: 11px;
+color: azure;
+border-radius: 4px;
 /* top:0; */
 /* padding: 0 -10px; */
 /* position: fixed; */
 /* height: 5%; */
-margin-top: -50px;
+margin-top: -73px;
 /* margin-right: 400px; */
 background-color: rgba(89, 176, 179, 0.301);
 
