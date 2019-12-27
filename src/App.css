@@ -85,7 +85,11 @@ audio{
 .text-wrapper{
 display: flex;
 flex-direction: column;
+<<<<<<< HEAD
 align-items: flex-start;
+=======
+margin-left: 10px;
+>>>>>>> develop
 }
 .two-columns{
 margin-top: 10px;
@@ -135,14 +139,18 @@ text-align: left;
   text-decoration: none;
   height: auto;
   width: auto;
-
   padding-top: 15px;
+<<<<<<< HEAD
 
 <<<<<<< HEAD
   /* font-family: 'Saira', sans-serif; */
   /* font-family: 'Fira Sans', sans-serif; */
   font-family: 'Roboto', sans-serif;
 =======
+>>>>>>> develop
+=======
+  /* transform: scale(0.2); */
+  height: 20px;
 >>>>>>> develop
 }
 .signup{
@@ -325,7 +333,18 @@ form button{
 .all-time-profile{
   display: none;
 }
-
+.concert-text{
+  margin-left: 50px;
+}
+.links-out{
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  padding: 0;
+}
+.links-out a{
+margin: 10px 30px;
+}
 /* @media (min-width: 480px) {
   html{
     background-image: url('https://mockuphone.com/static/images/devices/apple-iphone7-silver-portrait.png');
@@ -385,6 +404,7 @@ body{
   background-color: rgba(0, 0, 0, 0.473);
 }
 
+
 .title{
   width: 100%;
 
@@ -436,6 +456,7 @@ border: 1px dashed white;
 .concert-head{
   display: flex;
   justify-content: space-between;
+  margin-top: 50px;
 }
 .in-concert-image{
   /* display: flex;
@@ -451,11 +472,10 @@ border: 1px dashed white;
 .text-wrapper{
   font-size: 2em;
   margin: 15px;
+
 }
-.links-out{
-  display: flex;
-  justify-content: space-between;
-}
+
+
 .add-event{
   background-color: rgba(0, 0, 0, 0);
 }
@@ -543,6 +563,7 @@ margin-left: 4vw;
 }
 .title{
   margin-top: -15px;
+
 }
 .name{
   font-size: 0.8em;
@@ -551,15 +572,18 @@ margin-left: 4vw;
   z-index:99;
 position: fixed;
 margin: 0 auto;
-width: 10vw;
-margin-left: 30%;
-top:0;
-padding: 0 -10px;
-position: fixed;
+width: 6vw;
+height: 15px;
+margin-left: 12%;
+font-size: 10px;
+/* top:0; */
+/* padding: 0 -10px; */
+/* position: fixed; */
 /* height: 5%; */
-margin-top: 19px;
-margin-right: 200px;
-background-color: rgba(89, 176, 179, 0.658);
+margin-top: -50px;
+/* margin-right: 400px; */
+background-color: rgba(89, 176, 179, 0.301);
+
 }
 
 /* .main-nav{

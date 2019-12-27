@@ -53,6 +53,7 @@ margin: 10px 0;
 ${props=>props.second&&css`
 background-color: #63BFFF10;
 opacity: 0.8;
+border: 1px solid white;
 border-radius: 4px;
 width: 30%
 color:white;
